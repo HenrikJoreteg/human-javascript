@@ -36,4 +36,4 @@ The challenge with those frameworks, from where I sit, is that there's a lot of 
 
 Why bring the complexity of the server to the client and vice/versa? In addition, when you try to share too much server code with a browser it's very easy to fall into the trap of tightly coupling your application to that particular client. This makes it much harder to build other clients, say for example a native iOS app for your app. So while these frameworks are useful for webapps, they may let us down a bit when we want to go beyond that. With more and more talk of "the Internet of things" we have good reason to believe that the breadth of device types that may want to talk to your app will continue to increase.
 
-Let’s talk about the when to build an "app" and when to keep things simpler.
+Let’s talk about the when to build an "app" and when perhaps just as importantly, when *not* to.
