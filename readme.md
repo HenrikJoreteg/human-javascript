@@ -5,8 +5,8 @@ Outline:
 1. [Hardly even an introduction](intro.md)
 1. [Apps v. websites](ch1.md)
 1. [Client or server? Go big or go home.](ch2.md)
-1. jQuery the anti-pattern framework. Approaching the front end like an engineer.
-1. Writing code for humans.
+1. [jQuery the anti-pattern framework. Approaching the front end like an engineer.](ch3.md)
+1. [Writing code for humans.](ch4.md)
 1. Maintainable clientside code.
 1. On rendering. Client or server, pick one.
 1. Enemy of the state (duplication).
