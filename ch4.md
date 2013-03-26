@@ -31,4 +31,9 @@ if (_.contains(myArray, 'hello')) {
 }
 ```
 
+## Linting / Static code analysis
+
+Related to readability is that code conventions and format should be consistent throughout the project. In practice, if you have multiple people involved in a project, this can be tricky.
+
+
 
