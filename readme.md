@@ -1,18 +1,13 @@
-# &yet's browser applications tricks and trickery
+# Browser apps 
+Tricks, trickery and snake oil
 
-Outline:
+1. [Introductory rant](ch1 - intro rant.md)
+1. [The big decision](ch2 - the big decision.md)
+1. [Code for humans](ch3 - code for humans.md)
+1. [Cleanliness](ch4 - cleanliness.md)
+1. [on.('events')](ch5 - eventification.md)
+1. [Templating](ch6 - templating.md)
+1. [launch sequence](ch7 - launch sequence.md)
 
-1. [Hardly even an introduction](intro.md)
-1. [Apps v. websites](ch1.md)
-1. [Client or server? Go big or go home.](ch2.md)
-1. [jQuery the anti-pattern framework. Approaching the front end like an engineer.](ch3.md)
-1. [Writing code for humans.](ch4.md)
-1. Maintainable clientside code.
-1. On rendering. Client or server, pick one.
-1. Enemy of the state (duplication).
-1. The DOM as your puppet.
-1. Modules, plugins and inheritance, oh my! Teeny tiny little pieces.
-1. Tinkering with templates.
-1. The lonely script tag.
 1. Initiate launch sequence.
 1. Routes and history.
