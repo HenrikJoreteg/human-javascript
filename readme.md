@@ -8,6 +8,5 @@ Tool, tips, trickery and snake oil
 1. [on.('events')](ch5 - eventification.md)
 1. [Templating](ch6 - templating.md)
 1. [launch sequence](ch7 - launch sequence.md)
-
 1. Initiate launch sequence.
 1. Routes and history.
