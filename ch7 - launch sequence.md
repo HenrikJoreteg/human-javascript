@@ -1,24 +1,33 @@
 require('your_app').launch();
 
+One thing you sometimes lose with browser app is proper handling of the browser's "back" button and the ability to "deep link" into some specific view of the app.
 
-I'm a big fan of browser apps that are still deep linkable and URL driven. 
+The good news is we don't actually have to make those tradeoffs. Through the clever use of Backbone's router and HTML5 push state browser apps can take over the world. Here's how it works...
 
-That's where Backbone's router comes in really handy. To really make sense of how to use it, is a bit confusing at first if you're used to url routing systems on the server side.
-
-In reality it's actually quite similar, but it's a bit to wrap your mind around at first.
 
 ## Same shit different URL
-If you're going to pass routing control to the client and you want to support deep linking into your app you'll need to make sure you send the same application in response to many different requests.
 
-For example. And Bang has a task detail page for every task at a URL stucture that looks like this:
+From the server perspecive, how do we actually "hand control of routing to the client". Ugh... that's not how the web works, right? The server has to answer actual http GET request when a user types your app's url in their browser.
 
-https://andbang.com/andyet/tasks/47
+So what I mean is simply that you return the same app html at multiple urls.
 
-So, if a user types that URL in their browser the user will see a detail view of that task. Also, if they're somewhere else in the app and navigate to that task view by clicking the task in their list, the page won't reload, but when you look at the URL bar in the browser, that's the page you're on.
+For example, it doesn't matter if you hit:
 
-We said earlier that we're just going to serve the same application code to all the app users and it's just a super simple html file. This means that the server has to somehow be able to re-write the URL so that you can support sending the same response at any number of urls that you define. 
+https://andbang.com/andyet/chat
 
-If you're using express and node it may look something like this:
+or 
+
+https://andbang.com/basecamp
+
+Either way, the server will return this html:
+
+    <!DOCTYPE html>
+    <script src="/&!.js"></script>
+
+
+It may be helpful to thinking about it as a block of urls that all just serve the app.
+
+If you're using express and node it's quite easy to do.
 
     app.get('/other/thing', function () {
         // you could still serve other support pages 
@@ -34,7 +43,21 @@ If you're using express and node it may look something like this:
 
 At this point finding/fetching the right data and rendering the right view is up to the browser app.
 
-So, how do we do this?
+
+## How to deal with clientside routes
+
+And Bang has a task detail page for every task at a URL stucture that looks like this:
+
+https://andbang.com/andyet/tasks/47
+
+So, if a user types that URL in their browser the user will see a detail view of that task. Also, if they're somewhere else in the app and navigate to that task view by clicking the task in their list, the page won't reload, but when you look at the URL bar in the browser, that's the page you're on.
+
+Backbone's router is really handy for handling all of that stuff. 
+
+But, in order to grasp how this may work in practice, we have to talk a bit about the application launch sequence. 
+
+
+## 3... 2... 1... Blastoff!
 
 Generally there's going to be a fairly specific load sequence you'll want to go through before you're ready to "respond" to the specific URL in your client code. 
 
@@ -139,3 +162,4 @@ I typically think of each handler's job as being to find actual client-side mode
 
 The app is responsible for taking that view and rendering it per conventions of the app. Usually we just have a "page view" be a specialized kind of backbone view that also has a few standard methods for "show" and "hide". The app controller just calls "show" on the new one and "hide" on the currently active page and the views add/remove themselves from the application layout's main "pages" container.
 
+The cool thing is that from this point on. We never do the launch sequene again. From this point, we just change the route and the route handlers do all the work and it's up to the rendered page view to do the work of loading what they need to.

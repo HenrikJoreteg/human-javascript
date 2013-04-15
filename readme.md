@@ -1,5 +1,5 @@
 # Browser apps 
-Tricks, trickery and snake oil
+Tool, tips, trickery and snake oil
 
 1. [Introductory rant](ch1 - intro rant.md)
 1. [The big decision](ch2 - the big decision.md)
