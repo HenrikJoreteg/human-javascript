@@ -5,7 +5,10 @@
 We configure our clientside code using a helper called "moonboots" that manages your javascript files for the project. In `server.js` you'll see it configured like this:
 
 ```js
-var clientApp = new ClientApp({
+var Moonboots = require('moonboots');
+
+
+var clientApp = new Moonboots({
     
     // the directory where all the client code is stored
     dir: __dirname + '/clientapp',
