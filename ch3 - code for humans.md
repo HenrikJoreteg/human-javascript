@@ -40,11 +40,9 @@ Related to readability is that code conventions and format should be consistent 
 
 Semicolons, tabs and spaces are contentious things among developers. Every developer I've ever met has opinions (usually strongly held) about when/where to use what syntax.
 
-If you’re building large JS apps and not doing some form of static analysis on your code, you’re asking for trouble. It helps catch silly errors and forces code style consistency. Ideally, no one should be able to tell who wrote what part of your app. If you’re on a team, it should all be uniform within a project. How do you do that? We use a slick tool written by [Nathan LaFreniere](https://twitter.com/quitlahok) on our team called, simply, [precommit-hook](github.com/nathan-lafreniere/precommit-hook). So all we have to do is:
+If you’re building large JS apps and not doing some form of static analysis on your code, you’re asking for trouble. It helps catch silly errors and forces code style consistency. Ideally, no one should be able to tell who wrote what part of your app. If you’re on a team, it should all be uniform within a project. How do you do that? We use a slick tool written by [Nathan LaFreniere](https://twitter.com/quitlahok) on our team called, simply, [precommit-hook](github.com/nathan-lafreniere/precommit-hook). So all we have to do is add "precommit-hook" to our list of dependencies (in a node project).
 
-    npm install precommit-hook
-
-What that will do is create a git pre-commit hook that uses JSHint to check your project for code style consistency before each commit. Once upon a time there was a tool called JSLint written by Mr. Crockford. Nowadays (love that silly word) there’s a less strict, more configurable version of the same project called [JSHint](http://www.jshint.com/). 
+What that will do is create a git pre-commit hook that uses JSHint to check your project for code style consistency before each commit. Once upon a time there was a tool called JSLint written by Douglas Crockford. Nowadays (love that silly word) there’s a less strict, more configurable version of the same project called [JSHint](http://www.jshint.com/). 
 
 The neat thing about the npm version of JSHint is that if you run it from the command line it will look for a configuation file (.jshintrc) and an ignore file (.jshintignore) both of which the precommit hook will create for you if they don’t exist. You can use these files to configure JSHint to follow the code style rules that you’ve defined for the project. This means that you can now run `jshint .` at the root of your project and lint the entire thing to make sure it follows the code styles you’ve defined in the `.jshintrc` file. Awesome, right!?!
 
@@ -69,5 +67,5 @@ Our `.jshintrc` files usually looks something like this:
         ]
     }
 
-The awesome thing about this approach is that you can enforce consistency and that the rules for the project are contained and actually checked into the project repo itself. So if you decide to have a different set of rules for the next project, fine. It’s not a global setting it’s defined and set by whomever runs the project.
+The awesome thing about this approach is that you can enforce consistency and that the rules for the project are contained and actually checked into the project repo itself (in the form of the jshintrc file). So if you decide to have a different set of rules for the next project, fine. It’s not a global setting it’s defined and adjusted by whomever runs the project.
 

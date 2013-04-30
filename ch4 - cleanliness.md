@@ -6,15 +6,17 @@ If it’s a long running project that you plan on maintaining and changing over 
 
 I write lots of single page apps and I absolutely *despise* messy code. Here are a few techniques, crutches, coping mechanisms, and semi-pro tips for staying sane.
 
-## Separating views and state
-This is the biggest lesson I’ve learned building lots of single page apps. Your view (the DOM) should just be blind slave to the model state of your application. For this you could use any number of tools and frameworks. I’d recommend starting with [Backbone.js](http://backbonejs.org/) (by the awesome Mr. [@jashkenas](https://twitter.com/jashkenas) as it’s the easiest to understand, IMO. 
 
-Essentially, you’ll build up a set of models and collections in memory in the browser. These models should be completely oblivious to how they’re used. Then you have views that listen for changes in the models and update the DOM. This could be a whole giant book in an of itself. But this core principal of separating your views and your application state is vital when building large apps.
+## Separating views and state
+This is the biggest lesson I’ve learned building lots of single page apps. Your view (the DOM) should just be blind slave to the model state of your application. For this you could use any number of tools and frameworks. I’d recommend starting with [Backbone.js](http://backbonejs.org/) (by the awesome Mr. [@jashkenas](https://twitter.com/jashkenas) as it’s the easiest to understand, and the closest thing to "just javascript"™. 
+
+Essentially, you’ll build up a set of models and collections of these models in memory in the browser. These will store all the application state for your app. These models should be completely oblivious to how they’re used, they merely store state and broadcast their changes. Then you have views that listen for changes in the models and update the DOM. This core principal of separating your views and your application state is vital when building large apps.
+
 
 ## Common JS Modules
 I’m not going to get into a debate about module styles and script loaders. But I can tell you this: I haven’t seen any cleaner, simpler mechanism for splitting your code into nice isolated chunks than Common JS modules.
 
-It’s the same style/concept that is used in node.js. By following this style I get the additional benefit of being able to re-use modules written for the client on the server and vice versa.
+CommonJS is the same style/concept that is used in node.js. By following this style I get the additional benefit of being able to re-use modules written for the client on the server and vice versa (though, the overlap is usually not that big).
 
 If you’re unfamiliar with the Common JS modules style, your files end up looking something like this:
 
@@ -39,11 +41,11 @@ If you’re unfamiliar with the Common JS modules style, your files end up looki
 
 You could export a constructor (like above), or a single function, or even a set of functions. Generally, however I'd encourage you to only export one thing from each module.
 
-Of course, browsers don’t have support for these kinds of modules out of the box (there is no `window.require`). But, luckily that can be fixed. I use a clever little tool called [stitch](https://github.com/sstephenson/stitch) written by [Sam Stephenson](https://twitter.com/sstephenson) of 37signals. There’s also another one by [@substack](https://twitter.com/substack) called [browserify](https://github.com/substack/node-browserify) that lets you use a lot of the node.js utils on the client as well.
+Of course, browsers don’t have support for these kinds of modules out of the box (there is no `window.require`). But, luckily that can be fixed. We use a clever little tool called [stitch](https://github.com/sstephenson/stitch) written by [Sam Stephenson](https://twitter.com/sstephenson) of 37signals. There’s also another one by [@substack](https://twitter.com/substack) called [browserify](https://github.com/substack/node-browserify) that also lets you use a lot of the node.js utils on the client as well.
 
 What they do is create a `require` function and bundle up a folder of modules into an app package.
 
-Stitch is written for node.js but you could just as easily just use another server-side language and just use node to build your client package. Ultimately it’s just creating a single JS file and of course at that point you can just serve it like any other static file.
+Stitch is written for node.js but you could just as easily just use another server-side language and just use node to build your client package. Ultimately it’s just creating a single JS file and of course once generated that file can just be served like any other static file.
 
 You set up Stitch in a simple express server like this:
 

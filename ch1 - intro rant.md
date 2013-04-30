@@ -1,10 +1,16 @@
-# This isn’t a javascript book
+# This isn’t a javascript language book
 
-Yup, if that’s what you were expecting. Request a refund now. This isn’t about language syntax, it’s not about the 4 ways to execute a function, it’s not about introducing you to twelve available client frameworks. This is about how *we* build apps at &yet. 
+Yup. If that’s what you were expecting. Request a refund now. This isn’t about the language syntax or design. 
 
-It’s descriptive, not prescriptive. How you build is up to you. The hope is that we can introduce enough concepts, tools and philosophy to brainwash you to blindly follow our way of thinking :)
+This is about how *we* build "browser apps" at &yet. We have just build a crap-ton (very technical term, I know) of single page apps over the last several years. This is my attempt to share not just what we've learned from that, but also the specific approaches and tools we use.
 
-# Client Apps
+I'm hardly a DHH fanboy (Rails creator), but he totally nails it in this line: "Good frameworks are extractions not inventions".
+
+Over the past 4 years we've built dozens of single page applications for all kinds of purposes. As a bootstrapped consulting and product company, &yet has had the opportunity to build a very broad range of single page applications. We've built some for mobile web, some for desktop, some for browser extensions, some for phonegap apps. As a result, patterns start to emerge. I've done my best to extract re-usable tools out of them. So, "writing" this book was largely a process of pulling out explanations from past blogposts, emails to clients and from project readme's.
+
+Also, to be clear, this is meant to be descriptive, not prescriptive. How you build is up to you. The hope is that we can introduce enough concepts, tools and philosophy to get you on your way building awesome browser apps.
+
+# Browser Apps
 
 If you own a "smart" phone of any sort, you’ve been innundated with a new slangish word over the past 5 years or so: "app"
 
@@ -33,7 +39,7 @@ Facebook, gmail, gtalk, github just to name a few, have all implemented some for
 
 In some cases this is as simple as the page automatically polling to see if there's something new. In other cases it's more advanced where all the data used to build and update the page is coming over an open websocket connection. For our purposes, the transport mechanism is largely irrelevant, the point is, data comes to you.
 
-This inherently breaks the statelessness of webpages. It used to be that I hit a URL and got back a webpage. As a user I understood that the information on the page was (probably) accurate as of the time it was requested. If I wanted to check for something new, I'd go ask for it again and got another snapshot in time.
+This inherently breaks the statelessness of the web. It used to be that I hit a URL and got back a webpage. As a user I understood that the information on the page was (probably) accurate as of the time it was requested. If I wanted to check for something new, I'd go ask for it again and got another snapshot in time.
 
 As soon as we make any effort to keep the information on the page in sync with the server, we've now acknowledged that the webpage has "state". In some ways, the page always *had* state, but it was clear to users that it was snapshotted state, not up-to-date synchronized state. As a result, that static page more like a printed page than a living document.
 
@@ -54,6 +60,7 @@ The challenge with those frameworks, from where I sit (which at the moment is on
 Distributed systems, latency compensation, and state duplication are really complex problems. The way you solve a complex problems is by not solving the complex problems. Instead, you break it down into smaller, simpler, solvable problems. Those solutions in agregate can represent the complete solution. 
 
 So, why bring the complexity of the server to the client and vice/versa? In addition, when you try to share too much server code with a browser it's very easy to fall into the trap of tightly coupling your application to that particular client. This makes it much harder to build other clients, say for example a native iOS app for your app. So while these frameworks are useful for webapps, they may let us down a bit when we want to go beyond that. With more and more talk of "the Internet of things" we have good reason to believe that the breadth of device types that may want to talk to your app will continue to increase.
+
 
 ## Misconceptions, FUD and engineering
 
