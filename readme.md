@@ -1,5 +1,5 @@
-# Browser apps 
-Tool, tips, trickery and snake oil
+# Browser Apps 
+Tools, tips and snake oil
 
 [Ch1: Intro](ch1 - intro rant.md)
 
