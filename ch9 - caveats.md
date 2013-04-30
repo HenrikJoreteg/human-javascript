@@ -1,15 +1,7 @@
-## Caveats/Gotchas
-
-### Failed ajax requests
-
-Inevitably with single page apps you have to deal with issues of bad connectivity or issues of stale data and/or expired sessions.
-
-If we're using restful JSON APIs we'll be making requests throughout the applications lifecycle.
-
-As a starting point, I've stubbed out a global error handler for ajax requests. jQuery makes it fairly simple: http://api.jquery.com/ajaxError. So we register and add a handler here: https://github.com/caagency/caa-template-jqmapp2/blob/development/clientapp/app/views/main.js that just pops up a dialog. This could be modified to make a distinction between session expiration errors and bad connectivity errors. 
+# Caveats/Gotchas
 
 
-### Function bindings
+## Function bindings
 
 The most common thing I see when teaching people javascript even people who have been working with jQuery for a long time is understanding how function execution works in javascript. 
 
@@ -122,7 +114,7 @@ myFucntion(); // for the same result
 That's function binding in a nutshell. It's really just info about how the language works. But it's such a common issue with people who are new to backbone or less familary with javascript as a langauge that I figured it was worth explaining.
 
 
-### Rendering detatched DOM elements
+## Rendering detatched DOM elements
 
 Another common issue is understanding what `this.$()` does in views. 
 
@@ -150,3 +142,10 @@ What may people don't know is that you can pass a second argument to the jQuery 
 So Backbone tries to make things easy for us, so rather than having to do that. Just always use `this.$()` instead of just `$()` within views. That's just a helper for passing the view's base element to the jquery function. So, it's functionally equivalent to passing `this.el` as the second argument. 
 
 
+## Failed ajax requests
+
+Inevitably with single page apps you have to deal with issues of bad connectivity or issues of stale data and/or expired sessions.
+
+If we're using restful JSON APIs we'll be making requests throughout the applications lifecycle.
+
+As a starting point, I've stubbed out a global error handler for ajax requests. jQuery makes it fairly simple: http://api.jquery.com/ajaxError. So we register and add a handler here: https://github.com/caagency/caa-template-jqmapp2/blob/development/clientapp/app/views/main.js that just pops up a dialog. This could be modified to make a distinction between session expiration errors and bad connectivity errors. 

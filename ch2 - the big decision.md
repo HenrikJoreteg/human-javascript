@@ -17,7 +17,7 @@ Building client-side apps is more complicated. So, decide carefully. Ask yoursel
 
 `<patronizing tone>` So you’ve heard of "seperation of concerns" `</patronizing tone>`. We’re taught to build tools and components that have a simple job and are self-contained. It makes code more re-usable and more maintainable and keeps developers more sane. 
 
-HOWEVER, the first thing people do when building apps is render a bunch of html on the server and then send it to the client and start shuffling it around with a bunch of javascript! 
+HOWEVER, the first thing people do when building web apps is render a bunch of html on the server and then send it to the client and start shuffling it around with a bunch of javascript! 
 
 Pick one or the other, seriously. If you’re building an "app" where a significant portion of the data will be rendered on the client, just freakin’ render *all* of it on the client. Don’t mess around. It’s just ugly to have send a bunch of partially rendered html to the client and then start mucking around with it. 
 
@@ -30,6 +30,8 @@ One of my favorite things to show developers from the And Bang code base is the 
 ```
 
 Yup. (and yes, omitting <html>, <head>, and <body> is allowed by the HTML specs)
+
+In fact, I wish we could go even further. Just think if you could serve a JS file with a content-type of "application/javascript" and then the browser treated it as shown above?
 
 Am I crazy? Probably. 
 
