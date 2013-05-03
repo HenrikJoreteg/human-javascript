@@ -1,5 +1,5 @@
-# Browser Apps 
-Tools, tips and snake oil
+# Human Javascript
+Build powerfully simple browser apps
 
 [Ch1: Intro](ch1 - intro rant.md)
 
