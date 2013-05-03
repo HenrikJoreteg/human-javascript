@@ -45,10 +45,16 @@ Build powerfully simple browser apps
 
 [Ch8: Blastoff! Your app launch sequence](ch8 - launch sequence.md)
 
-- Stepping through a typical launch sequene
-- Into to async.js
+- Stepping through a typical launch sequence
+- Intro to async.js
 
-[Ch9: Caveats, timesavers, random tips](ch9 - caveats.md)
+[Ch9: Testing and QA that doesn't suck](ch09 - testing and QA that doesnt suck.md)
+
+- The problem/challenge of proper QA
+- Meet the SpaceMonkey
+- Doing cross-browser testing
+
+[Ch10: Caveats, timesavers, random tips](ch9 - caveats.md)
 
 - Function bindings
 - Rendering detatched DOM elements
