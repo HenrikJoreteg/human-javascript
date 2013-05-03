@@ -29,7 +29,7 @@ One of my favorite things to show developers from the And Bang code base is the 
 <script src="/&!.js"></script>
 ```
 
-Yup. (and yes, omitting <html>, <head>, and <body> is allowed by the HTML specs)
+Yup. (and yes, omitting `<html>`, `<head>`, and `<body>` is allowed by the HTML specs)
 
 In fact, I wish we could go even further. Just think if you could serve a JS file with a content-type of "application/javascript" and then the browser treated it as shown above?
 
