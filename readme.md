@@ -32,29 +32,43 @@ Build powerfully simple browser apps
 - Using events to build decoupled applications/reusable modules
 - Emitters and events, no magic, just functions
 
-[Ch6: Handling templates](ch06 - templating.md)
+[Ch6: Models and state](ch06 - models.md)
+
+- What they do
+- Listening carefully
+- Backbone versus Strict models
+
+[Ch7: Views and the DOM](ch07 - views.md)
+
+- What they do
+- How they work
+- Full re-rendering or binding attributes
+- Understanding "this"
+- Binding helpers
+
+[Ch8: Handling templates](ch08 - templating.md)
 
 - General talk of the "problem" various approaches the <template> tag
 - How we used to do it, why it kinda sucked
 - How we do it now, jade + templatizer + moonboots
 
-[Ch7: Clientside Routing](ch07 - clientside routing.md)
+[Ch9: Clientside Routing](ch09 - clientside routing.md)
 
 - Same sh*t different URL/handing control of routing to client
 - Setting up discussion on launch sequece to see how this plays out in code
 
-[Ch8: Blastoff! Your app launch sequence](ch08 - launch sequence.md)
+[Ch10: Blastoff! Your app launch sequence](ch10 - launch sequence.md)
 
 - Stepping through a typical launch sequence
 - Intro to async.js
 
-[Ch9: Testing and QA that doesn't suck](ch09 - testing and QA that doesnt suck.md)
+[Ch11: Testing and QA that doesn't suck](ch11 - testing and QA that doesnt suck.md)
 
 - The problem/challenge of proper QA
 - Meet the SpaceMonkey
 - Doing cross-browser testing
 
-[Ch10: Caveats, timesavers, random tips](ch10 - caveats.md)
+[Ch12: Caveats, timesavers, random tips](ch12 - caveats.md)
 
 - Function bindings
 - Rendering detatched DOM elements
