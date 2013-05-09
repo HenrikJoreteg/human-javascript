@@ -25,6 +25,4 @@ So, there must be a balance that can be struck. Between human approval and overs
 So we built one. Yeah... I know, NIH, right!? But, there wasn't anything that did this in a way that seemed really simple and blended automation with human approval.
 
 
-
-
 ## Doing cross-browser testing
