@@ -1,7 +1,7 @@
 # Human Javascript
 Build powerfully simple browser apps
 
-[Ch1: Intro](ch01 - intro rant.md)
+[Ch1: Intro](ch01 - introduction.md)
 
 - Simple intro to book contents, impetus
 - Defining "browser apps"
