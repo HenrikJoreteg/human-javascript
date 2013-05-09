@@ -18,7 +18,7 @@ Build powerfully simple browser apps
 - Reading to be read
 - Not being clever for the sake of cleverness
 
-[Ch4: Cleanliness in clientside JS](ch04 - cleanliness.md)
+[Ch4: No more clientside spaghetti. Organizing your code.](ch04 - organizing your code.md)
 
 - Avoiding spaghetti, maintaining quality
 - Seperating views and state

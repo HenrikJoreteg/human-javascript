@@ -1,4 +1,4 @@
-# Cleanliness in clientside JS
+# No more clientside spaghetti. Organizing your code. 
 
 The single biggest challenge you’ll have when building complex clientside application is keeping your code base from becoming a garbled pile of mess.
 
@@ -67,7 +67,7 @@ var Moonboots = require('moonboots');
 var browserApp = new Moonboots({
     // the directory where all the client code is stored
     dir: __dirname + '/browserapp',
-    
+
     // Whether or not to build and serve cached/minified versions of 
     // the application file.
     // While you're in development mode you don't need to restart the
