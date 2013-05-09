@@ -4,13 +4,15 @@ The single biggest challenge you’ll have when building complex clientside appl
 
 If it’s a long running project that you plan on maintaining and changing over time, it’s even harder. Features come and go. You’ll experiment with something only to find it’s not the right call and leave traces of old code sprinked throughout.
 
-I write lots of single page apps and I absolutely *despise* messy code. Here are a few techniques, crutches, coping mechanisms, and semi-pro tips for staying sane.
+I absolutely *despise* messy code. Here are a few techniques, crutches, coping mechanisms, and semi-pro tips for staying sane.
 
 
 ## Separating views and state
-This is the biggest lesson I’ve learned building lots of single page apps. Your view (the DOM) should just be blind slave to the model state of your application. For this you could use any number of tools and frameworks. I’d recommend starting with [Backbone.js](http://backbonejs.org/) (by the awesome Mr. [@jashkenas](https://twitter.com/jashkenas) as it’s the easiest to understand, and the closest thing to "just javascript"™. 
+This is the biggest lesson I’ve learned building lots of single page apps. Your view (the DOM) should just be blind slave to the model state of your application. For this you could use any number of tools and frameworks. I’d recommend starting with [Backbone.js](http://backbonejs.org/) (by the awesome Mr. [@jashkenas](https://twitter.com/jashkenas) as it’s the easiest to understand, and the closest thing to "just javascript"™ as discussed in the introduction. 
 
-Essentially, you’ll build up a set of models and collections of these models in memory in the browser. These will store all the application state for your app. These models should be completely oblivious to how they’re used, they merely store state and broadcast their changes. Then you have views that listen for changes in the models and update the DOM. This core principal of separating your views and your application state is vital when building large apps.
+Essentially, you’ll populate a set of models and collections of these models in memory in the browser. These will store all the application state for your app. These models should be completely oblivious to how they’re used, they merely store state and broadcast their changes. Then you have views that listen for changes in the models and update the DOM. This core principal of separating your views and your application state is vital when building large apps.
+
+One aspect of this approach that is commonly overlooked is the flexibility it provides if you decide the app shoudl have a different UI (which *never* happens, right?! `</sarcasm>`) or build another application on the same API. All the models pretty much without modification are completely re-usable.
 
 
 ## Common JS Modules
@@ -20,26 +22,30 @@ CommonJS is the same style/concept that is used in node.js. By following this st
 
 If you’re unfamiliar with the Common JS modules style, your files end up looking something like this:
 
-    // you import things by using the special `require` function and you can
-    // assign the result to a variable
-    var StrictModel = require('strictModel'),
-        _ = require('underscore');
-        
-    // you expose functionality to other modules by declaring your main export
-    // like this.
-    module.exports = StrictModel.extend({
-        type: 'navItem',
-        props: {
-            active: ['boolean', true, false],
-            url: ['string', true, ''],
-            position: ['number', true, 200]
-        },
-        init: function () {
-            // some, something
-        }
-    });
+```js
+// you import things by using the special `require` function and you can
+// assign the result to a variable
+var StrictModel = require('strictModel'),
+    _ = require('underscore');
+    
+// you expose functionality to other modules by declaring your main export
+// like this.
+module.exports = StrictModel.extend({
+    type: 'navItem',
+    props: {
+        active: ['boolean', true, false],
+        url: ['string', true, ''],
+        position: ['number', true, 200]
+    },
+    init: function () {
+        // some, something
+    }
+});
+```
 
-You could export a constructor (like above), or a single function, or even a set of functions. Generally, however I'd encourage you to only export one thing from each module.
+That's it! Super easy. You don't create any globals. Each file that uses your module can name it whatever makes the most sense for use in that module.
+
+You just export a constructor (like above), or a single function, or even a set of functions. Generally, however I'd encourage you to only export one thing from each module.
 
 Of course, browsers don’t have support for these kinds of modules out of the box (there is no `window.require`). But, luckily that can be fixed. We use a clever little tool called [stitch](https://github.com/sstephenson/stitch) written by [Sam Stephenson](https://twitter.com/sstephenson) of 37signals. There’s also another one by [@substack](https://twitter.com/substack) called [browserify](https://github.com/substack/node-browserify) that also lets you use a lot of the node.js utils on the client as well.
 
@@ -50,7 +56,7 @@ Stitch is written for node.js but you could just as easily just use another serv
 
 ## Grab your moonboots
 
-Since defining a browserapp "package" and then wanting to build, minify and serve the resulting file is such a common problem that we want for all apps, I built a helper to make it a bit easier to work with.
+Since defining a browser app "package" and then wanting to build, minify and serve the resulting file is such a common problem that we want for all apps, I built a helper to make it a bit easier to work with.
 
 It's called "moonboots". What you do is define your browser app like this (assuming node.js and express):
 
@@ -61,7 +67,7 @@ var Moonboots = require('moonboots');
 var browserApp = new Moonboots({
     // the directory where all the client code is stored
     dir: __dirname + '/browserapp',
-
+    
     // Whether or not to build and serve cached/minified versions of 
     // the application file.
     // While you're in development mode you don't need to restart the

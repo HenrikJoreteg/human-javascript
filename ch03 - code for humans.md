@@ -21,6 +21,8 @@ if (~myArray.indexOf('hello')) {
 }
 ```
 
+Can you explain to me, in plain english, what that tilde does? If you can, good for you, but do you think your whole team can?
+
 Now, compare it to this:
 
 ```js
@@ -31,8 +33,24 @@ if (myArray.indexOf('hello') == -1) {
 }
 ```
 
-Frankly, I think the first example looks better. From an aesthetic point of view, I'd prefer the first and in fact, I often use the first. However, if I'm working on an app that other people will be working on with me, I will write it the second way, because it's more explicit and requires less of the other developers who may not be familiar with the syntax in the first example.
+Or even this using underscore:
 
+```js
+// same array:
+var myArray = ['hello', 'something', 'awesome']; 
+if (_(myArray).contains('hello')) {
+    // also pretty freakin’ clear right?
+}
+```
+
+Frankly, I think the first example looks better, visually. In fact I sometimes use the first if working on a library that isn't meant to be a team project. However, if I'm working on an app that other people will be working on with me, I will write it the second way, because it's more explicit and requires less of the other developers who may not be familiar with the syntax in the first example.
+
+
+## Cleverness is a double edged sword
+
+Being clever is sometimes a good thing. But as was so aptly put by Paddy Foran (http://paddy.io/posts/cleverness/) cleverness for the sake of cleverness should be avoided at all costs. 
+
+The goal should always be clarity and readability.
 
 ## Code Linting
 

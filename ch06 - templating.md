@@ -11,23 +11,27 @@ To work around that, ICanHaz.js, as lots of other template clientside template s
 
 This html:
 
-    <script id="user" type="text/html">
-      <li>
-        <p class="name">Hello I'm {{ name }}</p>
-        <p><a href="http://twitter.com/{{ twitter }}">@{{ twitter }}</a></p>
-      </li>
-    </script>
+```html
+<script id="user" type="text/html">
+  <li>
+    <p class="name">Hello I'm {{ name }}</p>
+    <p><a href="http://twitter.com/{{ twitter }}">@{{ twitter }}</a></p>
+  </li>
+</script>
+```
 
 Is read by ICanHaz and turned into a function you call with your own like this:
 
-    // your data
-    var data = {
-      first_name: "Henrik",
-      last_name: "Joreteg"
-    }
+```js
+// your data
+var data = {
+  first_name: "Henrik",
+  last_name: "Joreteg"
+}
 
-    // I can has user??
-    html = ich.user(data)
+// I can has user??
+html = ich.user(data)
+```
 
 This works, and lots of people clearly thought the same as it’s been quite a popular library.
 

@@ -2,7 +2,7 @@
 
 As someone who writes lots of javscript, you may think I’d advocate that everything should be a browser app. In short: No.
 
-Make things as damn simple as you possibly can. Programming is complex, expensive and time consuming. Pragmatism is the only way to ever finish anything.
+Make things as simple as you possibly can. Programming is complex, expensive and time consuming. Pragmatism is the only way to ever finish anything.
 
 For many types of applications, building a browser app is harder and gives you no additional value. I do think there may be a day when that's no longer the case. But we're not there yet.
 
@@ -31,16 +31,14 @@ One of my favorite things to show developers from the And Bang code base is the 
 
 Yup. (and yes, omitting `<html>`, `<head>`, and `<body>` is allowed by the HTML specs)
 
-In fact, I wish we could go even further. Just think if you could serve a JS file with a content-type of "application/javascript" and then the browser treated it as shown above?
-
 Am I crazy? Probably. 
 
 *But*, if we've decided that we want our server to be able to focus on data we may as well transfer as much of the rendering and presentation of client to the client. 
 
-Ok, I’ll admit it, this extreme minimalism is, in part, because of the aesthetic of it. But, it also makes it abundantly clear that it's the client's responsibility to render the application and manage everything within it, including the page title and life-cycle of all the page elements.
+Ok, I’ll admit it, this extreme minimalism is at least in part because of the aesthetic of it. But, it also makes it abundantly clear that it's the client's responsibility to render the application and manage everything within it, including things like the page title and life-cycle of all the document elements.
 
-Some devs advocate partial rendering on the server, for faster load times, etc. But, to me, once we recognize we're building a "thick" client. We may as well render it all there. Othewise if part our page state is rendered on the server we have to somehow re-translate the HTML into state information. Again, I prefer an explicit separation of concerns. In fact, I wish browsers would let us just serve the JS file with a content header of "javascript/application" and not include any HTML at all.
+Some devs advocate partial rendering on the server for faster load times, etc. But, to me, once we recognize we're building a "thick" client. We may as well render it all there. Othewise if part our page state is rendered on the server we have to somehow re-translate the HTML into state information. Again, I prefer an explicit separation of concerns.
 
-I can hear the screams now, "What about load times and performance?!?!" I'd rather optimize how my application runs once it's loaded, than shave miliseconds off the time required to download the initial app. Also, let’s keep in mind that the shiny, retina-ready logo or the the background texture images you used likely take up as much bandwidth as your entire application. Also, if your app is contained in a single file (more on that later) it’s fairly simple to version and cache the crap out of it so the browser only downloads it once per revision anyway. 
+I can hear the screams now, "What about load times and performance?!?!" I'd rather optimize how my application runs once it's loaded, than shave miliseconds off the time required to download the initial app. Also, let’s keep in mind that the shiny, retina-ready logo or the the background texture images you used likely take up as much bandwidth as your entire application. Also, if your app is contained in a single file (more on that later) it’s fairly simple to minify, version and cache the crap out of it so the browser only downloads it once per revision anyway. 
 
-Also, if we’re pragmatic about this, we recognize that you’re probably going to render some kind of signup or login form at some point, if you’re sneaky, you could use the inevitable time the user is going to spend on that page to download the app so that when users actually reach your app they’ll have a primed cache!
+Also, if we’re pragmatic about this, we recognize that you’re probably going to render some kind of signup or login form at some point, if you’re sneaky, you could use the inevitable time the user is going to spend on that page the first time to download the app so that when users are logged in they’ll already hit it with a primed cache!

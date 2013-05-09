@@ -4,36 +4,40 @@ How do you keep your modules cleanly separated? Sometimes modules are dependant 
 
 There are lots of implementations of event emitters. We use a modified version of one from the LearnBoost guys: [@tjholowaychuk](https://twitter.com/tjholowaychuk), [@rauchg](https://twitter.com/rauchg) and company. It’s [wildemitter](https://github.com/HenrikJoreteg/wildemitter) on my github if you’re curious. But the same concept works for any of the available emitters. See below:
 
-    // require our emitter
-    var Emitter = require(‘wildemitter’);
-   
-    // Our main constructor function
-    var AndBang = function (config) {
-        // extend with emitter
-        Emitter.call(this);
-    };
+```js
+// require our emitter
+var Emitter = require(‘wildemitter’);
 
-    // inherit from emitter
-    AndBang.prototype = new Emitter();
+// Our main constructor function
+var AndBang = function (config) {
+    // extend with emitter
+    Emitter.call(this);
+};
 
-     // Other methods
-    AndBang.prototype.setName = function (newName) {
-        this.name = newName;
-        // we can trigger arbitrary events
-        // these are just hooks that other
-        // code could chose to listen to.
-        this.emit(‘nameChanged’, newName);
-    };
-    
-    // export it to the world
-    module.exports = AndBang;
+// inherit from emitter
+AndBang.prototype = new Emitter();
+
+ // Other methods
+AndBang.prototype.setName = function (newName) {
+    this.name = newName;
+    // we can trigger arbitrary events
+    // these are just hooks that other
+    // code could chose to listen to.
+    this.emit(‘nameChanged’, newName);
+};
+
+// export it to the world
+module.exports = AndBang;
+```
 
 Then, other code that wants to use this module can listen for events like so:
 
-    var AndBang = require(‘andbang’),
-        api = new AndBang();
+```js
+var AndBang = require(‘andbang’),
+    api = new AndBang();
+
+// now this handler will get called any time the event gets triggered
+api.on(‘nameChanged’,  function (newName) { /* do something cool */ });
+```
     
-    // now this handler will get called any time the event gets triggered
-    api.on(‘nameChanged’,  function (newName) { /* do something cool */ });
-    
-This pattern makes it easy to expose functionality without having to know much about the consuming code.
+This pattern makes it easy to expose functionality without needing any knowledge of the consuming code.
