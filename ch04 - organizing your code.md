@@ -12,7 +12,7 @@ This is the biggest lesson I’ve learned building lots of single page apps. You
 
 Essentially, you’ll populate a set of models and collections of these models in memory in the browser. These will store all the application state for your app. These models should be completely oblivious to how they’re used, they merely store state and broadcast their changes. Then you have views that listen for changes in the models and update the DOM. This core principal of separating your views and your application state is vital when building large apps.
 
-One aspect of this approach that is commonly overlooked is the flexibility it provides if you decide the app shoudl have a different UI (which *never* happens, right?! `</sarcasm>`) or build another application on the same API. All the models pretty much without modification are completely re-usable.
+One aspect of this approach that is commonly overlooked is the flexibility it provides if you decide the app should have a different UI (which *never* happens, right?! `</sarcasm>`) or build another application on the same API. All the models pretty much without modification are completely re-usable.
 
 
 ## Common JS Modules
