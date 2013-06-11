@@ -6,8 +6,8 @@ App configuration and environment settings are always a PITA, right? Especially 
 
 We solve this problem with a simple approach and two specific tools:
 
-getconfig: https://github.com/henrikjoreteg/getconfig
-clientconfig: https://github.com/henrikjoreteg/clientconfig
+- getconfig: https://github.com/henrikjoreteg/getconfig
+- clientconfig: https://github.com/henrikjoreteg/clientconfig
 
 They're in no way dependent on eachother but they do play nicely together.  (both are on npm, by the way)
 
