@@ -68,7 +68,15 @@ Build powerfully simple browser apps
 - Meet the SpaceMonkey
 - Doing cross-browser testing
 
-[Ch12: Caveats, timesavers, random tips](ch12 - caveats.md)
+[Ch12: Settings and configs](ch12 - settings and configs.md)
+ 
+- The problem
+- getconfig
+- clientconfig
+- Using them together
+- Security caveats
+
+[Ch13: Caveats, timesavers, random tips](ch13 - caveats.md)
 
 - Function bindings
 - Rendering detatched DOM elements
