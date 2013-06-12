@@ -43,7 +43,7 @@ Here’s the more food for thought: once you acknowledge that the browser has st
 
 ## Realtime apps are human apps
 
-A lot of people get hung up on the term "realtime". It's not just about the latency or speed of delivery, it's about the fact that there are multiple sources of data (usually people) doing stuff! People are changing the data all the time and our app isn't passively waiting for the user to refresh. Instead the app keeps itself up to date.
+A lot of people get hung up on the term "realtime". The way I'm using it here is not referring to latency or speed of delivery, it's about the fact that there are multiple sources of data (usually people) doing stuff! People are changing the data all the time and our app isn't passively waiting for the user to refresh. Instead the app keeps itself up to date. In reality, no web app is "hard real-time" as per computer science. In our case it's a term to help describe apps that keep themselves up to date. 
 
 Realtime isn't about hype and technology–it's about removing the friction of technology on collaboration and overcoming the confusion of keeping track of lots of state.
 
@@ -84,7 +84,7 @@ We're not talking about rendering some HTML on the server and sprinkling on a fe
 
 Unfortunately because of that conception, many of the people who are being asked to build these kinds of apps don’t have a heavy engineering background and approach the task much like they would any other client code: write some jQuery.
 
-But, jQuery is not an application framework. It's an abstraction layer and toolkit for working with the DOM. I’m not dogging on jQuery, at all, in fact. There's nothing wrong with it or using it in HTML5 apps, but it is not an application framework.
+But, jQuery is not an application framework. It's an abstraction layer and toolkit for working with the DOM. I’m not dogging on jQuery, at all, in fact I think it's a great toolkit for DOM manipuation. I use it and am quite happy with it in many HTML5 apps. The point is simply that jQuery is a toolkit, not an application framework. 
 
 But inevitably a "frontend" person is asked to build an immersive, complex client app and soon you end up with a 3000 line js file called "app.js" that does *everything*. Also, now no one else knows how any of it works, or how it's structured. No one wins. 
 

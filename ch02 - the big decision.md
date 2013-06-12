@@ -42,3 +42,5 @@ Some devs advocate partial rendering on the server for faster load times, etc. B
 I can hear the screams now, "What about load times and performance?!?!" I'd rather optimize how my application runs once it's loaded, than shave miliseconds off the time required to download the initial app. Also, let’s keep in mind that the shiny, retina-ready logo or the the background texture images you used likely take up as much bandwidth as your entire application. Also, if your app is contained in a single file (more on that later) it’s fairly simple to minify, version and cache the crap out of it so the browser only downloads it once per revision anyway. 
 
 Also, if we’re pragmatic about this, we recognize that you’re probably going to render some kind of signup or login form at some point, if you’re sneaky, you could use the inevitable time the user is going to spend on that page the first time to download the app so that when users are logged in they’ll already hit it with a primed cache!
+
+I'll cover some more tools and approaches for this in chapter 4 when discussing code organization.
