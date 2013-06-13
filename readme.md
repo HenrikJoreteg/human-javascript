@@ -11,7 +11,7 @@ Build powerfully simple browser apps
 [Ch2: The big decision](ch02 - the big decision.md)
 
 - Deciding between client/server app
-- Seperation of concerns and going all out
+- Separation of concerns and going all out
 
 [Ch3: Coding for humans](ch03 - code for humans.md)
 
