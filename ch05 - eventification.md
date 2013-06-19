@@ -6,7 +6,7 @@ There are lots of implementations of event emitters. We use a modified version o
 
 ```js
 // require our emitter
-var Emitter = require(‘wildemitter’);
+var Emitter = require('wildemitter');
 
 // Our main constructor function
 var AndBang = function (config) {
@@ -23,7 +23,7 @@ AndBang.prototype.setName = function (newName) {
     // we can trigger arbitrary events
     // these are just hooks that other
     // code could chose to listen to.
-    this.emit(‘nameChanged’, newName);
+    this.emit('nameChanged', newName);
 };
 
 // export it to the world
@@ -33,11 +33,11 @@ module.exports = AndBang;
 Then, other code that wants to use this module can listen for events like so:
 
 ```js
-var AndBang = require(‘andbang’),
+var AndBang = require('andbang'),
     api = new AndBang();
 
 // now this handler will get called any time the event gets triggered
-api.on(‘nameChanged’,  function (newName) { /* do something cool */ });
+api.on('nameChanged',  function (newName) { /* do something cool */ });
 ```
     
 This pattern makes it easy to expose functionality without needing any knowledge of the consuming code.
