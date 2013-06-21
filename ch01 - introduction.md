@@ -1,12 +1,12 @@
 # human javascript
 
-Code is as much about people as it is about computers. Sure, it's run by computers, but it's written by, maintained by, and ultimately created for people. People are not computers. We are not robots. We are unpredictable, flawed and irrational. The same people with the same tools and instructions won't produce the same output each time. We generally don't like being alone and we don't work well in isolation. In fact, in order to do our best work we *need* to work with other people. None of these traits are bad things, quite the opposite. They're what makes us who we are, they make us, well... human. Yet, as developers it's easy for us to get so focused on optimizing for technology that we forget to optimize for people.
+Code is as much about people as it is about computers. Sure, it's run by computers, but it's written by, maintained by, and ultimately created for people. People are not computers. We are not robots. We are unpredictable, flawed, and irrational. The same people with the same tools and instructions won't produce the same output each time. We generally don't like being alone and we don't work well in isolation. In fact, in order to do our best work we *need* to work with other people. None of these traits are bad things, quite the opposite. They're what makes us who we are, they make us, well... human. Yet, as developers it's easy for us to get so focused on optimizing for technology that we forget to optimize for people.
 
-You can read about javascript, the language, elsewhere. Its good parts, bad parts, and ugly parts are well documented. This is a book about a specific set of tools, patterns and approches that we feel are optimized for people. These approaches enable our team to quickly build and deliver high-quality javascript applications for humans.
+You can read about javascript, the language, elsewhere. Its good parts, bad parts, and ugly parts are well documented. This is a book about a specific set of tools, patterns, and approches that we feel are optimized for people. These approaches enable our team to quickly build and deliver high-quality javascript applications for humans.
 
-&yet, the team that I'm humbled to be a part of, is a small (~20 person) bootstrapped consulting and product company focused heavily on realtime single page web applications. We've had the opportunity to build a very broad range of single page applications for all kinds purposes and audiences. We've built stuff for mobile, desktop, browser extensions, phonegap, televisions, you name it. From these experiences patterns start to emerge. Patterns that enable us to efficiently ship real-life applications (with real-life deadlines) as a team.
+&yet, the team that I'm humbled to be a part of, is a small (~20 person) bootstrapped consulting and product company focused heavily on realtime single page web applications. We've had the opportunity to build a very broad range of single page applications for all kinds of purposes and audiences. We've built stuff for mobile, desktop, browser extensions, phonegap, televisions, you name it. From these experiences patterns start to emerge. Patterns that enable us to efficiently ship real-life applications (with real-life deadlines) as a team.
 
-As we've gone along we've done our best to extract reusable tools out of them. So, in some ways we accidentally wrote this book. What I mean is that much of its contents are compiled from past blogposts, explanations to teammates and clients, and from project README files. This book is primarily an extraction, not a creation. We're sharing our experience, secrets and tools to hopefully give you and your team a solid footing for building great apps and experiences.
+As we've gone along, we've done our best to extract reusable tools out of them. So, in some ways we accidentally wrote this book. What I mean is that much of its contents are compiled from past blogposts, explanations to teammates and clients, and from project README files. This book is primarily an extraction, not a creation. We're sharing our experience, secrets, and tools to hopefully give you and your team a solid footing for building great apps and experiences.
 
 
 # Native HTML5 apps
@@ -15,35 +15,35 @@ Let's talk about this whole "app" thing for a bit and get on the same page in te
 
 Rather than pontificate on the meaning of this for three chapters, I’ll explain the distinction as I see it for the purposes of this book. 
 
-When most people say they're building a "web app" they're talking about writing source code that describes an application that will run on the server and send rendered HTML to the browser. That definition seems a bit narrow and limiting. Plus when I think of my favorite web apps they don't fit neatly into that box. The best web apps often have multiple interfaces and clients, some native, some web. Most play nicely with or completely integrate with other services. Generally web apps are good at solving some specific problem or provide some specific benefit and use the web to tie it all together.
+When most people say they're building a "web app" they're talking about writing source code that describes an application that will run on the server and send rendered HTML to the browser. That definition seems a bit narrow and limiting. Plus, when I think of my favorite web apps they don't fit neatly into that box. The best web apps often have multiple interfaces and clients, some native, some web. Most play nicely with or completely integrate with other services. Generally web apps are good at solving some specific problem or provide some specific benefit and use the web to tie it all together.
 
-The web vs. native debate is a bit worn out. From my perspective the whole debate is somewhat misguided. It doesn't have to be one or the other, I have no problem with it being both. It's no secret that most native apps suck without the web. Why else would classic native Apple apps like iPhoto start integrating with Flickr and Facebook. And yet, you can't write a native app for every platform out there.  
+The web vs. native debate is a bit worn out. From my perspective the whole debate is somewhat misguided. It doesn't have to be one or the other, I have no problem with it being both. It's no secret that most native apps suck without the web. Why else would classic native Apple apps like iPhoto start integrating with Flickr and Facebook? And yet, you can't write a native app for every platform out there.  
 
-Thinking of your "web apps" as an API with a series of clients seems much more fitting. It just makes sense. Your API defines your service, connects you to other users and ties in the whole experience. Then you can focus on building clients that provide the best experience possible for various environments and uses.
+Thinking of your "web apps" as an API with a series of clients seems much more fitting. It just makes sense. Your API defines your service, connects you to other users, and ties in the whole experience. Then you can focus on building clients that provide the best experience possible for various environments and uses.
 
-Let's talk about browsers for a second. They're completely freakin' amazing. Well, the modern ones, at least. They are nothing short of extremely capable *mostly* standardized operating systems that are freely available on nearly every platform. They keep getting more and more amazing every day. Sadly, the addiction to backwards compatibility is crippling perceptions of what that operating system is capable of. Too often the web interface ends up being the lowest common denominator in terms of experience. That doesn't have to be the case! Let's build for the future of the web, not its past.
+Let's talk about browsers for a second. They're completely freakin' amazing. Well, the modern ones, at least. They are nothing short of extremely capable, *mostly* standardized operating systems that are freely available on nearly every platform. They keep getting more and more amazing every day. Sadly, the addiction to backwards compatibility is crippling perceptions of what that operating system is capable of. Too often the web interface ends up being the lowest common denominator in terms of experience. That doesn't have to be the case! Let's build for the future of the web, not its past.
 
 The types of apps we're talking about building in this book could really be called "Native HTML5 apps" in that they use HTML5 to its full extent without bowing to compatibility with crappy old browsers.
 
 To clarify further:
 
-1. They are seperate from the API.
+1. They are separate from the API.
 1. They don't work *at all* if someone has javascript turned off.
 1. A modern browser with a modern javascript engine is a minimum system requirement.
 1. We send the application code itself to the browser, not the result of running the application code.
 1. The app is rendered entirely on the client. We only send the bare minimum HTML we need to tell the browser to run our app. Usually just a doctype and a single script tag.
 1. After loading, the client fetches its own data, as data (typically JSON), not as rendered HTML.
 1. The app is loaded once and never does a full page reload while you’re using it.
-1. The app has and maintains "state" that is cached and maintained seperate from the server.
+1. The app has and maintains "state" that is cached and maintained separate from the server.
 
-From now on, when I say "app" or "native HTML5 app" or browser app" or "client app" within these pages, that is what I'm referring to.
+From now on, when I say "app" or "native HTML5 app" or "browser app" or "client app" within these pages, that is what I'm referring to.
 
-Here’s the more food for thought: once you acknowledge that the browser has state you really ought to think about how to keep that state up to date and make it a "realtime" application. But I digress. Screw it, I’ll digress for a bit. This is important.
+Here’s more food for thought: once you acknowledge that the browser has state, you really ought to think about how to keep that state up to date and make it a "realtime" application. But I digress. Screw it, I’ll digress for a bit. This is important.
 
 
 ## Realtime apps are human apps
 
-A lot of people get hung up on the term "realtime". The way I'm using it here is not referring to latency or speed of delivery, it's about the fact that there are multiple sources of data (usually people) doing stuff! People are changing the data all the time and our app isn't passively waiting for the user to refresh. Instead the app keeps itself up to date. In reality, no web app is "hard real-time" as per computer science. In our case it's a term to help describe apps that keep themselves up to date. 
+A lot of people get hung up on the term "realtime." The way I'm using it here is not referring to latency or speed of delivery, it's about the fact that there are multiple sources of data (usually people) doing stuff! People are changing the data all the time and our app isn't passively waiting for the user to refresh. Instead the app keeps itself up to date. In reality, no web app is "hard real-time" as per computer science. In our case it's a term to help describe apps that keep themselves up to date. 
 
 Realtime isn't about hype and technology–it's about removing the friction of technology on collaboration and overcoming the confusion of keeping track of lots of state.
 
