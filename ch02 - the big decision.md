@@ -8,7 +8,7 @@ For many types of applications, building a browser app is harder and gives you n
 
 So, instead, think about how you want your app to be used. Is it something that a user is going to load once and leave sitting on their desktop all day? Or is it something that’s quickly referenced and then closed?
 
-As engineers we over-engineer things ALL THE TIME. Just think how many blogs hit a database with each and every request when really they could just be static, html-generated from markdown or something (example: [jekyll](https://github.com/mojombo/jekyll)).
+As engineers we over-engineer things ALL THE TIME. Just think how many blogs hit a database with each and every request when really they could just be static html, generated from markdown or something (example: [jekyll](https://github.com/mojombo/jekyll)).
 
 Building client-side apps is more complicated. Decide carefully. Ask yourself, is there additional benefit for your users? Are you building something that is opened and closed frequently, or are you building an experience? How often does the data in the application change? Do you care if it changes while the app is open?
 
