@@ -49,7 +49,7 @@ Well, frankly, because I didn’t really know of a great way to do it.
 
 I started looking around and realized that [Jade](http://jade-lang.com) (which we already use quite a bit at &yet) has support for compiling as a separate process and, in combination with a small little runtime snippet, this lets you create JS functions that don’t need the whole template engine to render. Which is totally awesome!
 
-So, to make it easier to work with, I wrote a little tool: [templatizer](http://github.com/henrikjoreteg/templatizer) that you can run on the server-side (using node.js) to take a folder full of jade templates and turn them into a javascript file that you can include in your app that allows the template to render functions as javascript.
+So, to make it easier to work with, I wrote a little tool: [templatizer](http://github.com/henrikjoreteg/templatizer) that you can run on the server-side (using node.js) to take a folder full of jade templates and turn them into a javascript module that you can include in your app that contains a function for each template file. Each template function simply takes a context object and returns a string with those values inserted.
 
 ## The end result
 From my tests the actual rendering of templates is **6 to 10 times faster**. In addition you’re sending *way* less code to the browser (because you’re not sending a whole templating engine) and you’re not making the browser do a bunch of work you could have already done ahead of time.
