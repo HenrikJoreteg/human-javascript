@@ -47,11 +47,11 @@ That's it! Super easy. You don't create any globals. Each file that uses your mo
 
 You just export a constructor (like above), or a single function, or even a set of functions. Generally, however, I'd encourage you to export only one thing from each module.
 
-Of course, browsers don’t have support for these kinds of modules out of the box (there is no `window.require`). But, luckily that can be fixed. We use a clever little tool called [stitch](https://github.com/sstephenson/stitch) written by [Sam Stephenson](https://twitter.com/sstephenson) of 37signals. There’s also another one by [@substack](https://twitter.com/substack) called [browserify](https://github.com/substack/node-browserify) that lets you use a lot of the node.js utils on the client as well.
+Of course, browsers don’t have support for these kinds of modules out of the box (there is no `window.require`). But, luckily that can be fixed. We use a clever little tool called [browserify](https://github.com/substack/node-browserify) that lets you use a lot of the node.js utils on the client as well.
 
 What they do is create a `require` function and bundle up a folder of modules into an app package.
 
-Stitch is written for node.js but you could just as easily use another server-side language and just use node to build your client package. Ultimately, you're creating a single JS file and of course, once generated, that file can be served just like any other static file.
+Browserify is written for node.js but you could just as easily use another server-side language and just use node to build your client package. Ultimately, you're creating a single JS file and of course, once generated, that file can be served just like any other static file.
 
 
 ## Grab your moonboots
@@ -66,26 +66,21 @@ var Moonboots = require('moonboots');
 
 var browserApp = new Moonboots({
     // the directory where all the client code is stored
-    dir: __dirname + '/browserapp',
+    main: __dirname + '/clientapp/main.js',
 
-    // Whether or not to build and serve cached/minified versions of 
+    // Whether or not to build and serve cached/minified version of 
     // the application file.
     // While you're in development mode you don't need to restart the
     // server or do anything other than edit clientside code in your project.
-    // It also sets up a watcher on your templates directory so the 
-    // clientside templates get recompiled and inserted into browserapp/modules.
     developmentMode: true,
 
     // these are the regular javascript files (not written in commonJS style) 
     // that we want to include in our application. These all live in browserApp/libraries
     // and will be concatenated in the order listed.
     libraries: [
-        'jquery-1.9.1.js',
-        'launch.js'
+        __dirname + '/libs/jquery-1.9.1.js',
+        __dirname + '/libs/jquery.plugin.js'
     ],
-
-    // this tells the helper whether or not we want it to handle serving the minified static files
-    serveStaticFiles: false,
 
     // we pass in the express app here so that we it can handle serving files during development
     server: app
@@ -95,7 +90,7 @@ var browserApp = new Moonboots({
 
 At this point we can tell express the routes where we want it to serve our application. This is a bit hard to wrap your head around if you're not used to single page applications that do clientside routing.
 
-Because we're sending a javascript application, rather than rendered HTML to the browser, it's the client's job to read the URL, grab the appropriate data, and render the appropriate page represented by that URL. Obviously the browser is just going to send a request to our node server. So we have to tell it to respond with the same data on more than one url.
+Because we're sending a javascript application, rather than rendered HTML to the browser, it's the client's job to read the URL, grab the appropriate data, and render the appropriate page represented by that URL. Obviously the browser is just going to send a request to our node server. So we have to tell it to respond with the same html on more than one url.
 
 You can do this in express through the use of wildcard handlers, or by passing regular expressions instead of strings as the route definition. In this template you'll see the relevant line in server.js looks like this:
 
@@ -112,20 +107,17 @@ By simply having the helper provide a request handler, you can add whatever midd
 
 ### The structure of the browserApp folder
 
-Our browserApp folder usually contain the following folders:
+Our browserApp folder usually contains the following folders:
 
-- .build (folder): This is where the built/minified js files are stored. We then tell express to make this a public directory and serve its contents with very high max-age cache headers. 
-- app (folder): This folder contains all the clientside code written specifically for this project. It contains the following subfolders and files:
-    - helpers (folder): Contains any utilities that are specific to this app. It provides a place to put code that you want to reuse in several places in the app without it necessarily being generic enough to be considered a standalone module. For example, you may have a generic way to parse incoming text and convert it to html. This type of thing may have specific rules for this app, but might still depend on some context from the app.
-    - models (folder): Contains definitions for all backbone models and collections. As a sanity check, none of these files should have anything related to dom elements or dom manipulation.
-    - pages (folder): The pages folder is where we store the specialized backbone views that represent a page rendered at a specific URL.
-    - views (folder): The views folder contains all of our backbone views (that are not pages), so things like the main application view and views for rendering specific types of models, etc.
-    - caa-mobile.js (file): This is the main entry point for our application. It creates an `app` global variable and instantiates the main models and views.
-    - router.js (file): This is our clientside (backbone) router. It contains a list of url routes at the top and corresponding handlers, whose job it is to instantiate the right views with the right models and call `app.renderPage` with those values.
+- models (folder): Contains definitions for all backbone models and collections. As a sanity check, none of these files should have anything related to dom elements or dom manipulation.
+- pages (folder): The pages folder is where we store the specialized backbone views that represent a page rendered at a specific URL.
+- views (folder): The views folder contains all of our backbone views (that are not pages), so things like the main application view and views for rendering specific types of models, etc.
+- app.js (file): This is the main entry point for our application. It creates an `app` global variable and instantiates the main models and views.
+- router.js (file): This is our clientside (backbone) router. It contains a list of url routes at the top and corresponding handlers, whose job it is to instantiate the right views with the right models and call `app.renderPage` with those values.
 
 - libraries (folder): This contains all the libraries we're using that are *not* structured like CommonJS modules. So things like jquery and jquery plugins will go here. There is also a specific file called `launch.js` that is responsible for requiring and instantiating the main application itself. We do this so that we can just include a single script tag in our html. Otherwise we'd have to extend our base HTML to also have a script tag that ran: `window.app = require('application').launch();`
 
-- modules (folder): Here is where we put all the generic clientside modules. This is where we put stuff like backbone (which is already written to be "requireable") and underscore. It's also where we put our generic tools and helpers that we may have written for other projects. Stuff like query string parsers or other convenience functions. Anything in this folder will be requireable at the top level. For example, you can just to `var Backbone = require('backbone')` from any of your other modules. This folder is also where we put our compiled template file:
+- modules (folder): Here is where we put all the clientside modules that we want to be able to require without a relative path. This is a good place to put our compiled template file:
     - templates.js (file): This is the module that gets created from the templates folder (see next). It's a single file with a function for each clientside template. This file gets auto-generated so don't try to edit it directly. Putting it in here lets us also require and use our template functions easily within our views. Each template has a corresponding template function. Each function takes your context object and returns just a string of html. 
 
 - templates (folder): Here is where we keep all our jade files that get used in the client application. Anytime you're wanting to create html within the app, use a jade template and put it in here. You can structure this folder in whatever fashion that makes sense for your application. The important thing to understand is that folders become part of the template.js module structure. For example, in this template you'll see that there's a `pages` folder within the templates folder with a file called `home.jade`. To use the function that got created from that, you'd access it as follows: 
@@ -137,7 +129,6 @@ var templates = require('templates');
 // imported templates object
 var html = templates.pages.home();
 ```
-- app.html (file): The app.html file is what actually gets served by express for any request that is to be handled by the clientside app. The filename of the app is the only variable. Having this name be dynamically generated (by hashing the source code) lets us create uniquely named (and thus aggressively cacheable) minified files for serving during production. Since the name is generated from a hash of the source, that means the name of the file will change anytime our app does.
 
 
 ## Creating an `app` global
