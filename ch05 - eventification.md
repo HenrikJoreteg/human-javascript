@@ -4,7 +4,7 @@ How do you keep your modules cleanly separated? Sometimes modules are dependant 
 
 There are lots of implementations of event emitters. We use a modified version of one from the LearnBoost guys: [@tjholowaychuk](https://twitter.com/tjholowaychuk), [@rauchg](https://twitter.com/rauchg) and company. It’s [wildemitter](https://github.com/HenrikJoreteg/wildemitter) on my github if you’re curious. But the same concept works for any of the available emitters. See below:
 
-```js
+```javascript
 // require our emitter
 var Emitter = require('wildemitter');
 
@@ -32,7 +32,7 @@ module.exports = AndBang;
 
 Then, other code that wants to use this module can listen for events like so:
 
-```js
+```javascript
 var AndBang = require('andbang'),
     api = new AndBang();
 

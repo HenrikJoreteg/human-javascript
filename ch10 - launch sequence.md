@@ -1,6 +1,6 @@
 # 3... 2... 1... Blastoff!
 
-```js
+```javascript
 require('your_app').launch();
 ```
 

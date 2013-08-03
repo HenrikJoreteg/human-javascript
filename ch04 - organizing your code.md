@@ -22,7 +22,7 @@ CommonJS is the same style/concept that is used in node.js. By following this st
 
 If you’re unfamiliar with the CommonJS modules style, your files end up looking something like this:
 
-```js
+```javascript
 // you import things by using the special `require` function and you can
 // assign the result to a variable
 var StrictModel = require('strictModel'),
@@ -60,7 +60,7 @@ Since defining a browser app "package" and then wanting to build, minify, and se
 
 It's called "moonboots." To use it, you define your browser app like this (assuming node.js and express):
 
-```js
+```javascript
 var Moonboots = require('moonboots');
 
 
@@ -94,7 +94,7 @@ Because we're sending a javascript application, rather than rendered HTML to the
 
 You can do this in express through the use of wildcard handlers, or by passing regular expressions instead of strings as the route definition. In this template you'll see the relevant line in server.js looks like this:
 
-```js
+```javascript
 app.get('*', csrf, browserApp.html());
 ```
 
@@ -122,7 +122,7 @@ Our browserApp folder usually contains the following folders:
 
 - templates (folder): Here is where we keep all our jade files that get used in the client application. Anytime you're wanting to create html within the app, use a jade template and put it in here. You can structure this folder in whatever fashion that makes sense for your application. The important thing to understand is that folders become part of the template.js module structure. For example, in this template you'll see that there's a `pages` folder within the templates folder with a file called `home.jade`. To use the function that got created from that, you'd access it as follows: 
 
-```js
+```javascript
 var templates = require('templates');
 
 // note that 'pages' becomes part of the structure of your

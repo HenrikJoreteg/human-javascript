@@ -22,7 +22,7 @@ This html:
 
 Is read by ICanHaz and turned into a function you call with your own like this:
 
-```js
+```javascript
 // your data
 var data = {
   first_name: "Henrik",

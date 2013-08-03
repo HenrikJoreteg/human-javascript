@@ -20,7 +20,7 @@ It simply uses that to looks for a JSON config file that matches the name of the
 Then, from your node app you just require "getconfig" and access settings directly on the resulting object which will have pulled it from the correct config file. Super clean/simple:
 
 
-```js
+```javascript
 // we just require the module
 var config = require('getconfig');
 
@@ -36,7 +36,7 @@ It just pulls the right config from the right file, no "if" statements, no mess.
 
 On the clientside we do something very similar.
 
-```js
+```javascript
 var config = require('clientconfig');
 
 config.mySetting;
@@ -63,12 +63,12 @@ Say we have a dev_config.json that looks like this, on our server.
 }
 ```
 
-*note the "clientAppSettings" section.
+\*note the "clientAppSettings" section.
 
 Now, in our main sever file where we handle the requests for single page apps, we then just add on our config cookie with the data from getconfig using a very simple piece of middleware.
 
 
-```js
+```javascript
 // set up our app and require getconfig
 var app = require('express')(),
     config = require('getconfig'); 

@@ -12,7 +12,7 @@ You with me? Ok, but how do you actually do this?
 
 Well, let me give you a silly example:
 
-```js
+```javascript
 // assume this is an array of strings from somewhere
 var myArray = ['hello', 'something', 'awesome']; 
 
@@ -25,7 +25,7 @@ Can you explain to me, in plain English, what that tilde does? If you can, good 
 
 Now, compare it to this:
 
-```js
+```javascript
 // same array:
 var myArray = ['hello', 'something', 'awesome']; 
 if (myArray.indexOf('hello') == -1) {
@@ -35,7 +35,7 @@ if (myArray.indexOf('hello') == -1) {
 
 Or even this using underscore:
 
-```js
+```javascript
 // same array:
 var myArray = ['hello', 'something', 'awesome']; 
 if (_(myArray).contains('hello')) {

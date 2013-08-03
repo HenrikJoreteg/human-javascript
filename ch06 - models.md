@@ -4,7 +4,7 @@
 
 Let's say your has a list of items. When a user clicks on an item, you want to visually mark it as selected. Someone used to building simple apps would probably do something like this:
 
-```js
+```javascript
 // register a click handler on the parent list
 $('ul.theList').delegate('click', 'li', function () {
     // toggle a class on the clicked item
@@ -18,7 +18,7 @@ Err... well typically if you're going to select something it's for a reason, rig
 
 Let's say the user has selected several things and now wants to delete them by clicking a delete button. No problem, you say, we just add a button handler that find the ones with the selected class and deletes them.
 
-```js
+```javascript
 $('button.delete').click(function () {
     // get our seleted dom items, loop through them
     $('ul.theList li.selected').each(function () {
@@ -74,7 +74,7 @@ So, what is a model anyway? What does it give us?
 
 The fundamental thing a model should provide is observability. What do I mean? Well, in the same way you can register an event listener in the browser that responds to a form input value changing:
 
-```js
+```javascript
 document.getElementById('myInput').addEventListener('change', function () {
     // do something with the value
 });
@@ -82,7 +82,7 @@ document.getElementById('myInput').addEventListener('change', function () {
 
 A model should let us listen for changes to its properties:
 
-```js
+```javascript
 model.on('change:selected', function (newValue) {
     // do something with the new value
 });
@@ -99,7 +99,7 @@ So, each of these actions are represented by a method on the task model that sen
 For example, here's the `trash` method of a task in And Bang:
 
 
-```js
+```javascript
 ...
 },
 trash: function () {
@@ -127,7 +127,7 @@ That happens when we get confirmation from the API that the task was removed, it
 
 Assuming we've got a view that represents that model, the view would have a click handler like this:
 
-```js
+```javascript
 var StrictView = require('strictview');
 
 module.exports = StrictView.extend({
@@ -145,7 +145,7 @@ module.exports = StrictView.extend({
 
 Alternately, you can simply open the JS console in your browser and type:
 
-```js
+```javascript
 > app.currentTeam.tasks.get('someId').trash();
 ```
 
@@ -171,7 +171,7 @@ Let's think about the data first, before we think about the behavior. These item
 
 `models/widgetCollection.js`
 
-```js
+```javascript
 var Backbone = require('backbone');
 var WidgetModel = require('./models/widget')
 
@@ -186,7 +186,7 @@ module.exports = Backbone.Collection.extend({
 
 `models/widget.js`
 
-```js
+```javascript
 var StrictModel = require('strictmodel');
 
 
@@ -212,7 +212,7 @@ module.exports = StrictModel.extend({
 At this point we can do something like this in our application launch code:
 
 
-```js
+```javascript
 var WidgetCollection = require('models/widgets');
 
 
@@ -270,7 +270,7 @@ So often, the data you get from the server is not in the format you'll want to p
 
 In a large app, you work with models **a lot**. Having to call `get` and `set` everywhere is a bit less than ideal, IMO. EcmaScript 5 (a.k.a. the version of the JS spec available in modern browsers) allows for `getters` and `setters` which means you can actually process simple assignments. This is better illustrated with an example:
 
-```js
+```javascript
 // without getters/setters (backbone)
 model.set('firstName', 'Henrik');
 
@@ -284,7 +284,7 @@ YES! But not in a way that can be observed.
 
 Getters and setters allow us to trigger those `change` events even when properties are set directly:
 
-```js
+```javascript
 model.on('change:firstName', function () {
     console.log('firstName changed!'); 
 });
@@ -296,7 +296,7 @@ model.firstName = 'Henrik';
 
 Even thought this may be a bad idea, we can do the same on the way out using getters:
 
-```js
+```javascript
 model.firstName = 'Henrik';
 
 console.log(model.firstName); 
@@ -316,7 +316,7 @@ Javascript, the language is dynamically typed, which is awesome. But we've said 
 
 Let's compare the two with a simple user model. In Backbone there is no standard way to define a property. Instead, you simply set a value as if it exists and now it does. 
 
-```js
+```javascript
 // backbone model, no definition needed
 // there *is* no standard way to even
 // define the properties it should store
@@ -350,7 +350,7 @@ Just think how much information I'm missing:
 
 Sure the following example is silly, but what if I write some stupid code (as we do sometimes, amirite humans?!).
 
-```js
+```javascript
 // there's nothing stopping you from setting 
 // the firstName property to be a date object.
 model.set('firstName', new Date());
@@ -364,7 +364,7 @@ See how this could be in StrictModel:
 
 file: `models/user.js`
 
-```js
+```javascript
 var StrictModel = require('strictmodel');
 
 
@@ -420,7 +420,7 @@ module.exports = StrictModel.extend({
 
 file: `hypothetical_app.js`
 
-```js
+```javascript
 // grab our user definition from above
 var User = require('./models/user');
 
@@ -458,7 +458,7 @@ So, what happens if we want to store a list of ids as a property of a user?
 
 In backbone, how would we get a `change` event?
 
-```js
+```javascript
 var model = new Backbone.Model();
 
 model.set('ids', ['23', '25', '47']);
@@ -484,7 +484,7 @@ The same is true with dates. If you get a date object, call a method on it, like
 We can solve this with getters/setters in cases where we *know* we want this behavior by forcing the model to always give us a new object when we access the property.
 
 
-```js
+```javascript
 var StrictModel = require('strictmodel');
 
 // set up a simple model definition

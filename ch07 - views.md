@@ -57,7 +57,7 @@ This is done through the `events` hash.
 
 It works like this:
 
-```js
+```javascript
 var StrictView = require('strictview');
 var templates = require('templates');
 
@@ -87,7 +87,7 @@ module.exports = StrictView.extend({
 
 That events hash is equivalent to doing the following inside the render method. 
 
-```js
+```javascript
     render: function () {
         // this we inherit from strictview
         this.basicRender();
@@ -107,7 +107,7 @@ Backbone kind on loosly encourages you to just re-render views entirely when som
 
 Much in the same way as you declare event handlers in the event hash, we can now declare bindings of various types in our views as follows:
 
-```js
+```javascript
 var StrictView = require('strictview');
 var templates = require('templates');
 
@@ -172,7 +172,7 @@ When I first started working with backbone when it was v0.3 I thought I wanted t
 
 Then you mash that together with your model and then they're magically bound. As a paraphrased pseudo-code-y example:
 
-```js
+```javascript
 var template = require('compiledTemplateFromSomewhere');
 var model = require('someModel');
 

@@ -9,7 +9,7 @@ There are 4 ways to call a function in javascript:
 
 as a standalone function:
 
-```js
+```javascript
 var myFunction = function () {
     console.log('"this" is', this);  
 };
@@ -20,7 +20,7 @@ myFunction(); // will log out window (or global in node)
 
 as a propery of an object:
 
-```js
+```javascript
 var obj = {};
 obj.myFunction = function () {
     console.log('"this" is', this);  
@@ -45,7 +45,7 @@ So in the case of the second example where we just do `myFunc();` we're not givi
 
 These are not problems JS developers are used thinking about when building apps with jQuery. jQuery nearly always hands you the current element as the 'this' for event handlers, etc. But... as soon as we start doing backbone it trips people up a lot. The following is an example of what I see pretty much every person new to backbone do:
 
-```js
+```javascript
 var Backbone = require('backbone'),
     templates = require('templates');
 
@@ -66,7 +66,7 @@ The problem is that inside the render function, "this" won't be the backbone vie
 
 In fact, what you're doing is no different than this:
 
-```js
+```javascript
     // register a handler so that anytime the model changes, 
     // call the render function.
     // THIS WILL NOT WORK!
@@ -78,7 +78,7 @@ So, the render function doesn't have any context when you just provide a pointer
 
 So, here's what you do. You can bind a function to a context before it's run like this. 
 
-```js
+```javascript
     // THIS will work as expected
     // backbone's event system takes a third argument for the
     // context to execute the function with.
@@ -87,7 +87,7 @@ So, here's what you do. You can bind a function to a context before it's run lik
 
 This leads into the other two ways to execute a function:
 
-```js
+```javascript
 myFunction = var myFunction = function () {
     console.log('"this" is', this);  
 };
@@ -120,7 +120,7 @@ Another common issue is understanding what `this.$()` does in views.
 
 If you've got a div in your template that looks like this: `<div id="myDiv"/>` and we do this in the redner function you'll have a problem:
 
-```js
+```javascript
 var Backbone = require('backbone');
 
 
