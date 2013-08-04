@@ -63,37 +63,37 @@ var templates = require('templates');
 
 
 module.exports = StrictView.extend({
-    template: templates.widget,
-    events: {
-        // the event + element: the name of the handler
-        'click .delete': 'handleDeleteClick',
-        'keyup input.search': 'handleSearchKeyUp'
-    },
-    render: function () {
-        // this we inherit from strictview
-        this.basicRender();
-    },
-    handleDeleteClick: function () {
-        this.model.delete();
-    },
-    handleSearchKeyUp: function () {
-        var inputVal = this.$('.search').val();
-        this.collection.each(function (model) {
-            model.matchesSearch = this.name.indexOf(inputVal) !== -1;
-        });
-    }
+  template: templates.widget,
+  events: {
+    // the event + element: the name of the handler
+    'click .delete': 'handleDeleteClick',
+    'keyup input.search': 'handleSearchKeyUp'
+  },
+  render: function () {
+    // this we inherit from strictview
+    this.basicRender();
+  },
+  handleDeleteClick: function () {
+    this.model.delete();
+  },
+  handleSearchKeyUp: function () {
+    var inputVal = this.$('.search').val();
+    this.collection.each(function (model) {
+      model.matchesSearch = this.name.indexOf(inputVal) !== -1;
+    });
+  }
 });
 ```
 
 That events hash is equivalent to doing the following inside the render method. 
 
 ```javascript
-    render: function () {
-        // this we inherit from strictview
-        this.basicRender();
-        this.$el.delegate('.delete', 'click', _.bind(this.handleDeleteClick, this));
-        this.$el.delegate('input.search', 'keyup', _.bind(this.handleSearchKeyUp, this));
-    },
+  render: function () {
+    // this we inherit from strictview
+    this.basicRender();
+    this.$el.delegate('.delete', 'click', _.bind(this.handleDeleteClick, this));
+    this.$el.delegate('input.search', 'keyup', _.bind(this.handleSearchKeyUp, this));
+  },
 ```
 
 But the events hash is less verbose and arguably more readable.
@@ -113,43 +113,43 @@ var templates = require('templates');
 
 
 module.exports = StrictView.extend({
-    template: templates.widget,
-    events: {
-        'click .delete': 'handleDeleteClick',
-        'keyup input.search': 'handleSearchKeyUp'
-    },
-    // content bindings mean
-    // put the name attribute of the
-    // model in this view. Into the
-    // element that matches the
-    // '.profileName' selector as text.
-    contentBindings: {
-        'name': '.profileName'
-    },
-    // class bindings work a tad differently
-    // if they're boolean attributes
-    // it will add or remove a class
-    // of the same name as the property.
-    // If the property value is a string
-    // it will maintain a class of whatever
-    // that string value is on the element.
-    classBindings: {
-        'selected': '',
-        'active': '.container'
-    },
-    render: function () {
-        this.basicRender();
-        this.handleBindings(); // <- this is what does all the binding.
-    },
-    handleDeleteClick: function () {
-        this.model.delete();
-    },
-    handleSearchKeyUp: function () {
-        var inputVal = this.$('.search').val();
-        this.collection.each(function (model) {
-            model.matchesSearch = this.name.indexOf(inputVal) !== -1;
-        });
-    }
+  template: templates.widget,
+  events: {
+    'click .delete': 'handleDeleteClick',
+    'keyup input.search': 'handleSearchKeyUp'
+  },
+  // content bindings mean
+  // put the name attribute of the
+  // model in this view. Into the
+  // element that matches the
+  // '.profileName' selector as text.
+  contentBindings: {
+    'name': '.profileName'
+  },
+  // class bindings work a tad differently
+  // if they're boolean attributes
+  // it will add or remove a class
+  // of the same name as the property.
+  // If the property value is a string
+  // it will maintain a class of whatever
+  // that string value is on the element.
+  classBindings: {
+    'selected': '',
+    'active': '.container'
+  },
+  render: function () {
+    this.basicRender();
+    this.handleBindings(); // <- this is what does all the binding.
+  },
+  handleDeleteClick: function () {
+    this.model.delete();
+  },
+  handleSearchKeyUp: function () {
+    var inputVal = this.$('.search').val();
+    this.collection.each(function (model) {
+      model.matchesSearch = this.name.indexOf(inputVal) !== -1;
+    });
+  }
 });
 ```
 
@@ -166,7 +166,7 @@ When I first started working with backbone when it was v0.3 I thought I wanted t
 
 ```html
 <div>
-    <p>Hello {{ name }}</p>
+  <p>Hello {{ name }}</p>
 </div>
 ```
 
@@ -184,7 +184,7 @@ model.set('name', 'Sue');
 // the DOM would be magically update to be:
 /*
 <div>
-    <p>Hello Sue</p>
+  <p>Hello Sue</p>
 </div>
 */
 ```

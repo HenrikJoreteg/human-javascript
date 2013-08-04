@@ -18,85 +18,89 @@ Typically, that sequence goes something like this:
 
 Now in code:
 
-    module.exports = {
-        // the main launch function this is the 
-        // entry point into your application.
-        launch: function () {
-            // explicitly create a global called "app"
-            // doing this first means it *always* exists
-            // if we need to access it from a view.
-            window.app = this;
+```javascript
+module.exports = {
+  // the main launch function this is the 
+  // entry point into your application.
+  launch: function () {
+    // explicitly create a global called "app"
+    // doing this first means it *always* exists
+    // if we need to access it from a view.
+    window.app = this;
 
-            // Attach some model collections
-            this.tasks = new Tasks();
-            this.chatMessages = new Messages();
+    // Attach some model collections
+    this.tasks = new Tasks();
+    this.chatMessages = new Messages();
 
-            // Init a 'me' object
-            window.me = new Me();
+    // Init a 'me' object
+    window.me = new Me();
 
-            this.fetchStandardData(function (err) {
-                if (err) {
-                    // handle errors;
-                }
-                // render the main viev
-                app.view = new MainView({
-                    model: me
-                }).render();
+    this.fetchStandardData(function (err) {
+      if (err) {
+        // handle errors;
+      }
+      // render the main viev
+      app.view = new MainView({
+        model: me
+      }).render();
 
-                // start our router
-                // init our URL handlers and the history tracker
-                new Router();
-                app.history = Backbone.history;
-                // we have what we need, we can now start our router and show the appropriate page
-                app.history.start({pushState: true, root: '/'});
-            });
+      // start our router
+      // init our URL handlers and the history tracker
+      new Router();
+      app.history = Backbone.history;
+      // we have what we need, we can now start our router and show the appropriate page
+      app.history.start({pushState: true, root: '/'});
+    });
 
-        },
-        fetchStandardData: function (mainCallback) {
-            var self = this;
-            async.parallel([
-                function (cb) {
-                    self.tasks.fetch({success: cb});
-                },
-                function (cb) {
-                    me.fetch({success: cb});
-                } 
-            ], mainCallback);
-        }
-    }
+  },
+  fetchStandardData: function (mainCallback) {
+    var self = this;
+    async.parallel([
+      function (cb) {
+        self.tasks.fetch({success: cb});
+      },
+      function (cb) {
+        me.fetch({success: cb});
+      } 
+    ], mainCallback);
+  }
+}
+```
 
 
 As you can tell there's a handful things we do regardless of the URL. Once we've got that sorted is when we init our router and start our history tracking (which enables back-button support). 
 
 The client router looks something like this:
 
-    var Backbone = require('backbone');
+```javascript
+var Backbone = require('backbone');
 
-    module.exports = Backbone.Router.extend({
-        routes: {
-            ':slug/:slug/tasks': 'member',
-            ':slug/task/:taskid': 'memberTaskDetail',
-            ...
-        },
+module.exports = Backbone.Router.extend({
+  routes: {
+    ':slug/:slug/tasks': 'member',
+    ':slug/task/:taskid': 'memberTaskDetail',
+    ...
+  },
 
-        // ------- ROUTE HANDLERS ---------
-        home: function () {
-            app.navigate(app.teams.first().chatUrl);
-        },
+  // ------- ROUTE HANDLERS ---------
+  home: function () {
+    app.navigate(app.teams.first().chatUrl);
+  },
 
-        memberTaskDetail: function () {
-            var View = require('pages/taskDetail'),
-                team = this.getTeam(teamSlug);
+  memberTaskDetail: function () {
+    var View = require('pages/taskDetail'),
+      team = this.getTeam(teamSlug);
 
-            if (!team) return this.fourOhFour();
+    if (!team) return this.fourOhFour();
 
-            // we may or may not have the task, so we just pass it in and try to get it from the view.
-            app.renderPage(new View({
-                team: team,
-                taskId: taskId
-            }));
-        }
-    }
+    // we may or may not have the task, so we just pass it in and try to get it from the view.
+    app.renderPage(new View({
+      team: team,
+      taskId: taskId
+    }));
+  }
+}
+```
 
 
 So, each of the routes listed at the top are turned into regex's by backbone and linked to a handler function.

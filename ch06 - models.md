@@ -7,8 +7,8 @@ Let's say your has a list of items. When a user clicks on an item, you want to v
 ```javascript
 // register a click handler on the parent list
 $('ul.theList').delegate('click', 'li', function () {
-    // toggle a class on the clicked item
-    $(this).toggleClass('selected');
+  // toggle a class on the clicked item
+  $(this).toggleClass('selected');
 })
 ```
 
@@ -20,26 +20,26 @@ Let's say the user has selected several things and now wants to delete them by c
 
 ```javascript
 $('button.delete').click(function () {
-    // get our seleted dom items, loop through them
-    $('ul.theList li.selected').each(function () {
-        // but we also have to have a way to figure out what
-        // ID each one of these things represent so we can pass
-        // the correct info to the server. So, let's assume we use
-        // HTML5 data attributes. Luckily jQuery's data() method
-        // reads all those and returns them as an object.
-        var id = $(this).data('serverId');
-        var listId = $(this).data('listId');
-        $.ajax({
-            type: 'delete',
-            url: '/lists/' + listId + '/widgets/' + id,
-            success: function () {
-                // do something
-            },
-            error: function () {
-                // let the user know, somehow
-            }
-        })
-    }); 
+  // get our seleted dom items, loop through them
+  $('ul.theList li.selected').each(function () {
+    // but we also have to have a way to figure out what
+    // ID each one of these things represent so we can pass
+    // the correct info to the server. So, let's assume we use
+    // HTML5 data attributes. Luckily jQuery's data() method
+    // reads all those and returns them as an object.
+    var id = $(this).data('serverId');
+    var listId = $(this).data('listId');
+    $.ajax({
+      type: 'delete',
+      url: '/lists/' + listId + '/widgets/' + id,
+      success: function () {
+        // do something
+      },
+      error: function () {
+        // let the user know, somehow
+      }
+    })
+  }); 
 });
 ```
 
@@ -76,7 +76,7 @@ The fundamental thing a model should provide is observability. What do I mean? W
 
 ```javascript
 document.getElementById('myInput').addEventListener('change', function () {
-    // do something with the value
+  // do something with the value
 });
 ```
 
@@ -84,7 +84,7 @@ A model should let us listen for changes to its properties:
 
 ```javascript
 model.on('change:selected', function (newValue) {
-    // do something with the new value
+  // do something with the new value
 });
 ```
 
@@ -103,11 +103,11 @@ For example, here's the `trash` method of a task in And Bang:
 ...
 },
 trash: function () {
-    if (this.deleteable) {
-        this.removing = true;
-        this.api('deleteTask');
-    }
-    return this.deleteable;
+  if (this.deleteable) {
+    this.removing = true;
+    this.api('deleteTask');
+  }
+  return this.deleteable;
 },
 ...
 
@@ -131,14 +131,14 @@ Assuming we've got a view that represents that model, the view would have a clic
 var StrictView = require('strictview');
 
 module.exports = StrictView.extend({
-    // our events hash (explained in the next chapter)
-    events: {
-        'click .delete': 'handleDeleteClick'
-    },
-    // our handler simply calls "trash", nothing more
-    handleDeleteClick: function () {
-        this.model.trash();
-    }
+  // our events hash (explained in the next chapter)
+  events: {
+    'click .delete': 'handleDeleteClick'
+  },
+  // our handler simply calls "trash", nothing more
+  handleDeleteClick: function () {
+    this.model.trash();
+  }
 })
 ```
 
@@ -177,10 +177,10 @@ var WidgetModel = require('./models/widget')
 
 // or main export from this module (just the collection)
 module.exports = Backbone.Collection.extend({
-    // specify the model type for this collection
-    model: WidgetModel,
-    // the RESTful API url representing this resource
-    url: '/widgets'
+  // specify the model type for this collection
+  model: WidgetModel,
+  // the RESTful API url representing this resource
+  url: '/widgets'
 });
 ```
 
@@ -191,20 +191,20 @@ var StrictModel = require('strictmodel');
 
 
 module.exports = StrictModel.extend({
-    // we give our model a type
-    type: 'widget',
-    // define properties, these are the ones
-    // that live on the server-side
-    props: {
-        id: ['string', true],
-        widgetType: ['string', true, 'dooDad']
-    },
-    // session properties are just like props but
-    // exist for the purpose of storing client-side
-    // state.
-    session: {
-        selected: ['boolean', true, false]
-    }
+  // we give our model a type
+  type: 'widget',
+  // define properties, these are the ones
+  // that live on the server-side
+  props: {
+    id: ['string', true],
+    widgetType: ['string', true, 'dooDad']
+  },
+  // session properties are just like props but
+  // exist for the purpose of storing client-side
+  // state.
+  session: {
+    selected: ['boolean', true, false]
+  }
 });
 ```
 
@@ -218,17 +218,17 @@ var WidgetCollection = require('models/widgets');
 
 // assume this is the app's entry point
 module.exports = {
-    blastoff: function () {
-        // creating our one global that holds the app
-        window.app = this;
+  blastoff: function () {
+    // creating our one global that holds the app
+    window.app = this;
 
-        // attach our widget collection here
-        this.widgets = new WidgetCollection();
-        // assumes you've got things set up so 
-        // this will do an AJAX (or some other type) call
-        // and populate the collection.
-        this.widgets.fetch();
-    }
+    // attach our widget collection here
+    this.widgets = new WidgetCollection();
+    // assumes you've got things set up so 
+    // this will do an AJAX (or some other type) call
+    // and populate the collection.
+    this.widgets.fetch();
+  }
 };
 ```
 
@@ -286,7 +286,7 @@ Getters and setters allow us to trigger those `change` events even when properti
 
 ```javascript
 model.on('change:firstName', function () {
-    console.log('firstName changed!'); 
+  console.log('firstName changed!'); 
 });
 
 // even when setting the attribute directly the callback 
@@ -323,8 +323,8 @@ Let's compare the two with a simple user model. In Backbone there is no standard
 var model = new Backbone.Model();
 
 model.set({
-    firstName: 'Henrik',
-    lastName: 'Joreteg'
+  firstName: 'Henrik',
+  lastName: 'Joreteg'
 });
 
 // now i can get those
@@ -367,54 +367,53 @@ file: `models/user.js`
 ```javascript
 var StrictModel = require('strictmodel');
 
-
 module.exports = StrictModel.extend({
-    type: 'user',
-    // our properties from the server
-    props: {
-        // here is the shorthand syntax for defining a property
-        // first is type, second is required, last is default value
-        firstName: ['string', true, ''],
-        lastName: ['string', true, ''],
-        // You can also be even more explicit
-        // and pass and object
-        middleName: {
-            type: 'string',
-            required: true,
-            default: ''
-        },
-        // Or less specific the minimum 
-        // you need is a type, for example:
-        isAwesome: 'boolean'
+  type: 'user',
+  // our properties from the server
+  props: {
+    // here is the shorthand syntax for defining a property
+    // first is type, second is required, last is default value
+    firstName: ['string', true, ''],
+    lastName: ['string', true, ''],
+    // You can also be even more explicit
+    // and pass and object
+    middleName: {
+      type: 'string',
+      required: true,
+      default: ''
     },
-    // Session properties are defined and work exactly
-    // the same way as properties. The difference is 
-    // they're not sent to the server as a "real" property
-    session: {
-        selected: ['boolean', true, false]
-    },
-    // Derived properties are getters constructed from
-    // other information.
-    derived: {
-        // the name of the derived property
-        // in this case refrencing "model.fullName"
-        // would give us the result of calling the
-        // function below
-        fullName: {
-            // we specify which properties
-            // this is dependent on (meaning if they change)
-            // so does the derived property
-            deps: ['firstName', 'lastName'],
-            fn: function () {
-                return (this.firstName + ' ' + this.lastName).trim();
-            },
-            // we can optionally cache the result, doing this
-            // means it won't run the function to return the result
-            // unless one of the values has changed sinc the last
-            // time it was ran.
-            cache: true
-        }
+    // Or less specific the minimum 
+    // you need is a type, for example:
+    isAwesome: 'boolean'
+  },
+  // Session properties are defined and work exactly
+  // the same way as properties. The difference is 
+  // they're not sent to the server as a "real" property
+  session: {
+    selected: ['boolean', true, false]
+  },
+  // Derived properties are getters constructed from
+  // other information.
+  derived: {
+    // the name of the derived property
+    // in this case refrencing "model.fullName"
+    // would give us the result of calling the
+    // function below
+    fullName: {
+      // we specify which properties
+      // this is dependent on (meaning if they change)
+      // so does the derived property
+      deps: ['firstName', 'lastName'],
+      fn: function () {
+        return (this.firstName + ' ' + this.lastName).trim();
+      },
+      // we can optionally cache the result, doing this
+      // means it won't run the function to return the result
+      // unless one of the values has changed sinc the last
+      // time it was ran.
+      cache: true
     }
+  }
 });
 ```
 
@@ -489,9 +488,9 @@ var StrictModel = require('strictmodel');
 
 // set up a simple model definition
 var DemoModel = StrictModel.extend({
-    props: {
-        ids: ['array', true, []]
-    } 
+  props: {
+    ids: ['array', true, []]
+  }
 });
 
 
