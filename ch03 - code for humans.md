@@ -17,7 +17,7 @@ Well, let me give you a silly example:
 var myArray = ['hello', 'something', 'awesome']; 
 
 if (~myArray.indexOf('hello')) {
-	// under what cirucumstances does this get called?
+  // under what cirucumstances does this get called?
 }
 ```
 
@@ -29,7 +29,7 @@ Now, compare it to this:
 // same array:
 var myArray = ['hello', 'something', 'awesome']; 
 if (myArray.indexOf('hello') == -1) {
-	// pretty freakin’ clear, AMIRITE!?
+  // pretty freakin’ clear, AMIRITE!?
 }
 ```
 
