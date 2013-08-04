@@ -1,2 +1,0 @@
-% Human JavaScript
-% Henrik Joreteg
