@@ -39,7 +39,7 @@ Or even this using underscore:
 // same array:
 var myArray = ['hello', 'something', 'awesome']; 
 if (_(myArray).contains('hello')) {
-    // also pretty freakin’ clear right?
+  // also pretty freakin’ clear right?
 }
 ```
 
@@ -66,24 +66,26 @@ The neat thing about the npm version of JSHint is that if you run it from the co
 
 Our `.jshintrc` files usually looks something like this:
 
-    {
-        "asi": false,
-        "expr": true,
-        "loopfunc": true,
-        "curly": false,
-        "evil": true,
-        "white": true,
-        “undef": true,
-        "predef": [
-            "app",
-            "$",
-            "require",
-            "__dirname",
-            "process",
-            "exports",
-            "module"
-        ]
-    }
+```json
+  {
+    "asi": false,
+    "expr": true,
+    "loopfunc": true,
+    "curly": false,
+    "evil": true,
+    "white": true,
+    “undef": true,
+    "predef": [
+      "app",
+      "$",
+      "require",
+      "__dirname",
+      "process",
+      "exports",
+      "module"
+    ]
+  }
+```
 
 The awesome thing about this approach is that you can enforce consistency, the rules for the project are contained, and actually checked into the project repo itself (in the form of the jshintrc file). So, if you decide to have a different set of rules for the next project, fine. It’s not a global setting; it’s defined and adjusted by whomever runs the project.
 

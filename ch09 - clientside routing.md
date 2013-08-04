@@ -22,25 +22,29 @@ https://andbang.com/basecamp
 
 Either way, the server will return this html:
 
-    <!DOCTYPE html>
-    <script src="/&!.js"></script>
+```html
+<!DOCTYPE html>
+<script src="/&!.js"></script>
+```
 
 
 It may be helpful to thinking about it as a block of urls that all just serve the app.
 
 If you're using express and node it's quite easy to do.
 
-    app.get('/other/thing', function () {
-        // you could still serve other support pages 
-        // and simple things at specific urls.
-    });
+```javascript
+app.get('/other/thing', function () {
+  // you could still serve other support pages 
+  // and simple things at specific urls.
+});
 
-    // but then you want some sort of catch all that matches
-    // the range of URLs you're going to want the single page app
-    // to be available at:
-    app.get('*', function (req, res) {
-        res.sendFile('sameShit.html');
-    });
+// but then you want some sort of catch all that matches
+// the range of URLs you're going to want the single page app
+// to be available at:
+app.get('*', function (req, res) {
+  res.sendFile('sameShit.html');
+});
+```
 
 At this point finding/fetching the right data and rendering the right view is up to the browser app.
 
