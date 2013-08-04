@@ -55,11 +55,11 @@ Say we have a dev_config.json that looks like this, on our server.
 
 ```json
 {
-    "myProjectSetting": "someSetting",
-    "clientAppSettings": {
-        "apiUrl": "https://api.andbang.com",
-        "trackMetrics": false
-    }
+  "myProjectSetting": "someSetting",
+  "clientAppSettings": {
+    "apiUrl": "https://api.andbang.com",
+    "trackMetrics": false
+  }
 }
 ```
 
@@ -75,13 +75,13 @@ var app = require('express')(),
 
 // build a tiny middleware function that sets the cookie
 var configMiddleware = function (req, res, next) {
-    res.setCookie('config', JSON.stringify(config.clientAppSettings);
-    next();
+  res.setCookie('config', JSON.stringify(config.clientAppSettings);
+  next();
 };
 
 // in the code that serves our singlepage app, use the middleware
 app.get('/app', configMiddleware, function (req, res) {
-    res.send(clientApp.html());
+  res.send(clientApp.html());
 });
 ```
 

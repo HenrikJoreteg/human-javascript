@@ -11,11 +11,10 @@ as a standalone function:
 
 ```javascript
 var myFunction = function () {
-    console.log('"this" is', this);  
+  console.log('"this" is', this);  
 };
 
 myFunction(); // will log out window (or global in node)
-
 ```
 
 as a propery of an object:
@@ -23,7 +22,7 @@ as a propery of an object:
 ```javascript
 var obj = {};
 obj.myFunction = function () {
-    console.log('"this" is', this);  
+  console.log('"this" is', this);  
 };
 
 obj.myFunction(); // will log out the 'obj' object
@@ -50,15 +49,15 @@ var Backbone = require('backbone'),
     templates = require('templates');
 
 module.exports = Backbone.View.extend({
-    initialize: function () {
-        // register a handler so that anytime the model changes, 
-        // call the render function.
-        // THIS WILL NOT WORK!
-        this.model.on('change', this.render);
-    }, 
-    render: function () {
-        this.$el.html(template.thing());
-    }
+  initialize: function () {
+    // register a handler so that anytime the model changes, 
+    // call the render function.
+    // THIS WILL NOT WORK!
+    this.model.on('change', this.render);
+  }, 
+  render: function () {
+    this.$el.html(template.thing());
+  }
 });
 ```
 
@@ -67,11 +66,11 @@ The problem is that inside the render function, "this" won't be the backbone vie
 In fact, what you're doing is no different than this:
 
 ```javascript
-    // register a handler so that anytime the model changes, 
-    // call the render function.
-    // THIS WILL NOT WORK!
-    var render = this.render;
-    this.model.on('change', render);
+// register a handler so that anytime the model changes, 
+// call the render function.
+// THIS WILL NOT WORK!
+var render = this.render;
+this.model.on('change', render);
 ```
 
 So, the render function doesn't have any context when you just provide a pointer to that function (even though the function may 'live' on the view). 
@@ -79,21 +78,21 @@ So, the render function doesn't have any context when you just provide a pointer
 So, here's what you do. You can bind a function to a context before it's run like this. 
 
 ```javascript
-    // THIS will work as expected
-    // backbone's event system takes a third argument for the
-    // context to execute the function with.
-    this.model.on('change', this.render, this);
+// THIS will work as expected
+// backbone's event system takes a third argument for the
+// context to execute the function with.
+this.model.on('change', this.render, this);
 ```
 
 This leads into the other two ways to execute a function:
 
 ```javascript
 myFunction = var myFunction = function () {
-    console.log('"this" is', this);  
+  console.log('"this" is', this);  
 };
 
 var someOtherContext = {
-    name: 'blah'
+  name: 'blah'
 };
 
 // both of these will log out the 'someOtherContext' objec
@@ -108,7 +107,7 @@ myFunction(); // "this" will be someOtherContext
 // in a modern browser or not. You can just do this:
 
 myFunction(_.bind(myFunction, someOtherContext));
-myFucntion(); // for the same result
+myFunction(); // for the same result
 ```
 
 That's function binding in a nutshell. It's really just info about how the language works. But it's such a common issue with people who are new to backbone or less familary with javascript as a langauge that I figured it was worth explaining.
@@ -123,17 +122,16 @@ If you've got a div in your template that looks like this: `<div id="myDiv"/>` a
 ```javascript
 var Backbone = require('backbone');
 
-
 module.exports = Backbone.View.extend({
-    render: function () {
-        this.$el.html(templates.myTemplate());
-        // then you try to access that div like so:
-        $('#myDiv').on('click', this.doSomething);
-        
-        // ^^ myDiv won't be found! If the root element of this
-        // view isn't already attached to the DOM.
-        return this;
-    }
+  render: function () {
+    this.$el.html(templates.myTemplate());
+    // then you try to access that div like so:
+    $('#myDiv').on('click', this.doSomething);
+    
+    // ^^ myDiv won't be found! If the root element of this
+    // view isn't already attached to the DOM.
+    return this;
+  }
 });
 ```
 

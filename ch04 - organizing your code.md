@@ -27,19 +27,19 @@ If you’re unfamiliar with the CommonJS modules style, your files end up lookin
 // assign the result to a variable
 var StrictModel = require('strictModel'),
     _ = require('underscore');
-    
+  
 // you expose functionality to other modules by declaring your main export
 // like this.
 module.exports = StrictModel.extend({
-    type: 'navItem',
-    props: {
-        active: ['boolean', true, false],
-        url: ['string', true, ''],
-        position: ['number', true, 200]
-    },
-    init: function () {
-        // some, something
-    }
+  type: 'navItem',
+  props: {
+    active: ['boolean', true, false],
+    url: ['string', true, ''],
+    position: ['number', true, 200]
+  },
+  init: function () {
+    // some, something
+  }
 });
 ```
 
@@ -65,25 +65,25 @@ var Moonboots = require('moonboots');
 
 
 var browserApp = new Moonboots({
-    // the directory where all the client code is stored
-    main: __dirname + '/clientapp/main.js',
+  // the directory where all the client code is stored
+  main: __dirname + '/clientapp/main.js',
 
-    // Whether or not to build and serve cached/minified version of 
-    // the application file.
-    // While you're in development mode you don't need to restart the
-    // server or do anything other than edit clientside code in your project.
-    developmentMode: true,
+  // Whether or not to build and serve cached/minified version of 
+  // the application file.
+  // While you're in development mode you don't need to restart the
+  // server or do anything other than edit clientside code in your project.
+  developmentMode: true,
 
-    // these are the regular javascript files (not written in commonJS style) 
-    // that we want to include in our application. These all live in browserApp/libraries
-    // and will be concatenated in the order listed.
-    libraries: [
-        __dirname + '/libs/jquery-1.9.1.js',
-        __dirname + '/libs/jquery.plugin.js'
-    ],
+  // these are the regular javascript files (not written in commonJS style) 
+  // that we want to include in our application. These all live in browserApp/libraries
+  // and will be concatenated in the order listed.
+  libraries: [
+    __dirname + '/libs/jquery-1.9.1.js',
+    __dirname + '/libs/jquery.plugin.js'
+  ],
 
-    // we pass in the express app here so that we it can handle serving files during development
-    server: app
+  // we pass in the express app here so that we it can handle serving files during development
+  server: app
 });
 ```
 

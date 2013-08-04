@@ -10,8 +10,8 @@ var Emitter = require('wildemitter');
 
 // Our main constructor function
 var AndBang = function (config) {
-    // extend with emitter
-    Emitter.call(this);
+  // extend with emitter
+  Emitter.call(this);
 };
 
 // inherit from emitter
@@ -19,11 +19,11 @@ AndBang.prototype = new Emitter();
 
  // Other methods
 AndBang.prototype.setName = function (newName) {
-    this.name = newName;
-    // we can trigger arbitrary events
-    // these are just hooks that other
-    // code could chose to listen to.
-    this.emit('nameChanged', newName);
+  this.name = newName;
+  // we can trigger arbitrary events
+  // these are just hooks that other
+  // code could chose to listen to.
+  this.emit('nameChanged', newName);
 };
 
 // export it to the world
