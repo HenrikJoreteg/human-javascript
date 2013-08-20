@@ -4,7 +4,9 @@ The single biggest challenge you’ll have when building complex clientside appl
 
 If it’s a long-running project that you plan on maintaining and changing over time, it’s even harder. Features come and go. You’ll experiment with something, only to find it’s not the right call and leave traces of old code sprinked throughout.
 
-I absolutely *despise* messy code. Here are a few techniques, crutches, coping mechanisms, and semi-pro tips for staying sane.
+I absolutely *despise* messy code. It's hard to read, hard to maintain, hard to collaborate on, and it's just plain ugly to look at. Beyond those pragmatic reasons, I consider my code to be my craft. Therefore, I want the care that I put into writing it to be obvious to those who read it.
+
+Here are a few techniques, crutches, coping mechanisms, and semi-pro tips for staying sane.
 
 
 ## Separating views and state
