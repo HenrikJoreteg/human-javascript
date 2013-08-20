@@ -61,7 +61,7 @@ One of the fundamental advantages that digital media has over print is that it's
 
 So, as soon as we as developers decide that we want to do partial updates of the page, the only way we can do so is by knowing what information we currently have, and comparing it to what's on the server. State duplication has occurred and we're now maintaining "state" in some form in the client.
 
-As users get increasingly comfortable with that idea, we'll reach a point where always-current, self-updating information is the *expectation* rather than a surprise. I promise you, this will happen, whether you're on board or not. If you want to stay at the top of your field as a web developer, you'll have to know how to build apps that work this way.
+As users get increasingly comfortable with that idea, I believe we'll reach a point where always-current, self-updating information is the *expectation* rather than a surprise. Facebook with its chat, live comments, and push notifictaions is already conditioning an entire generation of users to expect realtime updates. I believe that knowing how to build realtime apps is a crucial skill for web developers who want to stay at the top of their field.
 
 Anytime you duplicate state, you increase complexity. Rather than worrying about just rendering some data correctly, you're now caring about staleness, caching, and conflicts.
 
