@@ -6,10 +6,21 @@ If it’s a long-running project that you plan on maintaining and changing over 
 
 I absolutely *despise* messy code. It's hard to read, hard to maintain, hard to collaborate on, and it's just plain ugly to look at. Beyond those pragmatic reasons, I consider my code to be my craft. Therefore, I want the care that I put into writing it to be obvious to those who read it.
 
+Complexity sneaks up on you. If you don’t actively fight for simplicity in software, complexity will win.
+
 Here are a few techniques, crutches, coping mechanisms, and semi-pro tips for staying sane.
 
+## Refactor early, refactor often
+
+Entropy is inevitable in a codebase. If we don't continually modify, simplify and unify the exisiting code along with the new code that's being written we can easily end up with a really big, messy app.
+
+Some developers seem hesitant to touch code they've already written. But, I believe that deleting and updating code is a regular and important part of building an app. When you first start building an app, you don't know how you're going to build everything in it so there's no reason to treat any of the code you build along the way as infallible.
+
+Code is just text, not an edict. It can be changed easily and should be streamlined as you build. 
+Don't be scared of refactoring. Be scared of building an unmaintainable piece of crap. I have found that to be much more costly in the long run. Additionally, if your app is seperated into clean simple modules the risk of accidentally breaking something else is dramatically lower.
 
 ## Separating views and state
+
 This is the biggest lesson I’ve learned building lots of single page apps. Your view (the DOM) should just be blind slave to the model state of your application. For this you could use any number of tools and frameworks. I’d recommend starting with [Backbone.js](http://backbonejs.org/) (by the awesome Mr. [@jashkenas](https://twitter.com/jashkenas) as it’s the easiest to understand, and the closest thing to "just javascript"™ as discussed in the introduction. 
 
 Essentially, you’ll populate a set of models and collections of these models in memory in the browser. These will store all the application state for your app. These models should be completely oblivious to how they’re used; they merely store state and broadcast their changes. Then you will have views that listen for changes in the models and update the DOM. This core principle of separating your views and your application state is vital when building large apps.
