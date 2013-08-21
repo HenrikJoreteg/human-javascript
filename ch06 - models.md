@@ -2,7 +2,7 @@
 
 ## A simple example 
 
-Let's say your has a list of items. When a user clicks on an item, you want to visually mark it as selected. Someone used to building simple apps would probably do something like this:
+Let's say you have a list of items. When a user clicks on an item, you want to visually mark it as selected. Someone used to building simple apps would probably do something like this:
 
 ```javascript
 // register a click handler on the parent list
