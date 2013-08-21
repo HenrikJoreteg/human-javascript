@@ -149,7 +149,7 @@ Alternately, you can simply open the JS console in your browser and type:
 > app.currentTeam.tasks.get('someId').trash();
 ```
 
-And you everything will still just happen. The task will be deleted on the server and removed from the DOM.
+And you'll see that everything still happens exactly the same as if you had clicked to delete. The task will be deleted on the server and removed from the DOM.
 
 
 ## Using models for everything
