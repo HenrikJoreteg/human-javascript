@@ -237,11 +237,11 @@ So now we've got a representation of that list of widgets that assumes nothing a
 
 Stop for a second and think about what that does for us when requriements change or even when we go build a second application on the same API. Nearly *all* the model code will be re-usable with zero changes. It simply represents the state that is available in the API which is the same no matter what the interface looks like. 
 
-Also, if we think about this in a team environment. Several people could be writing the various models without stepping on each other's toe, while yet others are building views that render HTML for the models. Because they're all in seperate files, merging the combined code in git won't result in any major merge conflicts.
+Also, think about this in a team environment. Someone can be working on writing models and making sure they get the proper data populated from the API while someone is building the clientside router and page views that include and design "static" versions of page elements that will be rendered by models once the API is hooked up. Because they're all in seperate files, merging the combined code in git won't result in any major merge conflicts. 
 
-Just imagine what sort of impact this has for a team to be able to work in parralel and to write code that doesn't need to be thrown away the minute someone wants to change the layout of the app.
+Just imagine the sort of impact this has for a team to be able to work in parallel and to write code that doesn't need to be thrown away the minute someone wants to change the layout of the app.
 
-In fact, that the model layer can be created before we even have a final app design.
+In fact, that the basic model layer and API synchronization can be created before we even have a final app design.
 
 
 ### Model alternatives
