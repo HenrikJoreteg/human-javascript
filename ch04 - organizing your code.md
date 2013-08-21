@@ -29,6 +29,7 @@ One aspect of this approach that is commonly overlooked is the flexibility it pr
 
 
 ## Common JS Modules
+
 I’m not going to get into a debate about module styles and script loaders. But I can tell you this: I haven’t seen any cleaner, simpler mechanism for splitting your code into nice isolated chunks than CommonJS modules.
 
 CommonJS is the same style/concept that is used in node.js. By following this style you get the additional benefit of being able to reuse modules written for the client on the server and vice versa (though, the overlap is usually not that big).
@@ -69,7 +70,18 @@ Browserify is written for node.js but you could just as easily use another serve
 
 ## Grab your moonboots
 
-Since defining a browser app "package" and then wanting to build, minify, and serve the resulting file is such a common problem that we want for all apps, I built a helper to make it a bit easier to work with.
+If you're used to building apps where each script in your app directory has a corresponding `<script>` tag hardcoded in some HTML file somewhere it can be a bit confusing when switching to using a script module system like browserify.
+
+As I touched on in Chapter 2, we really would like our production environment to serve a single, minified, js file with a unique file name so that we can tell browsers to cache it forever. However, that's far from ideal in a development environment. So, in the interest of keeping the development cycle enjoyable here's what we want:
+
+1. Easy way to edit/refresh your clientside js files without having to restart the server or re-compile anything manually.
+2. Be able to easily map code in your browser to the right file and line number in the non-compiled version in your app folder.
+3. Serve unminified code in development.
+4. In production, serve a minfied, uniquely named, permanently cachable file containing your entire app.
+5. Be able to toggle between those two states with a simple config flag.
+6. Be able to use browerify for all compatible modules, but still be able to bundle other libraries into our app file.
+
+Since defining this type of browser app "package" is such a common problem that we want for all apps, I built a helper to make it a bit easier to work with.
 
 It's called "moonboots." To use it, you define your browser app like this (assuming node.js and express):
 
@@ -117,6 +129,14 @@ The reason for the wildcard url becomes more obvious in your application when yo
 
 By simply having the helper provide a request handler, you can add whatever middleware you want first (as seen with CSRF in that example).
 
+
+### A note on going to production
+
+Node happens to be pretty good a serving static files. So just serving the production file with node/moonboots is probably sufficient for most apps with moderate traffic. In production mode, moonboots will build and serve the app file from memory with agressive cache headers. 
+
+However, a lot of people like to serve static files with a seperate process, using nginx or use a CDN etc. In that scenario, you can use Moonboots during development and then just generate the minified file write it to disk or put it on S3 or whatever as part of some deploy process.
+
+Calling `moonboots.sourceCode(function (source) { ... })` will call your callback with the generated source code based on current config, which you could use to write it to disk or put it on a CDN as part of a grunt task or whatnot. Those details are probably beyond the scope of this book. But, the point is, you can certainly do that with these tools if that makes more sense for your app.
 
 ### The structure of the browserApp folder
 
