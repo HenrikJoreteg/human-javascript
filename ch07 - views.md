@@ -2,11 +2,17 @@
 
 In the interest of being terribly cliché, views are where the rubber hits the road. It's where you model layer meets the DOM.
 
+Before we get into the details, let's talk a bit about why I belive views are a great pattern. The main thing they give us is a clean way to encapsulate and store all the logic for how your application interacts with the DOM. In fact, it's even more specific than that, we use them to contain all the logic for a *certain element* within the DOM. So, each view is responsible for the content, event handling, and updating of a single element. The event handlers in views translate user actions into changes to models.
+
+As I've already aluded to in previous chapters, seperating application models and views buys us a *lot* of flexibility. We can change the layout and HTML structure of the whole app without having to change anything about how the app gets, stores or updates its data from an API. So in the same way that CSS helps us clearly seperate the styling of a document from the HTML content, views help us seperate DOM creation, updates and events from the model layer in our app.
+
+Another *huge* benefit of views is that they let us keep all event handlers (click handlers, etc.) cleanly bundled with the relevant portion of the DOM. If you've ever tried to build a single page app without views, you'll know that managing large numbers of event handlers tends to be a big source of bugs, memory leaks and messy code.
+
 There are many approaches to handling this layer, all with varying degrees of magic. 
 
-Continuing our theme of readability and seperation of concerns we want something simple, explicit, and declarative. 
+So, continuing our theme of readability and seperation of concerns we want something simple, explicit, and declarative. 
 
-Backbone views provide some basic constructs for how might one build this layer, but it doesn't actually solve much for you. Personally, I think that's great, because then we can use whatever templating and binding mechanisms that we want.
+Backbone views provide some basic constructs for how might one build this layer, but it doesn't actually solve much of anything for you. Personally, I think that's great, because then we can use whatever templating and binding mechanisms that we want.
 
 So, we'll generally follow the pattern of Backbone views, but before we get further let's describe what that means:
 
@@ -25,18 +31,17 @@ Then in addition we'll extend that with a way to do:
 
 ## Basics
 
-A view's job is to maintain a portion of the DOM. This means each view has *one* root element at all times and is responsibile for its contents. 
+A view's job is to maintain a portion of the DOM. This means each view has *one* root element at all times and is responsibile for its content. 
 
-Within a given view, you'll often find it makes sense to segment things into subviews.
+As you start to build an application with views, you'll often find it makes sense to segment things into subviews. Which begs the question: how do you decide how you split out your app layout into views?
 
-Which begs the question: how do you decide how you split out your app layout into views?
-
-I generally start with a single main view, that I put in `views/main.js`. The main view has the `<body>` as it's root element. It rendered once and creates the main layout of your app.
+I generally start with a single main view, that I put in `views/main.js`. The main view has the `<body>` as it's root element. It's rendered once and creates the main layout of your app.
 
 The layout will vary from one app to the next, but typically, you'll have some ever-present elements that are part of the layout (navigation, etc.) and often I will have some type of main content container that swaps out based on the URL. I typically give that an `id` of `pages` and then render a `PageView` into that container based on the URL.
 
 You have to make a judegment call of the best way to segment things into manageable, logical containers. 
-A good rule of thumb is that try to encapsulate views by the models you'll use to control them.
+
+A good rule of thumb is: try to encapsulate views by the models you'll use to control them.
 
 For example, if you've got a list of items you want to render, you may have have a page view that is rendered inside the main page container. That page view would render any headers for that page as well as a list container (a `<ul>` perhaps). 
 
