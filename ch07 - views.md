@@ -33,7 +33,7 @@ Then in addition we'll extend that with a way to do:
 
 A view's job is to maintain a portion of the DOM. This means each view has *one* root element at all times and is responsibile for its content. 
 
-As you start to build an application with views, you'll often find it makes sense to segment things into subviews. Which begs the question: how do you decide how you split out your app layout into views?
+As you start to build an application with views, you'll often find it makes sense to segment things into subviews. Which raises the question: how do you determine what portions of the app layout to split into subviews?
 
 I generally start with a single main view, that I put in `views/main.js`. The main view has the `<body>` as it's root element. It's rendered once and creates the main layout of your app.
 
