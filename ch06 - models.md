@@ -354,7 +354,7 @@ Object.defineProperties(myObject, {
 
 As you can imagine this power gives you a *lot* of rope to hang yourself with and thus, this capability should be used *very* cautiously.
 
-Some argue, and I can see their point, that using this is too much magic. If that's how you feel.Luckily, in our happy modular world, you can just use plain Backbone models and for many simpler apps, I still do.
+Some argue, and I can see their point, that using this is too much magic. If that's how you feel. Luckily, in our happy modular world, you can just use plain Backbone models and for many simpler apps, I still do.
 
 However, I happen to think that in the case of models getters/settings can actually make our code more fault tolerant and more readable. But, I *only* use them for model properties and only in predictable ways.
 
