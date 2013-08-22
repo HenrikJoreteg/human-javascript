@@ -128,9 +128,9 @@ That happens when we get confirmation from the API that the task was removed, it
 Assuming we've got a view that represents that model, the view would have a click handler like this:
 
 ```javascript
-var StrictView = require('strictview');
+var Backbone = require('backbone');
 
-module.exports = StrictView.extend({
+module.exports = Backbone.View.extend({
   // our events hash (explained in the next chapter)
   events: {
     'click .delete': 'handleDeleteClick'
@@ -138,7 +138,8 @@ module.exports = StrictView.extend({
   // our handler simply calls "trash", nothing more
   handleDeleteClick: function () {
     this.model.trash();
-  }
+  },
+  ...
 })
 ```
 
