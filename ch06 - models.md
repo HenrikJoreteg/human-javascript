@@ -278,7 +278,7 @@ model.set('firstName', 'Henrik');
 model.firstName = 'Henrik';
 ```
 
-What do I mean, you say? You can set whatever properties you want directly even without getter/setters!
+What do I mean, you say? You can already set whatever properties you want directly on an object even without getter/setters!
 
 YES! But not in a way that can be observed.
 
@@ -294,7 +294,7 @@ model.on('change:firstName', function () {
 model.firstName = 'Henrik';
 ```
 
-Even thought this may be a bad idea, we can do the same on the way out using getters:
+Even thought this may be a bad idea, we can do the exact same thing on the way out using getters:
 
 ```javascript
 model.firstName = 'Henrik';
@@ -303,9 +303,58 @@ console.log(model.firstName);
 // we can make this log out *whatever* the heck we want
 ```
 
+##### Quick note on how to use getters/setters
+
+There are two syntax options. 
+
+The first is using the `get` and `set` operators directly to define those methods:
+
+```js
+var myObject: {
+  _properties: {},
+  get name () {
+    return this._properties.name;
+  },
+  set name (value) {
+    this._properties.name = value;
+  }
+}
+```
+
+The second is using `Object.defineProperty()`:
+
+```js
+var myObject = {
+  _properties: {}
+};
+
+Object.defineProperty(myObject, "name", {
+  get: function () {
+    return this._properties.name;
+  },
+  set: function (value) {
+    this._properties.name = value;
+  }
+});
+
+// there's also a defineProperties (plural)
+Object.defineProperties(myObject, {
+  lastName: {
+    get: function () { ... },
+    set: function () { ... }
+  },
+  fullName: {
+    get: function () { ... },
+    set: function () { ... }
+  }
+})
+```
+
+##### Warning!
+
 As you can imagine this power gives you a *lot* of rope to hang yourself with and thus, this capability should be used *very* cautiously.
 
-Some argue, and I can see their point, that using this is too much magic. If that's how you feel.Luckily, in our happy modular world, you can just use plain Backbone models and for many simpler apps, I still do. The other obvious
+Some argue, and I can see their point, that using this is too much magic. If that's how you feel.Luckily, in our happy modular world, you can just use plain Backbone models and for many simpler apps, I still do.
 
 However, I happen to think that in the case of models getters/settings can actually make our code more fault tolerant and more readable. But, I *only* use them for model properties and only in predictable ways.
 
