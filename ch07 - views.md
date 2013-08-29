@@ -96,8 +96,7 @@ If there isn't a lot of behavior associated with each line item, you may choose 
 
 Take a look at the associated demo app to see examples of each approach to handling collections.
 
-(TODO: INSERT INSTRUCTIONS ON HOW TO FIND DEMO APP)
-
+You can find the app on my github account: [https://github.com/HenrikJoreteg/humanjs-sample-app](https://github.com/HenrikJoreteg/humanjs-sample-app)
 
 ### Caveat: understanding `this.$`
 
