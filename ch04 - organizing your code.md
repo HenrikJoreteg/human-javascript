@@ -170,4 +170,34 @@ So what makes a module? Ideally, I'd suggest each module being in its own file a
 
 When I'm building an app, I intentionally have one main controller object of sorts. It's attached to the window as "app" just for convenience. For modules that I've written specifically for this app (stuff that's in the clientapp folder) I allow myself the use of that one global to perform app-level actions like navigating, etc.
 
+The main app object doesn't really need to be all that special. Often I create an object literal with a main init function (more on that in Ch 10). But generally it will look like this:
 
+```js
+module.exports = {
+  // main init function
+  blastoff: function () { 
+    // attach our app object to the window
+    window.app = this;
+    // This is where we render our main view, get some data,
+    // kick off the history tracking, etc.
+    // See chapter 10 for more detail
+    ... 
+  },
+
+  // render a page view passed by the router
+  renderPage: function () { ... }
+
+  // alias to Backbone.history object so we can
+  // do app.navigate('/someother/page') from 
+  // anywhere in the app.
+  navigate: function (url) {
+    app.history.navigate(url, true);
+  }
+};
+
+// run our whole app, it all starts here:
+module.exports.blastoff();
+```
+
+
+Note that very last line that actually calls the `blastoff()` function. That's how we kick off the whole thing. That's our entry point to the app.
