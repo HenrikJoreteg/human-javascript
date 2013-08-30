@@ -111,4 +111,4 @@ I typically think of each handler's job as being to find actual client-side mode
 
 The app is responsible for taking that view and rendering it per conventions of the app. Usually we just have a "page view" be a specialized kind of backbone view that also has a few standard methods for "show" and "hide". The app controller just calls "show" on the new one and "hide" on the currently active page and the views add/remove themselves from the application layout's main "pages" container.
 
-The cool thing is that from this point on. We never do the launch sequene again. From this point, we just change the route and the route handlers do all the work and it's up to the rendered page view to do the work of loading what they need to.
+From this point forward we never need to do the launch sequence again. We'll just change the route, the route handlers will rendering the appropriate page, and the page will ensure it has (or fetches) the data it needs.
