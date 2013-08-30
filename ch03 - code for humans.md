@@ -56,7 +56,7 @@ The goal should always be clarity and readability.
 
 Related to readability is that code conventions and format should be consistent throughout the project. In practice, if you have multiple people involved in a project, this can be hard.
 
-Semicolons, tabs, and spaces are contentious things among developers. Every developer I've ever met has opinions (usually strongly held) about when/where to use what syntax.
+Semicolons, tabs, and spaces are contentious things among developers. Every developer I've ever met has opinions (usually strongly held) about code style.
 
 If you're building large JS apps and not doing some form of static analysis on your code, you're asking for trouble. It helps catch silly errors and forces code style consistency. Ideally, no one should be able to tell who wrote what part of your app. If you're on a team, it should all be uniform within a project. How do you do that? We use a slick tool written by [Nathan LaFreniere](https://twitter.com/quitlahok) on our team called, simply, [precommit-hook](http://github.com/nlf/precommit-hook). So all we have to do is add "precommit-hook" to our list of dependencies (in a node project).
 
