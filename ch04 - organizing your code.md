@@ -80,6 +80,7 @@ As I touched on in Chapter 2, we really would like our production environment to
 4. In production, serve a minfied, uniquely named, permanently cachable file containing your entire app.
 5. Be able to toggle between those two states with a simple config flag.
 6. Be able to use browerify for all compatible modules, but still be able to bundle other libraries into our app file.
+7. Be able to serve/minify/cache CSS in the same way. 
 
 Since defining this type of browser app "package" is such a common problem that we want for all apps, I built a helper to make it a bit easier to work with.
 
@@ -107,6 +108,12 @@ var clientapp = new Moonboots({
     __dirname + '/libs/jquery.plugin.js'
   ],
 
+  // These are our stylesheets. They will be concatenated and run through
+  // cssmin to minify them.
+  stylesheets: [
+    __dirname + '/public/css/styles.css'
+  ],
+
   // we pass in the express app here so that we it can handle serving files during development
   server: app
 });
@@ -115,7 +122,7 @@ var clientapp = new Moonboots({
 
 At this point we can tell express the routes where we want it to serve our application. This is a bit hard to wrap your head around if you're not used to single page applications that do clientside routing.
 
-Because we're sending a javascript application, rather than rendered HTML to the browser, it's the client's job to read the URL, grab the appropriate data, and render the appropriate page represented by that URL. Obviously the browser is just going to send a request to our node server. So we have to tell it to respond with the same HTML on more than one URL.
+Because we're sending a javascript application, rather than rendered HTML to the browser, it's going to be up to the client to read the URL, grab the appropriate data, and render the appropriate page represented by that URL. So, what happens when the browser starts on a URL that's not your application root? Your browser doesn't know the difference. It's just going to send a request to our node server. So it's up to us to specify which URLs are considered part of our client application and in those cases we will always respond with the same HTML. So there will likely be a whole range of URLs that will receive the same HTML. We cover the concept of clientside routing in more detail in chapter 9.
 
 You can do this in express through the use of wildcard handlers, or by passing regular expressions instead of strings as the route definition. In this template you'll see the relevant line in server.js looks like this:
 
@@ -125,7 +132,7 @@ app.get('*', csrf, clientapp.html());
 
 Where clientapp is the app we defined above. Calling html() on it will return a request handler that serves up the base HTML for the application at all the relevant routes.
 
-The reason for the wildcard URL becomes more obvious in your application when you open it and navigate to a different URL within the app with an HTML5 push state. Say we click a button that takes us to "/sample" within the app. When navigating to that page, the browser won't make any server requests, but you'll see the URL change. However, now that you're viewing the "/sample" page, if you refresh the browser, obviously the browser will make a request to "/sample." So if your server app isn't set up to serve the same response at that URL, it won't work.
+The reason for the wildcard URL becomes more obvious in your application when you open it and navigate to a different URL within the app with an HTML5 push state. Say we click a button that takes us to "/sample" within the app. When navigating to that page, the browser won't make any server requests, but you'll see the URL change. However, now that you're viewing the "/sample" page, if you refresh the browser, the browser will make a request to "/sample." So if your server app isn't set up to serve the same response at that URL, it won't work.
 
 By simply having the helper provide a request handler, you can add whatever middleware you want first (as seen with CSRF in that example).
 
