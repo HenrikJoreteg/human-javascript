@@ -87,6 +87,6 @@ Our `.jshintrc` files usually looks something like this:
   }
 ```
 
-The awesome thing about this approach is that you can enforce consistency, the rules for the project are contained, and actually checked into the project repo itself (in the form of the jshintrc file). So, if you decide to have a different set of rules for the next project, fine. It's not a global setting; it's defined and adjusted by whomever runs the project.
+The awesome thing about this approach is that you can enforce consistency, the rules for the project are contained, and actually checked into the project repo itself (in the form of the jshintrc file). So, if you decide to have a different set of rules for the next project, fine. It's not a global setting; it's defined and adjusted by whomever runs the project. Optionally, you can also specify your jshint config in package.json by adding a `jshintConfig` property containing the same type of config as above.
 
 For a more in-depth discussion on style and style guides I highly recommend reading Airbnb's javascript style guide: https://github.com/airbnb/javascript. It will give you a good overview of the various common style discrepancies and the reasoning behind some of the choices. It's also a great starting point if you want to fork it and tweak it to be "the style guide" for your team.
