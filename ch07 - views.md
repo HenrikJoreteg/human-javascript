@@ -31,7 +31,7 @@ But, they're *quite* basic so in addition, we'll extend Backbone views to enable
 
 As I mentioned Backbone views are very limited in scope – quite intentionally so. The following explanation is pulled straight from the Backbone docs:
 
-> Backbone views are almost more convention than they are code — they don't determine anything about your HTML or CSS for you, and can be used with any JavaScript templating library. The general idea is to organize your interface into logical views, backed by models, each of which can be updated independently when the model changes, without having to redraw the page.
+> Backbone views are almost more convention than they are code — they don't determine anything about your HTML or CSS for you, and can be used with any javascript templating library. The general idea is to organize your interface into logical views, backed by models, each of which can be updated independently when the model changes, without having to redraw the page.
 
 Backbone's general approach is to provide some simple components and patterns and it's up to you to apply them as you wish. This non-prescriptive flexibility is a big reason why Backbone has become as popular as it has.
 
