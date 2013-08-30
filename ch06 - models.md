@@ -180,7 +180,7 @@ var WidgetModel = require('./models/widget')
 module.exports = Backbone.Collection.extend({
   // specify the model type for this collection
   model: WidgetModel,
-  // the RESTful API url representing this resource
+  // the RESTful API URL representing this resource
   url: '/widgets'
 });
 ```

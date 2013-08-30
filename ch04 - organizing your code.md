@@ -115,7 +115,7 @@ var clientapp = new Moonboots({
 
 At this point we can tell express the routes where we want it to serve our application. This is a bit hard to wrap your head around if you're not used to single page applications that do clientside routing.
 
-Because we're sending a javascript application, rather than rendered HTML to the browser, it's the client's job to read the URL, grab the appropriate data, and render the appropriate page represented by that URL. Obviously the browser is just going to send a request to our node server. So we have to tell it to respond with the same HTML on more than one url.
+Because we're sending a javascript application, rather than rendered HTML to the browser, it's the client's job to read the URL, grab the appropriate data, and render the appropriate page represented by that URL. Obviously the browser is just going to send a request to our node server. So we have to tell it to respond with the same HTML on more than one URL.
 
 You can do this in express through the use of wildcard handlers, or by passing regular expressions instead of strings as the route definition. In this template you'll see the relevant line in server.js looks like this:
 
@@ -125,7 +125,7 @@ app.get('*', csrf, clientapp.html());
 
 Where clientapp is the app we defined above. Calling html() on it will return a request handler that serves up the base HTML for the application at all the relevant routes.
 
-The reason for the wildcard url becomes more obvious in your application when you open it and navigate to a different url within the app with an HTML5 push state. Say we click a button that takes us to "/sample" within the app. When navigating to that page, the browser won't make any server requests, but you'll see the URL change. However, now that you're viewing the "/sample" page, if you refresh the browser, obviously the browser will make a request to "/sample." So if your server app isn't set up to serve the same response at that URL, it won't work.
+The reason for the wildcard URL becomes more obvious in your application when you open it and navigate to a different URL within the app with an HTML5 push state. Say we click a button that takes us to "/sample" within the app. When navigating to that page, the browser won't make any server requests, but you'll see the URL change. However, now that you're viewing the "/sample" page, if you refresh the browser, obviously the browser will make a request to "/sample." So if your server app isn't set up to serve the same response at that URL, it won't work.
 
 By simply having the helper provide a request handler, you can add whatever middleware you want first (as seen with CSRF in that example).
 
@@ -146,7 +146,7 @@ Our clientapp folder usually contains the following folders:
 - pages (folder): The pages folder is where we store the specialized backbone views that represent a page rendered at a specific URL.
 - views (folder): The views folder contains all of our backbone views (that are not pages), so things like the main application view and views for rendering specific types of models, etc.
 - app.js (file): This is the main entry point for our application. It creates an `app` global variable and instantiates the main models and views.
-- router.js (file): This is our clientside (backbone) router. It contains a list of url routes at the top and corresponding handlers, whose job it is to instantiate the right views with the right models and call `app.renderPage` with those values.
+- router.js (file): This is our clientside (backbone) router. It contains a list of URL routes at the top and corresponding handlers, whose job it is to instantiate the right views with the right models and call `app.renderPage` with those values.
 
 - libraries (folder): This contains all the libraries we're using that are *not* structured like CommonJS modules. So things like jquery and jquery plugins will go here. There is also a specific file called `launch.js` that is responsible for requiring and instantiating the main application itself. We do this so that we can just include a single script tag in our HTML. Otherwise we'd have to extend our base HTML to also have a script tag that ran: `window.app = require('application').launch();`
 

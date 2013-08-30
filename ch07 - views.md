@@ -88,7 +88,7 @@ module.exports = StrictView.extend({
 
 You have to make a judgement call of the best way to segment things into manageable, logical containers for your application. Generally, a good rule of thumb is: try to encapsulate views by the models you'll use to control them.
 
-For example, let's assume you've got a certain url that represents a page that should show a list of items. In this case you may have have a page view that is rendered inside the main views' page container. That PageView would render any headers for that page as well basic list container (a `<ul>` perhaps) for your list of items. 
+For example, let's assume you've got a certain URL that represents a page that should show a list of items. In this case you may have have a page view that is rendered inside the main views' page container. That PageView would render any headers for that page as well basic list container (a `<ul>` perhaps) for your list of items. 
 
 That page would take the collection you plan to render into that container as its `collection`, then we could use the `collectomatic` method to manage adding/removing individual views (one for each model).
 

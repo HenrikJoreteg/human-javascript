@@ -8,9 +8,9 @@ The good news is we don't actually have to make those tradeoffs. Through the cle
 
 ## Same sh*t different URL
 
-From the server perspecive, how do we actually "hand control of routing to the client". Ugh... that's not how the web works, right? The server has to answer actual http GET request when a user types your app's url in their browser.
+From the server perspecive, how do we actually "hand control of routing to the client". Ugh... that's not how the web works, right? The server has to answer actual http GET request when a user types your app's URL in their browser.
 
-So what I mean is simply that you return the same app HTML at multiple urls.
+So what I mean is simply that you return the same app HTML at multiple URLs.
 
 For example, it doesn't matter if you hit:
 
@@ -28,14 +28,14 @@ Either way, the server will return this HTML:
 ```
 
 
-It may be helpful to thinking about it as a block of urls that all just serve the app.
+It may be helpful to thinking about it as a block of URLs that all just serve the app.
 
 If you're using express and node it's quite easy to do.
 
 ```javascript
 app.get('/other/thing', function () {
   // you could still serve other support pages 
-  // and simple things at specific urls.
+  // and simple things at specific URLs.
 });
 
 // but then you want some sort of catch all that matches
