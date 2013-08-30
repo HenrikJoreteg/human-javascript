@@ -135,7 +135,7 @@ module.exports = Backbone.View.extend({
 });
 ```
 
-What may people don't know is that you can pass a second argument to the jQuery function `$(selector)` that is the dom tree to look within. So if you did `$('#myDiv', this.el)` in the example above, it'd always work. 
+What may people don't know is that you can pass a second argument to the jQuery function `$(selector)` that is theDOM tree to look within. So if you did `$('#myDiv', this.el)` in the example above, it'd always work. 
 
 So Backbone tries to make things easy for us, so rather than having to do that. Just always use `this.$()` instead of just `$()` within views. That's just a helper for passing the view's base element to the jquery function. So, it's functionally equivalent to passing `this.el` as the second argument. 
 

@@ -20,7 +20,7 @@ Let's say the user has selected several things and now wants to delete them by c
 
 ```javascript
 $('button.delete').click(function () {
-  // get our seleted dom items, loop through them
+  // get our seletedDOM items, loop through them
   $('ul.theList li.selected').each(function () {
     // but we also have to have a way to figure out what
     // ID each one of these things represent so we can pass

@@ -142,7 +142,7 @@ Calling `moonboots.sourceCode(function (source) { ... })` will call your callbac
 
 Our browserApp folder usually contains the following folders:
 
-- models (folder): Contains definitions for all backbone models and collections. As a sanity check, none of these files should have anything related to dom elements or dom manipulation.
+- models (folder): Contains definitions for all backbone models and collections. As a sanity check, none of these files should have anything related toDOM elements orDOM manipulation.
 - pages (folder): The pages folder is where we store the specialized backbone views that represent a page rendered at a specific URL.
 - views (folder): The views folder contains all of our backbone views (that are not pages), so things like the main application view and views for rendering specific types of models, etc.
 - app.js (file): This is the main entry point for our application. It creates an `app` global variable and instantiates the main models and views.
