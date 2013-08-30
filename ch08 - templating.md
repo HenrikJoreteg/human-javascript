@@ -8,7 +8,7 @@ First, a bit of history. When I first wrote [ICanHaz.js](http://icanhazjs.com) I
 
 Why is it a pain? Primarily because JS doesn't cleanly support multi-line strings, but also because there isn't an awesome string interpolation system built into JS.
 
-To work around that, ICanHaz.js, as lots of other template clientside template systems do, uses a hack to make it easier to send arbitrary strings to the browser. As it turns out, browsers ignore content in `<script>` tags if you give them a `type` attribute that isn't `text/javascript`. So, ICanHaz reads the content of tags on the page that say: `<script type=“text/html”>` which can contain templates, or any other multi-line strings for that matter. So, ICanHaz will read those templates and using [Jan Lehnardt](http://twitter.com/janl)'s awesome [Mustache.js](https://github.com/janl/mustache.js) it turns each of them into a function that you can call to render that string with your data mixed into it. For example:
+To work around that, ICanHaz.js, as lots of other template clientside template systems do, uses a hack to make it easier to send arbitrary strings to the browser. As it turns out, browsers ignore content in `<script>` tags if you give them a `type` attribute that isn't `text/javascript`. So, ICanHaz reads the content of tags on the page that say: `<script type="text/html">` which can contain templates, or any other multi-line strings for that matter. So, ICanHaz will read those templates and using [Jan Lehnardt](http://twitter.com/janl)'s awesome [Mustache.js](https://github.com/janl/mustache.js) it turns each of them into a function that you can call to render that string with your data mixed into it. For example:
 
 This HTML:
 

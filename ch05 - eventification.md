@@ -29,7 +29,7 @@ There are lots of implementations of event emitters with various features. Featu
 
 Browsers don't expose a base EventEmitter class we can just use, so for clientside code we need to include one, in order to take advantage of this pattern.
 
-We use a modified version of a really awesome and lightweight one that was written by the LearnBoost guys: [@tjholowaychuk](https://twitter.com/tjholowaychuk), [@rauchg](https://twitter.com/rauchg) and company. It’s [wildemitter](https://github.com/HenrikJoreteg/wildemitter) on my github if you’re curious. 
+We use a modified version of a really awesome and lightweight one that was written by the LearnBoost guys: [@tjholowaychuk](https://twitter.com/tjholowaychuk), [@rauchg](https://twitter.com/rauchg) and company. It's [wildemitter](https://github.com/HenrikJoreteg/wildemitter) on my github if you're curious. 
 
 Beyond standard `on()`, `off()` and `once()` methods it adds two main features:
 

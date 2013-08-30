@@ -1,12 +1,12 @@
 # No more clientside spaghetti. Organizing your code. 
 
-The single biggest challenge you’ll have when building complex clientside applications is keeping your code base from becoming a garbled pile of mess.
+The single biggest challenge you'll have when building complex clientside applications is keeping your code base from becoming a garbled pile of mess.
 
-If it’s a long-running project that you plan on maintaining and changing over time, it’s even harder. Features come and go. You’ll experiment with something, only to find it’s not the right call and leave traces of old code sprinked throughout.
+If it's a long-running project that you plan on maintaining and changing over time, it's even harder. Features come and go. You'll experiment with something, only to find it's not the right call and leave traces of old code sprinked throughout.
 
 I absolutely *despise* messy code. It's hard to read, hard to maintain, hard to collaborate on, and it's just plain ugly to look at. Beyond those pragmatic reasons, I consider my code to be my craft. Therefore, I want the care that I put into writing it to be obvious to those who read it.
 
-Complexity sneaks up on you. If you don’t actively fight for simplicity in software, complexity will win.
+Complexity sneaks up on you. If you don't actively fight for simplicity in software, complexity will win.
 
 Here are a few techniques, crutches, coping mechanisms, and semi-pro tips for staying sane.
 
@@ -21,20 +21,20 @@ Don't be scared of refactoring. Be scared of building an unmaintainable piece of
 
 ## Separating views and state
 
-This is the biggest lesson I’ve learned building lots of single page apps. Your view (the DOM) should just be blind slave to the model state of your application. For this you could use any number of tools and frameworks. I’d recommend starting with [Backbone.js](http://backbonejs.org/) (by the awesome Mr. [@jashkenas](https://twitter.com/jashkenas) as it’s the easiest to understand, and the closest thing to "just javascript"™ as discussed in the introduction. 
+This is the biggest lesson I've learned building lots of single page apps. Your view (the DOM) should just be blind slave to the model state of your application. For this you could use any number of tools and frameworks. I'd recommend starting with [Backbone.js](http://backbonejs.org/) (by the awesome Mr. [@jashkenas](https://twitter.com/jashkenas) as it's the easiest to understand, and the closest thing to "just javascript"™ as discussed in the introduction. 
 
-Essentially, you’ll populate a set of models and collections of these models in memory in the browser. These will store all the application state for your app. These models should be completely oblivious to how they’re used; they merely store state and broadcast their changes. Then you will have views that listen for changes in the models and update the DOM. This core principle of separating your views and your application state is vital when building large apps.
+Essentially, you'll populate a set of models and collections of these models in memory in the browser. These will store all the application state for your app. These models should be completely oblivious to how they're used; they merely store state and broadcast their changes. Then you will have views that listen for changes in the models and update the DOM. This core principle of separating your views and your application state is vital when building large apps.
 
 One aspect of this approach that is commonly overlooked is the flexibility it provides if you decide the app should have a different UI (which *never* happens, right?! `</sarcasm>`), or if you build another application on the same API. All of the models pretty much without modification are completely reusable.
 
 
 ## Common JS Modules
 
-I’m not going to get into a debate about module styles and script loaders. But I can tell you this: I haven’t seen any cleaner, simpler mechanism for splitting your code into nice isolated chunks than CommonJS modules.
+I'm not going to get into a debate about module styles and script loaders. But I can tell you this: I haven't seen any cleaner, simpler mechanism for splitting your code into nice isolated chunks than CommonJS modules.
 
 CommonJS is the same style/concept that is used in node.js. By following this style you get the additional benefit of being able to reuse modules written for the client on the server and vice versa (though, the overlap is usually not that big).
 
-If you’re unfamiliar with the CommonJS modules style, your files end up looking something like this:
+If you're unfamiliar with the CommonJS modules style, your files end up looking something like this:
 
 ```javascript
 // you import things by using the special `require` function and you can
@@ -61,7 +61,7 @@ That's it! Super easy. You don't create any globals. Each file that uses your mo
 
 You just export a constructor (like above), or a single function, or even a set of functions. Generally, however, I'd encourage you to export only one thing from each module.
 
-Of course, browsers don’t have support for these kinds of modules out of the box (there is no `window.require`). But, luckily that can be fixed. We use a clever little tool called [browserify](https://github.com/substack/node-browserify) that lets you use a lot of the node.js utils on the client as well.
+Of course, browsers don't have support for these kinds of modules out of the box (there is no `window.require`). But, luckily that can be fixed. We use a clever little tool called [browserify](https://github.com/substack/node-browserify) that lets you use a lot of the node.js utils on the client as well.
 
 What they do is create a `require` function and bundle up a folder of modules into an app package.
 
@@ -165,6 +165,9 @@ var html = templates.pages.home();
 
 
 ## Creating an `app` global
-So what makes a module? Ideally, I’d suggest each module being in its own file and only exporting one piece of functionality. Only having a single export helps you keep clear what purpose the module has and keeps it focused on just that task. The goal is having lots of modules that do one thing really well so that your app combines modules into a coherent story.
 
-When I’m building an app, I intentionally have one main controller object of sorts. It’s attached to the window as “app” just for my own. For modules that I’ve written specifically for this app (stuff that’s in the clientapp folder) I allow myself the use of that global to perform app-level actions like navigating, etc. 
+So what makes a module? Ideally, I'd suggest each module being in its own file and only exporting one piece of functionality. Only having a single export helps you keep clear what purpose the module has and keeps it focused on just that task. The goal is having lots of modules that do one thing really well so that your app combines modules into a coherent story.
+
+When I'm building an app, I intentionally have one main controller object of sorts. It's attached to the window as "app" just for convenience. For modules that I've written specifically for this app (stuff that's in the clientapp folder) I allow myself the use of that one global to perform app-level actions like navigating, etc.
+
+

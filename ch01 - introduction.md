@@ -11,9 +11,9 @@ As we've gone along, we've done our best to extract reusable tools out of them. 
 
 # Native HTML5 apps
 
-Let's talk about this whole "app" thing for a bit and get on the same page in terms of terminology. If you own a smart phone of any sort, you’ve been innundated with the word "app" over the past 5 years or so.
+Let's talk about this whole "app" thing for a bit and get on the same page in terms of terminology. If you own a smart phone of any sort, you've been innundated with the word "app" over the past 5 years or so.
 
-Rather than pontificate on the meaning of this for three chapters, I’ll explain the distinction as I see it for the purposes of this book. 
+Rather than pontificate on the meaning of this for three chapters, I'll explain the distinction as I see it for the purposes of this book. 
 
 When most people say they're building a "web app" they're talking about writing source code that describes an application that will run on the server and send rendered HTML to the browser. That definition seems a bit narrow and limiting. Plus, when I think of my favorite web apps they don't fit neatly into that box. The best web apps often have multiple interfaces and clients, some native, some web. Most play nicely with or completely integrate with other services. Generally web apps are good at solving some specific problem or provide some specific benefit and use the web to tie it all together.
 
@@ -33,12 +33,12 @@ To clarify further:
 1. We send the application code itself to the browser, not the result of running the application code.
 1. The app is rendered entirely on the client. We only send the bare minimum HTML we need to tell the browser to run our app. Usually just a doctype and a single script tag.
 1. After loading, the client fetches its own data, as data (typically JSON), not as rendered HTML.
-1. The app is loaded once and never does a full page reload while you’re using it.
+1. The app is loaded once and never does a full page reload while you're using it.
 1. The app has and maintains "state" that is cached and maintained separate from the server.
 
 From now on, when I say "app" or "native HTML5 app" or "browser app" or "client app" within these pages, that is what I'm referring to.
 
-Here’s more food for thought: once you acknowledge that the browser has state, you really ought to think about how to keep that state up to date and make it a "realtime" application. But I digress. Screw it, I’ll digress for a bit. This is important.
+Here's more food for thought: once you acknowledge that the browser has state, you really ought to think about how to keep that state up to date and make it a "realtime" application. But I digress. Screw it, I'll digress for a bit. This is important.
 
 
 ## Realtime apps are human apps
@@ -78,13 +78,13 @@ So, why bring the complexity of the server to the client and vice/versa? In addi
 
 ## Misconceptions, FUD and engineering
 
-We need to stop dumbing down the concept of "frontend" code. It's getting better, but many self-described "real" developers still think browser code is sissy stuff. In their minds, the client is easy and it’s what the designer-y, non-developer folks do. That's ridiculous.
+We need to stop dumbing down the concept of "frontend" code. It's getting better, but many self-described "real" developers still think browser code is sissy stuff. In their minds, the client is easy and it's what the designer-y, non-developer folks do. That's ridiculous.
 
-We're not talking about rendering some HTML on the server and sprinkling on a few lines of jQuery. We’re talking about *engineering* a UI here.
+We're not talking about rendering some HTML on the server and sprinkling on a few lines of jQuery. We're talking about *engineering* a UI here.
 
-Unfortunately because of that conception, many of the people who are being asked to build these kinds of apps don’t have a heavy engineering background and approach the task much like they would any other client code: write some jQuery.
+Unfortunately because of that conception, many of the people who are being asked to build these kinds of apps don't have a heavy engineering background and approach the task much like they would any other client code: write some jQuery.
 
-But, jQuery is not an application framework. It's an abstraction layer and toolkit for working with the DOM. I’m not dogging on jQuery at all, in fact, I think it's a great toolkit for DOM manipuation. I use it and am quite happy with it in many HTML5 apps. The point is simply that jQuery is a toolkit, not an application framework. 
+But, jQuery is not an application framework. It's an abstraction layer and toolkit for working with the DOM. I'm not dogging on jQuery at all, in fact, I think it's a great toolkit for DOM manipuation. I use it and am quite happy with it in many HTML5 apps. The point is simply that jQuery is a toolkit, not an application framework. 
 
 But inevitably a "frontend" person is asked to build an immersive, complex client app and soon you end up with a 3000 line js file called "app.js" that does *everything.* Also, now no one else knows how any of it works, or how it's structured. No one wins. 
 
