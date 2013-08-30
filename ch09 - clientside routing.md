@@ -10,7 +10,7 @@ The good news is we don't actually have to make those tradeoffs. Through the cle
 
 From the server perspecive, how do we actually "hand control of routing to the client". Ugh... that's not how the web works, right? The server has to answer actual http GET request when a user types your app's url in their browser.
 
-So what I mean is simply that you return the same app html at multiple urls.
+So what I mean is simply that you return the same app HTML at multiple urls.
 
 For example, it doesn't matter if you hit:
 
@@ -20,7 +20,7 @@ or
 
 https://andbang.com/basecamp
 
-Either way, the server will return this html:
+Either way, the server will return this HTML:
 
 ```html
 <!DOCTYPE html>

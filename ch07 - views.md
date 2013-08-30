@@ -254,7 +254,7 @@ module.exports = Backbone.View.extend({
 });
 ``` 
 
-At this point, any change we make to that model will simply re-render the html for the whole thing. Slick, simple, and easy.
+At this point, any change we make to that model will simply re-render the HTML for the whole thing. Slick, simple, and easy.
 
 However, that's not always what you want, especially in realtime apps where some incoming event could come in and change a model when you're not ready for it. But perhaps a more compelling argument is where you want to use CSS3 transitions and animations. If we want to add a class that triggers a transition, simply re-drawing the whole container won't actually trigger it. 
 

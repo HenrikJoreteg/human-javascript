@@ -1,6 +1,6 @@
 # Stop sending template engines to the browser! Here's a retrospectively obvious way to create templates that happen to be 6 to 10 times faster.
 
-These days, more and more html is rendered on the client instead of sent pre-rendered by the server. So if you're building a web app that uses a lot of clientside javascript you'll doubtlessly want to create some HTML in the browser.
+These days, more and more HTML is rendered on the client instead of sent pre-rendered by the server. So if you're building a web app that uses a lot of clientside javascript you'll doubtlessly want to create some HTML in the browser.
 
 ## How we used to do it
 
