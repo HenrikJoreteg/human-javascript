@@ -21,7 +21,7 @@ HOWEVER, the first thing people most commonly do when building web apps is rende
 
 Pick one or the other, seriously. If you're building an "app" where a significant portion of the data will be rendered on the client, just freakin' render *all* of it on the client. Don't mess around. It's just ugly to have to send a bunch of partially rendered html to the client and then start mucking around with it. 
 
-One of my favorite things to show developers from the And Bang code base is the HTML we send to the browser. Here it is... in its entirety as of this writing:
+One of my favorite things to show developers from the And Bang codebase is the HTML we send to the browser. Here it is... in its entirety as of this writing:
 
 ```html
 <!DOCTYPE html>

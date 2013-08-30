@@ -1,6 +1,6 @@
 # No more clientside spaghetti. Organizing your code. 
 
-The single biggest challenge you'll have when building complex clientside applications is keeping your code base from becoming a garbled pile of mess.
+The single biggest challenge you'll have when building complex clientside applications is keeping your codebase from becoming a garbled pile of mess.
 
 If it's a long-running project that you plan on maintaining and changing over time, it's even harder. Features come and go. You'll experiment with something, only to find it's not the right call and leave traces of old code sprinked throughout.
 
@@ -136,7 +136,7 @@ Node happens to be pretty good a serving static files. So just serving the produ
 
 However, a lot of people like to serve static files with a seperate process, using nginx or use a CDN etc. In that scenario, you can use Moonboots during development and then just generate the minified file write it to disk or put it on S3 or whatever as part of some deploy process.
 
-Calling `moonboots.sourceCode(function (source) { ... })` will call your callback with the generated source code based on current config, which you could use to write it to disk or put it on a CDN as part of a grunt task or whatnot. Those details are probably beyond the scope of this book. But, the point is, you can certainly do that with these tools if that makes more sense for your app.
+Calling `moonboots.sourceCode(function (source) { ... })` will call your callback with the generated source codebased on current config, which you could use to write it to disk or put it on a CDN as part of a grunt task or whatnot. Those details are probably beyond the scope of this book. But, the point is, you can certainly do that with these tools if that makes more sense for your app.
 
 ### The structure of the browserApp folder
 
