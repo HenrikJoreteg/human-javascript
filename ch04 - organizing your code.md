@@ -89,7 +89,7 @@ It's called "moonboots." To use it, you define your browser app like this (assum
 var Moonboots = require('moonboots');
 
 
-var browserApp = new Moonboots({
+var clientapp = new Moonboots({
   // the directory where all the client code is stored
   main: __dirname + '/clientapp/main.js',
 
@@ -100,7 +100,7 @@ var browserApp = new Moonboots({
   developmentMode: true,
 
   // these are the regular javascript files (not written in commonJS style) 
-  // that we want to include in our application. These all live in browserApp/libraries
+  // that we want to include in our application. These all live in clientapp/libraries
   // and will be concatenated in the order listed.
   libraries: [
     __dirname + '/libs/jquery-1.9.1.js',
@@ -120,10 +120,10 @@ Because we're sending a javascript application, rather than rendered HTML to the
 You can do this in express through the use of wildcard handlers, or by passing regular expressions instead of strings as the route definition. In this template you'll see the relevant line in server.js looks like this:
 
 ```javascript
-app.get('*', csrf, browserApp.html());
+app.get('*', csrf, clientapp.html());
 ```
 
-Where browserApp is the app we defined above. Calling html() on it will return a request handler that serves up the base HTML for the application at all the relevant routes.
+Where clientapp is the app we defined above. Calling html() on it will return a request handler that serves up the base HTML for the application at all the relevant routes.
 
 The reason for the wildcard url becomes more obvious in your application when you open it and navigate to a different url within the app with an HTML5 push state. Say we click a button that takes us to "/sample" within the app. When navigating to that page, the browser won't make any server requests, but you'll see the URL change. However, now that you're viewing the "/sample" page, if you refresh the browser, obviously the browser will make a request to "/sample." So if your server app isn't set up to serve the same response at that URL, it won't work.
 
@@ -138,9 +138,9 @@ However, a lot of people like to serve static files with a seperate process, usi
 
 Calling `moonboots.sourceCode(function (source) { ... })` will call your callback with the generated source codebased on current config, which you could use to write it to disk or put it on a CDN as part of a grunt task or whatnot. Those details are probably beyond the scope of this book. But, the point is, you can certainly do that with these tools if that makes more sense for your app.
 
-### The structure of the browserApp folder
+### The structure of the clientapp folder
 
-Our browserApp folder usually contains the following folders:
+Our clientapp folder usually contains the following folders:
 
 - models (folder): Contains definitions for all backbone models and collections. As a sanity check, none of these files should have anything related toDOM elements orDOM manipulation.
 - pages (folder): The pages folder is where we store the specialized backbone views that represent a page rendered at a specific URL.

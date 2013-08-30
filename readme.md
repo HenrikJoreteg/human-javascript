@@ -24,7 +24,7 @@ Build powerfully simple browser apps
 - Seperating views and state
 - CommonJS Modules
 - Grab your mooonboots
-- The structure of the browserapp folder
+- The structure of the clientapp folder
 - The `app` global
 
 [Ch5: on('events', doCoolStuff)](ch05 - eventification.md)
