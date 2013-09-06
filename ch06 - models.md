@@ -61,14 +61,11 @@ You can handle adding features to a point. But you will reach a point where you 
 Welcome to nearly everyone's first single page app experience.
 
 
-
-
 ### Enter Models
-
 
 If you've never used models in clientside code, it's not as intimidating as it may sound. The idea is simply that we create some data structures in the browser, seperate from the DOM, that hold the data that we got from the server as well as any client specific data or state. 
 
-The "selected" state as described above is a good example of client-specific state, meaning when we go to update a widget in the API we're not going to send `{selected: true}` as one of its properties. The server doesn't care about that, it's just used to track the state of the user interface.
+The "selected" state as described above is a good example of client-specific state, meaning when we go to update a entry in the API we're not going to send `{selected: true}` as one of its properties. The server doesn't care about that, it's just used to track the state of the user interface.
 
 So, what is a model anyway? What does it give us?
 
@@ -88,11 +85,11 @@ model.on('change:selected', function (newValue) {
 });
 ```
 
-In addition, models should contain the functionality that makes it easy for us to work with that data. That means things like exposing some processed view of the data should be a method on the model. Let's say one of the model properties is a date. We may have a method on the model for getting a nicely formatted date string built from that date object. Arguably this is a presentation issue, but the model ends up being a logical place to expose a string version of the date property for maximum re-use and consistency.
+In addition, models should contain the functionality that makes it easy for us to work with that data. That means things like exposing some processed form of the data should be a method on the model. Let's say one of the model properties represents a date. We may have a method on the model for getting a nicely formatted date string built from that date object. Arguably this is a presentation issue, but the model ends up being a logical place to expose a string version of the date property for maximum re-use and consistency.
 
 In addition, models are a good place for methods that perform actions on the model itself like updating the server when the model changes.
 
-In [And Bang](https://andbang.com), we do a lot with tasks. You can assign them to each other, "ship" them, "later" them, trash them, etc.
+In [And Bang](https://andbang.com), we do a lot with tasks. You can assign them to each other, "ship" them, "later" them, "trash" them, etc.
 
 So, each of these actions are represented by a method on the task model that sends the correct data to the server as well as updating the appropriate properties on the local model. 
 
@@ -188,10 +185,10 @@ module.exports = Backbone.Collection.extend({
 `models/widget.js`
 
 ```javascript
-var StrictModel = require('strictmodel');
+var HumanModel = require('human-model');
 
 
-module.exports = StrictModel.extend({
+module.exports = HumanModel.define({
   // we give our model a type
   type: 'widget',
   // define properties, these are the ones
@@ -233,12 +230,11 @@ module.exports = {
 };
 ```
 
-
 So now we've got a representation of that list of widgets that assumes nothing about how it's going to be used.
 
 Stop for a second and think about what that does for us when requriements change or even when we go build a second application on the same API. Nearly *all* the model code will be re-usable with zero changes. It simply represents the state that is available in the API which is the same no matter what the interface looks like. 
 
-Also, think about this in a team environment. Someone can be working on writing models and making sure they get the proper data populated from the API while someone is building the clientside router and page views that include and design "static" versions of page elements that will be rendered by models once the API is hooked up. Because they're all in seperate files, merging the combined code in git won't result in any major merge conflicts. 
+Also, think about this in a team environment. Someone can be working on writing models and making sure they get the proper data populated from the API while someone is building the clientside router and page views that include and design "static" versions of page elements that will be rendered by models once the API is hooked up. Because they're all in seperate files you won't step on eachothers toes and merging the combined code in git won't result in any major merge conflicts. 
 
 Just imagine the sort of impact this has for a team to be able to work in parallel and to write code that doesn't need to be thrown away the minute someone wants to change the layout of the app.
 
@@ -249,37 +245,40 @@ In fact, that the basic model layer and API synchronization can be created befor
 
 In order to provide observability, models generally provide some sort of event registration system and a way to set and get some "protected" attributes.
 
-For a long time, I used Backbone models for everything. The code for them is quite simple and readable (YES!), they're flexible and easy to use. Also, I'm generally a big fan of backbone's general principles and structure.
+For a long time, I used Backbone models for everything. The code for them is quite simple and readable (YES!), they're flexible and easy to use. Also, I'm generally a big fan of Backbone's general principles and structure.
 
-Yet, you'll notice the examples all use StrictModel but backbone collections.
+Yet, you'll notice the examples all use `HumanModel` but Backbone collections.
 
-A few things finally drove me to creating StrictModel:
+Despite my love for Backbone, a few things finally drove me to creating HumanModel:
+
 
 #### 1. Readability
 
 If the models are the core of our application (as they should be), someone should be able to open the code for the model and *read* what properties it stores and what types those properties have. This is *huge* for enabling people to jump in and contribute to a project.
 
+
 #### 2. Derived properties
 
-So often, the data you get from the server is not in the format you'll want to present it. The classic example is first and last name. Most likely they come as seperate fields from the API, but in reality, most places you're going to present a user's name in the app will be in the format: `firstName + ' ' + lastName`. In backbone you'd perhaps create a method called `fullName()` that when called, returned that value to you. The annoying thing comes when you want to bind that value to some location in the DOM. You have to listen for changes to either `firstName` or `lastName` and then call the method again and put the result into the DOM. There are two things I don't like about this: 
+So often, the data you get from the server is not in the format you'll want to present it. The classic example is first and last name. Most likely they come as seperate fields from the API, but in reality, most places you're going to present a user's name in the app will be in the format: `firstName + ' ' + lastName`. In Backbone you'd perhaps create a method called `fullName()` that when called, returned that value to you. The annoying thing comes when you want to bind that value to some location in the DOM. You have to listen for changes to either `firstName` or `lastName` and then call the method again and put the result into the DOM. There are two things I don't like about this: 
 
 1. It *feels* like `fullName` or even just `name` should just be accessible in the same way as first or last name. Why can't I just go `user.name`?
 
 2. I want to be able to listen for changes in one place. So, instead of `model.on('change:firstName change:lastName', doSomething)` it seems like I should be able to just listen for changes to `change:name` and have the model be smart enough to know that if either first or last name changes, call that handler too. 
+
 
 #### 3. Direct access to properties
 
 In a large app, you work with models **a lot**. Having to call `get` and `set` everywhere is a bit less than ideal, IMO. EcmaScript 5 (a.k.a. the version of the JS spec available in modern browsers) allows for `getters` and `setters` which means you can actually process simple assignments. This is better illustrated with an example:
 
 ```javascript
-// without getters/setters (backbone)
+// without getters/setters (Backbone Model)
 model.set('firstName', 'Henrik');
 
-// with getters/setters
+// with getters/setters (HumanModel)
 model.firstName = 'Henrik';
 ```
 
-What do I mean, you say? You can already set whatever properties you want directly on an object even without getter/setters!
+What do I mean? You can already set whatever properties you want directly on an object even without getter/setters, right?!
 
 YES! But not in a way that can be observed.
 
@@ -295,18 +294,19 @@ model.on('change:firstName', function () {
 model.firstName = 'Henrik';
 ```
 
-Even thought this may be a bad idea, we can do the exact same thing on the way out using getters:
+Getters and setters give us enormous flexibility, which can be bad. For example, we can make a getter run whatever code we want and return anything whenever we access a property.
 
 ```javascript
-model.firstName = 'Henrik';
+trickyModel.firstName = 'Henrik';
 
-console.log(model.firstName); 
+console.log(trickyModel.firstName); 
 // we can make this log out *whatever* the heck we want
+// despite it appearing to just have been assigned above.
 ```
 
 ##### Quick note on how to use getters/setters
 
-There are two syntax options. 
+Be sure to read the warning below, but for those not familiar, it may be useful to have a bit of an explanation of how getters and setters are written. There are two syntax options.
 
 The first is using the `get` and `set` operators directly to define those methods:
 
@@ -367,7 +367,7 @@ Javascript, the language is dynamically typed, which is awesome. But we've said 
 Let's compare the two with a simple user model. In Backbone there is no standard way to define a property. Instead, you simply set a value as if it exists and now it does. 
 
 ```javascript
-// backbone model, no definition needed
+// Backbone model, no definition needed
 // there *is* no standard way to even
 // define the properties it should store
 var model = new Backbone.Model();
@@ -383,7 +383,7 @@ model.get('firstName'); // logs out 'Henrik'
 
 Simple, elegant, flexible. But, assuming I set these values in some view code somewhere in another part of a large app, how do I know what attributes I have available to me or what they're called?
 
-If I'm hitting an API to get my data and using the resulting data to set attributes on models, I have two options how do I know what data I'm storing or what data I have available to my views? I either inspect the request to know what properties I'm supposed to have or inspect it in the console at runtime to see what properties my model contains and what their names are. 
+If I'm hitting an API to get my data and using the resulting data to set attributes on models, I have two options for figuring out what data I'm storing and what data I have available to my views. I either inspect the request to know what properties I'm supposed to have or inspect it in the console at runtime to see what properties my model contains and what their names are. 
 
 That doesn't seem very developer friendly. 
 
@@ -393,7 +393,7 @@ Just think how much information I'm missing:
 2. What type of values do those properties contain?
 3. Can I trust that this property will always contain a value?
 4. Is this a property client state or data we got from the server?
-5. When I go to update the model on the server, which properties should I send? 
+5. When I go to update the model on the server, which properties should be sent? 
 6. Is a property computed from other properties, if so, how do I keep it up to date?
 7. Perhaps most importantly, where do I go to find the answers to the questions above?
 
@@ -406,18 +406,18 @@ Sure the following example is silly, but what if I write some stupid code (as we
 model.set('firstName', new Date());
 ```
 
-Sure, you may be able to keep it all in your head to a point, but what about when a second developer comes and looks at that code? Or what happens when you come back to the code after 6 months (or even 2 weeks)? Where do you go to see how the app is structured? You have to go spelunking for answers.
+Sure, you may be able to keep it all in your head to a point, but what about when a second developer comes and looks at that code? Or what happens when you come back to the code after 6 months (or even 2 weeks)? Where do you go to see how the app is structured? You have to go spelunking into views for answers.
 
 I prefer that the model is the explicit documentation on what state is stored. 
 
-See how this could be in StrictModel:
+See how this could be in HumanModel:
 
 file: `models/user.js`
 
 ```javascript
-var StrictModel = require('strictmodel');
+var HumanModel = require('human-model');
 
-module.exports = StrictModel.extend({
+module.exports = HumanModel.define({
   type: 'user',
   // our properties from the server
   props: {
@@ -438,12 +438,12 @@ module.exports = StrictModel.extend({
   },
   // Session properties are defined and work exactly
   // the same way as properties. The difference is 
-  // they're not sent to the server as a "real" property
+  // they're not sent to the server on save(), etc.
   session: {
     selected: ['boolean', true, false]
   },
   // Derived properties are getters constructed from
-  // other information.
+  // other information. (you cannot set a derived property, this is intentional)
   derived: {
     // the name of the derived property
     // in this case refrencing "model.fullName"
@@ -459,8 +459,9 @@ module.exports = StrictModel.extend({
       },
       // we can optionally cache the result, doing this
       // means it won't run the function to return the result
-      // unless one of the values has changed sinc the last
-      // time it was ran.
+      // unless one of the dependency values has changed since 
+      // the last time it was ran. This feature can lead to 
+      // dramatic performance improvements over plain Backbone
       cache: true
     }
   }
@@ -491,21 +492,23 @@ console.log(model.firstName); // prints: 'Henrik'
 
 // here's the *awesome* part I _can't_ set a property that isn't defined
 // so if I fatfinger the property name, it won't stick.
+// *Note what HumanModel does when calling `set()` with undeclared attributes
+// can be configured. See human-model docs for more.
 model.frstName = 'Henrik';
 ```
 
-By enforcing this level of property definitions we always make sure that our models, which is the backbone of the app (*wink*), are readable pieces of code that help document how the app is put together.
+By enforcing this level of property definitions we always make sure that our models, which is the "backbone" of the app (*wink*), are readable pieces of code that help document how the app is put together.
 
 
 #### 5. Better handling of lists/dates
 
-Another argument for using getters/setters for models is that it makes it possible to observe change to properties that are Objects. At least things like arrays and dates as properties.
+Another argument for using getters/setters for models is that it makes it possible to observe change to properties that are Objects. At least when using things like arrays and dates as properties.
 
 Since arrays and dates are Objects in JS, they're passed by reference.
 
 So, what happens if we want to store a list of ids as a property of a user?
 
-In backbone, how would we get a `change` event?
+In Backbone, how would we get a `change` event?
 
 ```javascript
 var model = new Backbone.Model();
@@ -521,12 +524,12 @@ myIds.reverse();
 // ...and set it back
 model.set('ids', myIds);
 
-// we would never get a change event from backbone
+// we would never get a change event from Backbone
 ```
 
-If you understand javscript you'll realize this isn't a flaw in backbone, it's just because javascript passes objects by reference. 
+If you understand javscript you'll realize this isn't a flaw in Backbone, it's just because javascript passes objects by reference. 
 
-As a result, when backbone gets the "set" event it just compares `this.get('ids') === newIds` which will always be true, because you're comparing the same object not a copy of it.
+As a result, when Backbone gets the "set" event it just compares `this.get('ids') === newIds` which will always be true, because you're comparing the same object not a copy of it.
 
 The same is true with dates. If you get a date object, call a method on it, like `setHours()` and set it back, you'd never get a change event. So you wouldn't know you need to update your view. 
 
@@ -534,10 +537,10 @@ We can solve this with getters/setters in cases where we *know* we want this beh
 
 
 ```javascript
-var StrictModel = require('strictmodel');
+var HumanModel = require('human-model');
 
 // set up a simple model definition
-var DemoModel = StrictModel.extend({
+var DemoModel = HumanModel.define({
   props: {
     ids: ['array', true, []]
   }

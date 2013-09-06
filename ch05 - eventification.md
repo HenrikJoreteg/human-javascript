@@ -12,6 +12,8 @@ document.getElementById('something').addEventListener('click', function () { ...
 In jQuery it looks like this:
 ```js
 $('#something').click(function (event) { ... });
+// or
+$('#something').on('click', function (event) { ... });
 ```
 
 In EventEmitter it looks like this:
@@ -19,17 +21,17 @@ In EventEmitter it looks like this:
 myEventEmitter.on('someEvent', function () { ... });
 ```
 
-But they all do the same thing: they store a reference to the function you handed it (usually by adding it to an array of functions internally). Then, when the event happens, they calls all the functions in the relevant array with information about the event. That's it! No magic.
+But they all do the same thing: they store a reference to the function you handed it (usually by adding it to an array of functions internally). Then, when the event happens, they call all the functions in the relevant array with information about the event. That's it! No magic.
 
-This pattern is really useful when building reusable components yourself. Exporting objects and classes that inherit from event emitters means that the code using your module can specify what they care about, rather than the module having to know. 
+This pattern is really useful when building reusable components yourself. Exporting objects and classes that inherit from some type of event emitter means that the code using your module can specify what they care about, rather than the module having to know. 
 
 At points of interest within your module where you think some external source may care, you can just call `this.emit('someEventName', {some: 'data'})` and if there are any handlers for that event, they'll be called.
 
-There are lots of implementations of event emitters with various features. Features usually involve various ways of registering and unregistering event listeners. For example, you may want to only register a handler that only gets called the first time an event happens. So for this many event handlers have a `once()` method alongside the `on()` method. In addition, some event handlers give you a way to listen to all events emitted by a certain object, or perhaps some namespaced event. These features can be useful for logging out all events (so you can debug), or for proxying events from one event source to another object.
+There are lots of implementations of event emitters with various features. Features usually involve various ways of registering and unregistering event listeners. For example, you may want to only register a handler that only gets called the first time an event happens. So for this many event handlers have a `once()` method alongside the `on()` method. In addition, some event handlers give you a way to listen to all events emitted by a certain object, or perhaps all events in a certain namespaced. These features can be useful for logging out all events (so you can debug), or for proxying events from one event source to another object.
 
-Browsers don't expose a base EventEmitter class we can just use, so for clientside code we need to include one, in order to take advantage of this pattern.
+Browsers don't expose a base EventEmitter class we can just use, so for clientside code we need to include one in order to take advantage of this pattern.
 
-We use a modified version of a really awesome and lightweight one that was written by the LearnBoost guys: [@tjholowaychuk](https://twitter.com/tjholowaychuk), [@rauchg](https://twitter.com/rauchg) and company. It's [wildemitter](https://github.com/HenrikJoreteg/wildemitter) on my github if you're curious. 
+We use a slightly modified version of a really awesome and lightweight one that was written by the LearnBoost guys: [@tjholowaychuk](https://twitter.com/tjholowaychuk), [@rauchg](https://twitter.com/rauchg) and company. It's [wildemitter](https://github.com/HenrikJoreteg/wildemitter) on my github if you're curious. 
 
 Beyond standard `on()`, `off()` and `once()` methods it adds two main features:
 
@@ -53,7 +55,7 @@ emitter.releaseGroup('group1');
 
 Details and implementations aside the same basic concepts of adding and removing handlers are available in all event emitters.
 
-As an example, here's a simplified version of the And Bang js library below:
+As an example, here's a simplified version of the `andbang.js` library which is an SDK for talking to the And Bang API.
 
 ```javascript
 // require our emitter
@@ -95,4 +97,4 @@ var api = new AndBang();
 api.on('nameChanged',  function (newName) { /* do something cool */ });
 ```
     
-This pattern makes it easy to expose functionality without needing any knowledge of the consuming code.
+This pattern makes it easy to expose functionality without needing overly specific knowledge about how it's going to be used.

@@ -4,7 +4,7 @@ In the interest of being terribly cliché: views are where the rubber hits the r
 
 Before we get into the details, let's talk a bit about why I believe views are a great pattern. The main thing they give us is a clean way to encapsulate and store all the logic for how your application interacts with the DOM. In fact, it's even more specific than that, we use them to contain all the logic for a *certain element* within the DOM. Each view is responsible for the content, event handling, and updating of a single element and the event handlers in views translate user actions into changes to models.
 
-As I've already aluded to in previous chapters, seperating application models and views buys us a *lot* of flexibility. We can change the layout and HTML structure of the whole app without having to change anything about how the app gets, stores or updates its data from an API. So in the same way that CSS helps us clearly seperate the styling of a document from the HTML content, views help us seperate DOM creation, updates and events from the model layer in our app.
+As I've already aluded to in previous chapters, seperating application models and views buys us a *lot* of flexibility. We can change the layout and HTML structure of the whole app without having to change anything about how the app gets, stores or updates its data from an API. So in the same way that CSS helps us clearly seperate the styling of a document from the HTML content, views help us seperate DOM creation, updates, and events from the model layer in our app.
 
 Another *huge* benefit of views is that they let us keep all event handlers (click handlers, etc.) cleanly bundled with the relevant portion of the DOM. If you've ever tried to build a single page app without views, you'll know that managing large numbers of event handlers tends to be a big source of bugs, memory leaks, and messy code.
 
@@ -23,11 +23,11 @@ Backbone views provide some really great basic patterns for building the view la
 
 But, they're *quite* basic so in addition, we'll extend Backbone views to enable:
 
-1. Simple templating using our precompiled template functions described in ch. 8
+1. Simple templating using our precompiled template functions described in Chapter 8.
 2. A simple way to declare model/template bindings.
 
 
-## Introducing StrictView
+## Introducing HumanView
 
 As I mentioned Backbone views are very limited in scope – quite intentionally so. The following explanation is pulled straight from the Backbone docs:
 
@@ -35,18 +35,19 @@ As I mentioned Backbone views are very limited in scope – quite intentionally 
 
 Backbone's general approach is to provide some simple components and patterns and it's up to you to apply them as you wish. This non-prescriptive flexibility is a big reason why Backbone has become as popular as it has.
 
-However, as you start to build more and more apps you find yourself solving the similar problems over and over. In pure Backbone projects we would find ourselves always creating a "BaseView" that contained a lot of the common helpers and patterns we wanted to have in all our views, and we used that to build all our views in the app. One day I found myself copying and pasting one of the BaseViews from one project to another just decided to put in on npm instead.
+However, as you start to build more and more apps you find yourself solving the similar problems over and over. In pure Backbone projects we would find ourselves always creating a `BaseView` that contained a lot of the common helpers and patterns we wanted to have in all our views, and we used that to build all our views in the app. One day I found myself copying and pasting one of the `BaseView`s from one project to another just decided to put in on npm instead.
 
-That's how StrictView was born. It's just a Backbone view that gives us a few additional goodies and is designed to work with StrictModel.
+That's how HumanView was born. It's just a Backbone view that gives us a few additional goodies.
 
 Specifically, it gives us the following:
 
 1. Declarative data bindings.
-2. A `.basicRender()` method that does several things we want to do on every render.
-3. A `.bindomatic()` convenience method for binding view methods to model event, while maintaining the view as the context and optionally triggering them right away.
-4. A `.collectomatic()` method for rendering a view for each item in a collection within a given container element in the view.
+2. A `.renderAndBind()` method that does several things we want to do on every render.
+3. A `.listenToAndRun()` convenience method for binding view methods to model event, while maintaining the view as the context and triggering them right away.
+4. A `.renderCollection()` method for rendering a view for each item in a collection within a given container element in the view.
 
 We'll take a look at each of those shortly. But first, let's figure out how we're going to structure our views within the app.
+
 
 ## A Hierarchy of views
 
@@ -56,20 +57,20 @@ I generally start with a single main view, that I put in `views/main.js`. The ma
 
 The layout will vary from one app to the next, but typically you'll have some ever-present elements that are part of the layout (navigation, etc.) and often I will have some type of main content container that swaps out based on the URL. I typically give that an `id` of `pages` and then render a `PageView` into that container based on the URL.
 
-Here's an example of how a main view might look if we're using StrictView.
+Here's an example of how a main view might look if we're using HumanView:
 
 ```js
-var StrictView = require('strictview');
+var HumanView = require('human-view');
 var templates = require('templates');
 var NavigationView = require('./navigation');
 
 
-module.exports = StrictView.extend({
+module.exports = HumanView.extend({
   // our 
   template: templates.main,
 
   render: function () {
-    this.basicRender(); // inherited from StrictView
+    this.renderAndBind(); // inherited from HumanView
     
     // init and "render()" a subview for a hypothetical
     // navigation view;
@@ -90,13 +91,14 @@ You have to make a judgement call of the best way to segment things into managea
 
 For example, let's assume you've got a certain URL that represents a page that should show a list of items. In this case you may have have a page view that is rendered inside the main views' page container. That PageView would render any headers for that page as well basic list container (a `<ul>` perhaps) for your list of items. 
 
-That page would take the collection you plan to render into that container as its `collection`, then we could use the `collectomatic` method to manage adding/removing individual views (one for each model).
+That page would take the collection you plan to render into that container as its `collection` property, then we could use the `renderCollection` method to manage adding/removing individual views (one for each model).
 
 If there isn't a lot of behavior associated with each line item, you may choose to just handle the rendering of individual items in the view containing the collection. You'll simply have to make a determination based on how much behavior is associated with each item in the list. If it's fairly behavior-less or log-like (say a chat room for example) you may just want to render them into the container and be done. If it's more interative like an tour scheduling app where you're dragging items around, editing them, and there's lots of associated data with each one. You'll probably want a view to contain the behavior of each item.
 
 Take a look at the associated demo app to see examples of each approach to handling collections.
 
 You can find the app on my github account: [https://github.com/HenrikJoreteg/humanjs-sample-app](https://github.com/HenrikJoreteg/humanjs-sample-app)
+
 
 ### Caveat: understanding `this.$`
 
@@ -120,11 +122,11 @@ This is done through the `events` hash.
 It works like this:
 
 ```javascript
-var StrictView = require('strictview');
+var HumanView = require('human-view');
 var templates = require('templates');
 
 
-module.exports = StrictView.extend({
+module.exports = HumanView.extend({
   template: templates.widget,
   events: {
     // the event + element: the name of the handler
@@ -132,8 +134,8 @@ module.exports = StrictView.extend({
     'keyup input.search': 'handleSearchKeyUp'
   },
   render: function () {
-    // this we inherit from strictview
-    this.basicRender();
+    // this we inherit from human-view
+    this.renderAndBind();
   },
   handleDeleteClick: function () {
     this.model.delete();
@@ -151,8 +153,8 @@ That events hash is equivalent to doing the following inside the render method.
 
 ```javascript
   render: function () {
-    // this we inherit from strictview
-    this.basicRender();
+    // this we inherit from human-view
+    this.renderAndBind();
     this.$el.delegate('.delete', 'click', _.bind(this.handleDeleteClick, this));
     this.$el.delegate('input.search', 'keyup', _.bind(this.handleSearchKeyUp, this));
   },
@@ -167,15 +169,15 @@ In order to keep our sepeartion of concerns, very rarely do I set style attribut
 
 Backbone kind on loosly encourages you to just re-render views entirely when something changes. In a lot of cases that's totally fine, but I like only changing the specific thing that needs updating when the underlying model changes. Obviously, this can be a bit more tedious because you have to bind each thing explicitly somehow. 
 
-This is where StrictView comes in handy. Much in the same way as we declare event handlers in the `events` hash as described above, we can now declare data bindings of various types in our views as follows:
+This is where HumanView comes in handy. Much in the same way as we declare event handlers in the `events` hash as described above, we can now declare data bindings of various types in our views as follows:
 
 
 ```javascript
-var StrictView = require('strictview');
+var HumanView = require('human-view');
 var templates = require('templates');
 
 
-module.exports = StrictView.extend({
+module.exports = HumanView.extend({
   template: templates.widget,
   events: {
     'click .delete': 'handleDeleteClick',
@@ -201,7 +203,7 @@ module.exports = StrictView.extend({
     'active': '.container'
   },
   render: function () {
-    this.basicRender(); // this is what does all the bindings.
+    this.renderAndBind(); // this is what does all the bindings.
   },
   handleDeleteClick: function () {
     this.model.delete();
@@ -220,9 +222,9 @@ In this way, you follow a similar style and pattern as backbone to also specify 
 As an additional bonus, all handlers are registered using backbone's `listenTo()` which handles unbinding those hanlders when the view is destroyed.
 
 
-### StrictView's convenience methods
+### HumanView's convenience methods
 
-#### .basicRender();
+#### .renderAndBind();
 
 The general pattern, encouraged in the Backbone documentation is to use templates to populate the contents of a view's main element. That way, you never have to re-register any DOM event handlers because they're attached to the view's root el. With that approach (which is perfect for some uses) you can just call `.render()` any time anything changes in the model. 
 
@@ -278,11 +280,11 @@ Because now, just by looking at that template, I can look at that template and k
 
 In addition, if I want to include some conditional class or some other property on the root element I can do declaratively, right in the template along with everything else, instead of having to do it in the render method of the view.
 
-Now, enter `basicRender(opts)`. Basic render encapulates everything you need to do to render the view while also replacing the entire existing root element and making sure all the event handlers in your event hash are registered.
+Now, enter `renderAndBind(opts)`. Basic render encapulates everything you need to do to render the view while also replacing the entire existing root element and making sure all the event handlers in your event hash are registered.
 
 It looks for a `template` property of the view, and calls it with the context you hand it.
 
-#### .bindomatic();
+#### .listenToAndRun();
 
 Very commonly, when you want to listen to some change on a model. You're very often wanting to:
 
@@ -307,12 +309,12 @@ You can just do:
 ```js
 ...
 initialize: function () {
-  this.bindomatic(this.model, 'change', this.doSomething, true);
+  this.listenToAndRun(this.model, 'change', this.doSomething);
 }
 ...
 ```
 
-#### .collectomatic(); 
+#### .renderCollection(); 
 
 Collectomatic is a lightweight way to render and maintain a collection of models within a container. 
 
@@ -323,22 +325,23 @@ You simply pass it the collection, the subview you want to render each model wit
 example:
 
 ```js
-var StrictView = require('strictview');
+var HumanView = require('human-view');
 var templates = require('templates');
 var ItemView = require('./item');
 
 
-module.exports = StrictView.extend({
+module.exports = HumanView.extend({
   template: templates.myPage,
   render: function () {
-    this.basicRender();
+    this.renderAndBind();
     this.$container = this.$('.myItemList')[0];
-    this.collectomatic(this.collection, ItemView, {containerEl: this.$container});
+    this.renderCollection(this.collection, ItemView, this.$container[0]);
   }
 });
 ```
 
-For more on StrictView, or contribute and make it better, see the documentation and source on github: https://github.com/henrikjoreteg/strictview
+For more on HumanView, or to contribute and make it better, see the documentation and source on github: https://github.com/henrikjoreteg/human-view
+
 
 ## A bit about defining bindings in templates (a. la. angular, ractive.js)
 

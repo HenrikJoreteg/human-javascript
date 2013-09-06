@@ -19,6 +19,7 @@ Some developers seem hesitant to touch code they've already written. But, I beli
 Code is just text, not an edict. It can be changed easily and should be streamlined as you build. 
 Don't be scared of refactoring. Be scared of building an unmaintainable piece of crap. I have found that to be much more costly in the long run. Additionally, if your app is seperated into clean simple modules the risk of accidentally breaking something else is dramatically lower.
 
+
 ## Separating views and state
 
 This is the biggest lesson I've learned building lots of single page apps. Your view (the DOM) should just be blind slave to the model state of your application. For this you could use any number of tools and frameworks. I'd recommend starting with [Backbone.js](http://backbonejs.org/) (by the awesome Mr. [@jashkenas](https://twitter.com/jashkenas) as it's the easiest to understand, and the closest thing to "just javascript"™ as discussed in the introduction. 
@@ -32,6 +33,8 @@ One aspect of this approach that is commonly overlooked is the flexibility it pr
 
 I'm not going to get into a debate about module styles and script loaders. But I can tell you this: I haven't seen any cleaner, simpler mechanism for splitting your code into nice isolated chunks than CommonJS modules.
 
+Let's pause for just a second to discuss what modules do for us. Javascript has globals. What I mean is that if you don't put a `var` in front of any variable declaration, you've just created a global variable that's accessible from *any* other code in your app. While this *can* be used for good, but also gives you a lot of rope to hang yourself with. Without a way of managing this, as your app grows, knowing what global variables you have at what time will become nearly impossible and will likely be a big source of bugs. We also want to build our app in tiny pieces of independent code (a.k.a modules). So, how do we make sure each module has access to what it needs? By not referencing globals and by having each module explicitly `require` other code that it needs. That's why we need a module system. Very few things will have a greater positive impact on your code structure than switching to a good module system.
+
 CommonJS is the same style/concept that is used in node.js. By following this style you get the additional benefit of being able to reuse modules written for the client on the server and vice versa (though, the overlap is usually not that big).
 
 If you're unfamiliar with the CommonJS modules style, your files end up looking something like this:
@@ -39,12 +42,12 @@ If you're unfamiliar with the CommonJS modules style, your files end up looking 
 ```javascript
 // you import things by using the special `require` function and you can
 // assign the result to a variable
-var StrictModel = require('strictModel'),
-    _ = require('underscore');
+var HumanModel = require('human-model');
+var _ = require('underscore');
   
 // you expose functionality to other modules by declaring your main export
 // like this.
-module.exports = StrictModel.extend({
+module.exports = HumanModel.define({
   type: 'navItem',
   props: {
     active: ['boolean', true, false],
@@ -61,20 +64,20 @@ That's it! Super easy. You don't create any globals. Each file that uses your mo
 
 You just export a constructor (like above), or a single function, or even a set of functions. Generally, however, I'd encourage you to export only one thing from each module.
 
-Of course, browsers don't have support for these kinds of modules out of the box (there is no `window.require`). But, luckily that can be fixed. We use a clever little tool called [browserify](https://github.com/substack/node-browserify) that lets you use a lot of the node.js utils on the client as well.
+Of course, browsers don't have support for these kinds of modules out of the box (there is no `window.require`). But, luckily that can be fixed. We use a clever little tool called [browserify](https://github.com/substack/node-browserify) that lets you `require` whatever modules you need. This also includes being able to declare dependencies in a `package.json` file and just installing `require()`-able modules from npm into your project. With this approach, no client-side specific package management like bower is required. You simply declare your dependencies in your package file and install them.
 
-What they do is create a `require` function and bundle up a folder of modules into an app package.
+Browserify will create a `require` system and starting with the module you specify as an entry point it will include each `require`-ed piece of code into an app package that can be sent to the browser.
 
-Browserify is written for node.js but you could just as easily use another server-side language and just use node to build your client package. Ultimately, you're creating a single JS file and of course, once generated, that file can be served just like any other static file.
+Browserify is written for node.js but even if you're using something else to build your web app, you can use node and browserify to build your client package. Ultimately, you're just creating a single JS file. So once it's generated, that file can be served just like any other static file by any file server you want.
 
 
 ## Grab your moonboots
 
 If you're used to building apps where each script in your app directory has a corresponding `<script>` tag hardcoded in some HTML file somewhere it can be a bit confusing when switching to using a script module system like browserify.
 
-As I touched on in Chapter 2, we really would like our production environment to serve a single, minified, js file with a unique file name so that we can tell browsers to cache it forever. However, that's far from ideal in a development environment. So, in the interest of keeping the development cycle enjoyable here's what we want:
+As I touched on in Chapter 2, we really would like our production environment to serve a single, minified, `.js` file with a unique file name so that we can tell browsers to cache it forever. However, that's far from ideal in a development environment because we don't want to debug minified code in the browser or have to re-build it with every change. So, in the interest of keeping the development cycle enjoyable here's what we want:
 
-1. Easy way to edit/refresh your clientside js files without having to restart the server or re-compile anything manually.
+1. Easy way to edit/refresh your clientside javascript files without having to restart the server or re-compile anything manually.
 2. Be able to easily map code in your browser to the right file and line number in the non-compiled version in your app folder.
 3. Serve unminified code in development.
 4. In production, serve a minfied, uniquely named, permanently cachable file containing your entire app.
@@ -122,28 +125,27 @@ var clientapp = new Moonboots({
 
 At this point we can tell express the routes where we want it to serve our application. This is a bit hard to wrap your head around if you're not used to single page applications that do clientside routing.
 
-Because we're sending a javascript application, rather than rendered HTML to the browser, it's going to be up to the client to read the URL, grab the appropriate data, and render the appropriate page represented by that URL. So, what happens when the browser starts on a URL that's not your application root? Your browser doesn't know the difference. It's just going to send a request to our node server. So it's up to us to specify which URLs are considered part of our client application and in those cases we will always respond with the same HTML. So there will likely be a whole range of URLs that will receive the same HTML. We cover the concept of clientside routing in more detail in chapter 9.
+Since we're sending a javascript application, rather than rendered HTML to the browser, it's going to be up to the client to read the URL, grab the appropriate data, and render the appropriate page represented by that URL. So it's up to us to configure our server to always respond with the same HTML at any URL that is considered part of our client application. We cover the concept of clientside routing in a bit more detail in chapter 9.
 
-You can do this in express through the use of wildcard handlers, or by passing regular expressions instead of strings as the route definition. In this template you'll see the relevant line in server.js looks like this:
+You can do this in express through the use of wildcard handlers, or by passing regular expressions instead of strings as the route definition. If you look at the sample application (https://github.com/HenrikJoreteg/humanjs-sample-app) you'll see the relevant line in server.js looks like this:
 
 ```javascript
 app.get('*', csrf, clientapp.html());
 ```
 
-Where clientapp is the app we defined above. Calling html() on it will return a request handler that serves up the base HTML for the application at all the relevant routes.
+Where `clientapp` is the app we defined above. Calling `html()` on it will return a request handler that serves up the base HTML for the application at all the relevant routes. By simply having the helper provide a request handler, you can still add whatever middleware you want first (as seen with CSRF in that example).
 
-The reason for the wildcard URL becomes more obvious in your application when you open it and navigate to a different URL within the app with an HTML5 push state. Say we click a button that takes us to "/sample" within the app. When navigating to that page, the browser won't make any server requests, but you'll see the URL change. However, now that you're viewing the "/sample" page, if you refresh the browser, the browser will make a request to "/sample." So if your server app isn't set up to serve the same response at that URL, it won't work.
-
-By simply having the helper provide a request handler, you can add whatever middleware you want first (as seen with CSRF in that example).
+The need for the wildcard URL becomes more obvious in your application when you open it and navigate to a different URL within an app that uses HTML5 push state. Say we click a button that takes us to `/sample` within the app. When navigating to that page, the browser won't make any server requests, but you'll see the URL change. However, now that you're viewing the `/sample` page, if you refresh the browser, the browser will make a request to `/sample.` So if your server app isn't set up to serve the same response at that URL, it won't work.
 
 
 ### A note on going to production
 
 Node happens to be pretty good a serving static files. So just serving the production file with node/moonboots is probably sufficient for most apps with moderate traffic. In production mode, moonboots will build and serve the app file from memory with agressive cache headers. 
 
-However, a lot of people like to serve static files with a seperate process, using nginx or use a CDN etc. In that scenario, you can use Moonboots during development and then just generate the minified file write it to disk or put it on S3 or whatever as part of some deploy process.
+However, a lot of people like to serve static files with a seperate process, using nginx or use a CDN etc. In that scenario, you can use Moonboots during development and then just generate the minified file, write it to disk, or put it on something like S3 as part of your deploy process.
 
 Calling `moonboots.sourceCode(function (source) { ... })` will call your callback with the generated source codebased on current config, which you could use to write it to disk or put it on a CDN as part of a grunt task or whatnot. Those details are probably beyond the scope of this book. But, the point is, you can certainly do that with these tools if that makes more sense for your app.
+
 
 ### The structure of the clientapp folder
 
@@ -170,14 +172,16 @@ var templates = require('templates');
 var html = templates.pages.home();
 ```
 
+See Chapter 8 for a more in-depth discussion of templating.
+
 
 ## Creating an `app` global
 
 So what makes a module? Ideally, I'd suggest each module being in its own file and only exporting one piece of functionality. Only having a single export helps you keep clear what purpose the module has and keeps it focused on just that task. The goal is having lots of modules that do one thing really well so that your app combines modules into a coherent story.
 
-When I'm building an app, I intentionally have one main controller object of sorts. It's attached to the window as "app" just for convenience. For modules that I've written specifically for this app (stuff that's in the clientapp folder) I allow myself the use of that one global to perform app-level actions like navigating, etc.
+When I'm building an app, I intentionally have one main controller object of sorts. It's attached to the window as `app` just for convenience. For modules that I've written specifically for this app (stuff that's in the clientapp folder) I allow myself the use of that one global to perform app-level actions like navigating, etc.
 
-The main app object doesn't really need to be all that special. Often I create an object literal with a main init function (more on that in Ch 10). But generally it will look like this:
+The main app object doesn't really need to be all that special. Often I create an object literal with a main init function (more on that in Chapter 10). But generally it will look like this:
 
 ```js
 module.exports = {
@@ -207,4 +211,4 @@ module.exports.blastoff();
 ```
 
 
-Note that very last line that actually calls the `blastoff()` function. That's how we kick off the whole thing. That's our entry point to the app.
+Note that very last line that actually calls the `blastoff()` function. That's how we kick off the whole thing. That's our main entry point to the app.
