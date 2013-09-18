@@ -12,7 +12,7 @@ $('ul.theList').delegate('click', 'li', function () {
 })
 ```
 
-So now, clicking on an item will toggle a class. jQuery's `toggleClass()` method will check whether it's already got the class and add or remove it as necessary. Great! we're done!
+So now, clicking on an item will toggle a class. jQuery's `toggleClass()` method will check whether it's already got the class, and add or remove it as necessary. Great! We're done!
 
 Err... well typically if you're going to select something it's for a reason, right? So our app is going to want to *do* something with the selected item or items. 
 
@@ -48,24 +48,24 @@ Ok, not too terrible, you say?
 Well now what if we've got these additional requirements?
 
 1. There isn't just one list, there are several on the page at once. There are some actions that can be performed in bulk, but only for some of the items in some of the lists.
-2. There are some items you can't delete, becase you don't have permission to, but you can still select them and annotate them.
-3. Deleting the item is only one of 6 different possible actions you can take with each item.
-4. You have to support full keyboard control as well as handling mouse clicks. 
+2. There are some items you can't delete, because you don't have permission to, but you can still select them and annotate them.
+3. Deleting the item is only one of six different possible actions you can take with each item.
+4. You have to support full keyboard control, as well as handling mouse clicks. 
 5. You now want to support selecting the top item, holding shift and clicking the bottom one to select a range.
 
 
 ### If you continue this same approach, you're in deep doo doo
 
-You can handle adding features to a point. But you will reach a point where you start arguing against adding features, not because you don't think they're good ideas, but because you're scared to implement them because of the headaches and bugs it will inevitabily cause.
+You can handle adding features to a point. But you will reach a point where you start arguing against adding features, not because you don't think they're good ideas, but because you're scared to implement them because of the headaches and bugs it will inevitably cause.
 
 Welcome to nearly everyone's first single page app experience.
 
 
 ### Enter Models
 
-If you've never used models in clientside code, it's not as intimidating as it may sound. The idea is simply that we create some data structures in the browser, seperate from the DOM, that hold the data that we got from the server as well as any client specific data or state. 
+If you've never used models in clientside code, it's not as intimidating as it may sound. The idea is simply that we create some data structures in the browser, separate from the DOM, that hold the data that we got from the server as well as any client specific data or state. 
 
-The "selected" state as described above is a good example of client-specific state, meaning when we go to update a entry in the API we're not going to send `{selected: true}` as one of its properties. The server doesn't care about that, it's just used to track the state of the user interface.
+The "selected" state as described above is a good example of client-specific state, meaning when we go to update an entry in the API, we're not going to send `{selected: true}` as one of its properties. The server doesn't care about that, it's just used to track the state of the user interface.
 
 So, what is a model anyway? What does it give us?
 
@@ -85,13 +85,13 @@ model.on('change:selected', function (newValue) {
 });
 ```
 
-In addition, models should contain the functionality that makes it easy for us to work with that data. That means things like exposing some processed form of the data should be a method on the model. Let's say one of the model properties represents a date. We may have a method on the model for getting a nicely formatted date string built from that date object. Arguably this is a presentation issue, but the model ends up being a logical place to expose a string version of the date property for maximum re-use and consistency.
+In addition, models should contain functionality that makes it easy for us to work with that data. That means things like exposing some processed form of the data, should be a method on the model. Let's say one of the model properties represents a date. We may have a method on the model for getting a nicely formatted date string built from that date object. Arguably this is a presentation issue, but the model ends up being a logical place to expose a string version of the date property for maximum re-use and consistency.
 
-In addition, models are a good place for methods that perform actions on the model itself like updating the server when the model changes.
+In addition, models are a good place for methods that perform actions on the model itself, like updating the server when the model changes.
 
 In [And Bang](https://andbang.com), we do a lot with tasks. You can assign them to each other, "ship" them, "later" them, "trash" them, etc.
 
-So, each of these actions are represented by a method on the task model that sends the correct data to the server as well as updating the appropriate properties on the local model. 
+So, each of these actions are represented by a method on the task model that sends the correct data to the server, as well as updating the appropriate properties on the local model. 
 
 For example, here's the `trash` method of a task in And Bang:
 
@@ -110,17 +110,17 @@ trash: function () {
 
 ```
 
-It includes an upfront check to see whether we even have permission to trash this item. In case you're wondering this isn't actually used to enforce this permission, that's the APIs job. 
+It includes an upfront check to see whether we even have permission to trash this item. In case you're wondering this isn't actually used to enforce this permission, that's the API's job. 
 
-In fact, that's worth a little tangent to drive home the purpose of an API. It's *always* the API's job to maintain its own data integrity. You shouldn't *ever* be able to do anything in the client code that puts your API data in a weird or broken state. For example, never leave it up to your client code to know that if you delete a list you also have to go delete all the items in the list. That's the APIs job.`</rant>`
+In fact, that's worth a little tangent to drive home the purpose of an API. It's *always* the API's job to maintain its own data integrity. You shouldn't *ever* be able to do anything in the client code that puts your API data in a weird or broken state. For example, never leave it up to your client code to know that if you delete a list you also have to go delete all the items in the list. That's the API's job.`</rant>`
 
-Continuing... calling the `trash` method sets a local state property `removing` and then calls the API method that sends the command to the server to delete the task (in this case via websocket, but the transport is irrelevant).
+Continuing... calling the `trash` method sets a local state property `removing` and then calls the API method that sends the command to the server to delete the task (in this case via WebSocket, but the transport is irrelevant).
 
 But the cool thing is, that's *it*. That's all we have to do when we want to delete a widget. You simply have to look up that widget's model and call `.trash()`. 
 
 Nowhere in this code do you see anything about removing the item from DOM.
 
-That happens when we get confirmation from the API that the task was removed, it then is removed from the collection, which triggers a `remove` event on the collection and the view (which represents the DOM, as described in the next chapter) listens for `remove` events and plucks that list item out of the DOM. It may sound a bit complex, but only in that you have to describe all those relationships. Once you have it's beautifully simple. 
+That happens when we get confirmation from the API that the task was removed. It is then removed from the collection, which triggers a `remove` event on the collection and the view (which represents the DOM, as described in the next chapter) listens for `remove` events and plucks that list item out of the DOM. It may sound a bit complex, but only in that you have to describe all those relationships. Once you have it's beautifully simple. 
 
 Assuming we've got a view that represents that model, the view would have a click handler like this:
 
@@ -159,6 +159,7 @@ So, what do I mean by storing *all* the state in your app? It's quite easy. If y
 There are two simple rules:
 
 1. All input, whether from the user or from an API, *never* does anything other than call a method or update a property of your models.
+
 2. Always use your models as the "source of truth" in your app. Never "look up" state information anywhere other than your models.
 
 
@@ -232,20 +233,20 @@ module.exports = {
 
 So now we've got a representation of that list of widgets that assumes nothing about how it's going to be used.
 
-Stop for a second and think about what that does for us when requriements change or even when we go build a second application on the same API. Nearly *all* the model code will be re-usable with zero changes. It simply represents the state that is available in the API which is the same no matter what the interface looks like. 
+Stop for a second and think about what that does for us when requirements change or even when we go build a second application on the same API. Nearly *all* the model code will be re-usable with zero changes. It simply represents the state that is available in the API, which is the same no matter what the interface looks like. 
 
-Also, think about this in a team environment. Someone can be working on writing models and making sure they get the proper data populated from the API while someone is building the clientside router and page views that include and design "static" versions of page elements that will be rendered by models once the API is hooked up. Because they're all in seperate files you won't step on eachothers toes and merging the combined code in git won't result in any major merge conflicts. 
+Also, think about this in a team environment. Someone can be working on writing models and making sure they get the proper data populated from the API while someone is building the clientside router and page views that include and design "static" versions of page elements that will be rendered by models once the API is hooked up. Because they're all in separate files you won't step on each other's toes and merging the combined code in git won't result in any major merge conflicts. 
 
 Just imagine the sort of impact this has for a team to be able to work in parallel and to write code that doesn't need to be thrown away the minute someone wants to change the layout of the app.
 
-In fact, that the basic model layer and API synchronization can be created before we even have a final app design.
+In fact, that basic model layer and API synchronization can be created before we even have a final app design.
 
 
 ### Model alternatives
 
 In order to provide observability, models generally provide some sort of event registration system and a way to set and get some "protected" attributes.
 
-For a long time, I used Backbone models for everything. The code for them is quite simple and readable (YES!), they're flexible and easy to use. Also, I'm generally a big fan of Backbone's general principles and structure.
+For a long time, I used Backbone models for everything. The code for them is quite simple and readable (YES!); they're also flexible and easy to use. Also, I'm generally a big fan of Backbone's general principles and structure.
 
 Yet, you'll notice the examples all use `HumanModel` but Backbone collections.
 
@@ -259,7 +260,7 @@ If the models are the core of our application (as they should be), someone shoul
 
 #### 2. Derived properties
 
-So often, the data you get from the server is not in the format you'll want to present it. The classic example is first and last name. Most likely they come as seperate fields from the API, but in reality, most places you're going to present a user's name in the app will be in the format: `firstName + ' ' + lastName`. In Backbone you'd perhaps create a method called `fullName()` that when called, returned that value to you. The annoying thing comes when you want to bind that value to some location in the DOM. You have to listen for changes to either `firstName` or `lastName` and then call the method again and put the result into the DOM. There are two things I don't like about this: 
+So often, the data you get from the server is not in the format you'll want to present it. The classic example is first and last name. Most likely they come as separate fields from the API, but in reality, most places you're going to present a user's name in the app will be in the format: `firstName + ' ' + lastName`. In Backbone you'd perhaps create a method called `fullName()` that when called, returned that value to you. The annoying thing comes when you want to bind that value to some location in the DOM. You have to listen for changes to either `firstName` or `lastName` and then call the method again and put the result into the DOM. There are two things I don't like about this: 
 
 1. It *feels* like `fullName` or even just `name` should just be accessible in the same way as first or last name. Why can't I just go `user.name`?
 
@@ -406,7 +407,7 @@ Sure the following example is silly, but what if I write some stupid code (as we
 model.set('firstName', new Date());
 ```
 
-Sure, you may be able to keep it all in your head to a point, but what about when a second developer comes and looks at that code? Or what happens when you come back to the code after 6 months (or even 2 weeks)? Where do you go to see how the app is structured? You have to go spelunking into views for answers.
+Sure, you may be able to keep it all in your head to a point, but what about when a second developer comes and looks at that code? Or what happens when you come back to the code after six months (or even two weeks)? Where do you go to see how the app is structured? You have to go spelunking into views for answers.
 
 I prefer that the model is the explicit documentation on what state is stored. 
 
@@ -446,7 +447,7 @@ module.exports = HumanModel.define({
   // other information. (you cannot set a derived property, this is intentional)
   derived: {
     // the name of the derived property
-    // in this case refrencing "model.fullName"
+    // in this case referencing "model.fullName"
     // would give us the result of calling the
     // function below
     fullName: {
@@ -460,7 +461,7 @@ module.exports = HumanModel.define({
       // we can optionally cache the result, doing this
       // means it won't run the function to return the result
       // unless one of the dependency values has changed since 
-      // the last time it was ran. This feature can lead to 
+      // the last time it was run. This feature can lead to 
       // dramatic performance improvements over plain Backbone
       cache: true
     }
@@ -506,7 +507,7 @@ Another argument for using getters/setters for models is that it makes it possib
 
 Since arrays and dates are Objects in JS, they're passed by reference.
 
-So, what happens if we want to store a list of ids as a property of a user?
+So, what happens if we want to store a list of IDs as a property of a user?
 
 In Backbone, how would we get a `change` event?
 
@@ -566,10 +567,10 @@ Models should contain the following:
 
 1. Properties that we get from the API
 2. Properties that we need in order to track client state (selected, etc.)
-3. Mechanisms for validating their own data integrity.
-3. Methods we can call to update or delete corresponding models on the server.
-4. Convenient accessors (a.k.a. derived properties) that describe or process the properties in some way to allow re-use.
-5. Child collections (if applicable).
+3. Mechanisms for validating their own data integrity
+3. Methods we can call to update or delete corresponding models on the server
+4. Convenient accessors (a.k.a. derived properties) that describe or process the properties in some way to allow re-use
+5. Child collections (if applicable)
 
 Models should *never* contain:
 
