@@ -1,8 +1,8 @@
 # Using events: Modules talking to modules
 
-How do you keep your modules cleanly separated? Sometimes modules are dependant on other modules but we still want to be able to keep them loosely coupled? One good technique is triggering lots of events that can be used as hooks by other code. Many of the core components in node.js are extensions of the EventEmitter class. This means you can register handlers that get called when events happen to that object much like you would do in the browser when you want to register a click handler for an element on the page.
+How do you keep your modules cleanly separated? Sometimes modules are dependent on other modules but we still want to be able to keep them loosely coupled? One good technique is triggering lots of events that can be used as hooks by other code. Many of the core components in node.js are extensions of the EventEmitter class. This means you can register handlers that get called when events happen to that object, much like you would do in the browser when you want to register a click handler for an element on the page.
 
-I find that developers often assume that events are kind of magical or special things in javascript, but they're not. In fact, building an event emitter from scratch is a really great learning exercise. They're really quite simple. Your just saying: please call this function when this thing happens. Typically, you'll see code like this:
+I find that developers often assume that events are kind of magical or special things in javascript, but they're not. In fact, building an event emitter from scratch is a really great learning exercise. They're really quite simple. You're just saying: "Please call this function when this thing happens." Typically, you'll see code like this:
 
 In browsers:
 ```js
@@ -27,7 +27,7 @@ This pattern is really useful when building reusable components yourself. Export
 
 At points of interest within your module where you think some external source may care, you can just call `this.emit('someEventName', {some: 'data'})` and if there are any handlers for that event, they'll be called.
 
-There are lots of implementations of event emitters with various features. Features usually involve various ways of registering and unregistering event listeners. For example, you may want to only register a handler that only gets called the first time an event happens. So for this many event handlers have a `once()` method alongside the `on()` method. In addition, some event handlers give you a way to listen to all events emitted by a certain object, or perhaps all events in a certain namespaced. These features can be useful for logging out all events (so you can debug), or for proxying events from one event source to another object.
+There are lots of implementations of event emitters with various features. Features usually involve various ways of registering and unregistering event listeners. For example, you may want to register a handler that only gets called the first time an event happens. So for this many event handlers have a `once()` method alongside the `on()` method. In addition, some event handlers give you a way to listen to all events emitted by a certain object, or perhaps all events in a certain namespace. These features can be useful for logging out all events (so you can debug), or for proxying events from one event source to another object.
 
 Browsers don't expose a base EventEmitter class we can just use, so for clientside code we need to include one in order to take advantage of this pattern.
 
