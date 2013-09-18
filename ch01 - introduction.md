@@ -11,7 +11,7 @@ As we've gone along, we've done our best to extract reusable tools out of them. 
 
 # Native HTML5 apps
 
-Let's talk about this whole "app" thing for a bit and get on the same page in terms of terminology. If you own a smart phone of any sort, you've been innundated with the word "app" over the past 5 years or so.
+Let's talk about this whole "app" thing for a bit and get on the same page in terms of terminology. If you own a smart phone of any sort, you've been inundated with the word "app" over the past five years or so.
 
 Rather than pontificate on the meaning of this for three chapters, I'll explain the distinction as I see it for the purposes of this book. 
 
@@ -28,13 +28,13 @@ The types of apps we're talking about building in this book could really be call
 To clarify further:
 
 1. They are separate from the API.
-1. They don't work *at all* if someone has javascript turned off.
-1. A modern browser with a modern javascript engine is a minimum system requirement.
-1. We send the application code itself to the browser, not the result of running the application code.
-1. The app is rendered entirely on the client. We only send the bare minimum HTML we need to tell the browser to run our app. Usually just a doctype, a script tag and a stylesheet.
-1. After loading, the client fetches its own data, as data (typically JSON), not as rendered HTML.
-1. The app is loaded once and never does a full page reload while you're using it.
-1. The app has and maintains "state" that is cached and maintained separate from the server.
+2. They don't work *at all* if someone has javascript turned off.
+3. A modern browser with a modern javascript engine is a minimum system requirement.
+4. We send the application code itself to the browser, not the result of running the application code.
+5. The app is rendered entirely on the client. We only send the bare minimum HTML we need to tell the browser to run our app. Usually just a doctype, a script tag and a stylesheet.
+6. After loading, the client fetches its own data, as data (typically JSON), not as rendered HTML.
+7. The app is loaded once and never does a full page reload while you're using it.
+8. The app has and maintains "state" that is cached and maintained separate from the server.
 
 From now on, when I say "app" or "native HTML5 app" or "browser app" or "client app" within these pages, that is what I'm referring to.
 
@@ -51,7 +51,7 @@ The future of the web is realtime. Of this I have no doubt. The reason I can say
 
 Facebook, Gmail, Gtalk, and Github just to name a few, have all implemented some form of automatic page updating. When they have something new to tell you, they don't wait for you to ask for it. They push it out to you, from the server to the client.
 
-In some cases this is as simple as the page automatically polling to see if there's something new. In other cases it's more advanced, where all the data used to build and update the page is coming over an open websocket connection. For our purposes, the transport mechanism is largely irrelevant; the point is, data comes to you.
+In some cases this is as simple as the page automatically polling to see if there's something new. In other cases it's more advanced, where all the data used to build and update the page is coming over an open WebSocket connection. For our purposes, the transport mechanism is largely irrelevant; the point is, data comes to you.
 
 This inherently breaks the statelessness of the web. It used to be that I hit a URL and got back a webpage. As a user I understood that the information on the page was (probably) accurate as of the time it was requested. If I wanted to check for something new, I'd go ask for it again and receive another snapshot in time.
 
@@ -61,17 +61,17 @@ One of the fundamental advantages that digital media has over print is that it's
 
 So, as soon as we as developers decide that we want to do partial updates of the page, the only way we can do so is by knowing what information we currently have, and comparing it to what's on the server. State duplication has occurred and we're now maintaining "state" in some form in the client.
 
-As users get increasingly comfortable with that idea, I believe we'll reach a point where always-current, self-updating information is the *expectation* rather than a surprise. Facebook with its chat, live comments, and push notifictaions is already conditioning an entire generation of users to expect realtime updates. I believe that knowing how to build realtime apps is a crucial skill for web developers who want to stay at the top of their field.
+As users get increasingly comfortable with that idea, I believe we'll reach a point where always-current, self-updating information is the *expectation* rather than a surprise. Facebook with its chat, live comments, and push notifications is already conditioning an entire generation of users to expect realtime updates. I believe that knowing how to build realtime apps is a crucial skill for web developers who want to stay at the top of their field.
 
 Anytime you duplicate state, you increase complexity. Rather than worrying about just rendering some data correctly, you're now caring about staleness, caching, and conflicts.
 
 If we step back a bit and look at what we're actually doing when we do this, we start to realize that we're actually building is a distributed system and we'll have all the same challenges that come with building distributed systems.
 
-I know what you're probably thinking. Some framework is going to come along that solves this problem for me. You may be right, there are many different approaches to dealing with the problems of duplicated state. There are several emerging frameworks such as Meteor and Derby.js that aim to simplify the process of building apps that work this way. 
+I know what you're probably thinking. Some framework is going to come along that solves this problem for me. You may be right, there are many different approaches to dealing with the problems of duplicated state. There are several emerging frameworks, such as Meteor and Derby.js, that aim to simplify the process of building apps that work this way. 
 
-The challenge with some of those frameworks, from where I sit, is that there's a lot of emphasis on trying to share code and logic between the client and the server. In my opinion, client and server really should be performing fundamentally different roles. Servers are for data, clients are for presentation. To me, this is about the basic principle of separation of concerns. A contrast to this is what my friend Owen Barnes was working on with SocketStream. It's funny to see how we both ended up reaching very similar conclusions over the last few years. As he mentioned in his talk at RealtimeConf 2012, there likely isn't going to be a "rails of realtime." The problems are simply too diverse. He's since moved his focus elewhere but the conclusion seems to be building loosely coupled modular approaches and patterns that can be substituted as needed.
+The challenge with some of those frameworks, from where I sit, is that there's a lot of emphasis on trying to share code and logic between the client and the server. In my opinion, client and server really should be performing fundamentally different roles. Servers are for data, clients are for presentation. To me, this is about the basic principle of separation of concerns. A contrast to this is what my friend Owen Barnes was working on with SocketStream. It's funny to see how we both ended up reaching very similar conclusions over the last few years. As he mentioned in his talk at RealtimeConf 2012, there likely isn't going to be a "rails of realtime." The problems are simply too diverse. He's since moved his focus elsewhere, but the conclusion seems to be building loosely coupled modular approaches and patterns that can be substituted as needed.
 
-Distributed systems, latency compensation, and state duplication are really complex problems. The way you solve complex problems is by *not* solving the complex problems. Instead, you break them down into smaller, simpler, solvable problems. Those solutions in agregate can represent the complete solution. 
+Distributed systems, latency compensation, and state duplication are really complex problems. The way you solve complex problems is by *not* solving the complex problems. Instead, you break them down into smaller, simpler, solvable problems. Those solutions in aggregate can represent the complete solution. 
 
 So, why bring the complexity of the server to the client and vice/versa? In addition, when you try to share too much server code with a browser it's very easy to fall into the trap of tightly coupling your application to that particular client. This makes it much harder to build other clients, say, for example, an iOS app for your app. While these frameworks are useful for standard desktop web apps, they let us down a bit when we want to go beyond that. With more and more talk of "the Internet of things" we have good reason to believe that the breadth of device types that want to talk to your app will continue to increase.
 
@@ -102,17 +102,17 @@ They see these options as long term decisions with huge, long term ramifications
 Decisions are time consuming and expensive. At &yet we've built and re-built applications with all kinds of different tools and approaches. The following pages contain the conclusions we've reached. They were picked with the following criteria:
 
 1. Tools that are "just javascript." Not tools where you describe your app in a DSL (no Sencha).
-1. Tools where you build the app by writing code in javascript files, not by declaring bindings in your HTML (no Angular, sorry).
-1. No monolithic, do-everything widget frameworks (not Sproutcore).
-1. Model state is completely decoupled from view state (no Knockout.js).
-1. You should not have to be a javascript rockstar to edit templates.
-1. The DOM is a simply a view of the state and reacts to changes in the model layer.
-1. Simple, decoupled file structures with lots of components that solve one problem.
-1. As little magic as possible (no Ember).
-1. People who know javascript, should be able to work on the app without lots of knowledge about a specific tool or framework.
-1. People who learn how the app works, should accidentally learn how javascript works in the process.
-1. It should play nicely in a team environment using version control (no giant files).
-1. Every piece of functionality should have an obvious "home." Structure, structure, structure.
-1. The project should have a set of code style standards that are enforceable by an automated process.
+2. Tools where you build the app by writing code in javascript files, not by declaring bindings in your HTML (no Angular, sorry).
+3. No monolithic, do-everything widget frameworks (not Sproutcore).
+4. Model state is completely decoupled from view state (no Knockout.js).
+5. You should not have to be a javascript rockstar to edit templates.
+6. The DOM is a simply a view of the state and reacts to changes in the model layer.
+7. Simple, decoupled file structures with lots of components that solve one problem.
+8. As little magic as possible (no Ember).
+9. People who know javascript, should be able to work on the app without lots of knowledge about a specific tool or framework.
+10. People who learn how the app works, should accidentally learn how javascript works in the process.
+11. It should play nicely in a team environment using version control (no giant files).
+12. Every piece of functionality should have an obvious "home." Structure, structure, structure.
+13. The project should have a set of code style standards that are enforceable by an automated process.
 
 Now let's dive in.
