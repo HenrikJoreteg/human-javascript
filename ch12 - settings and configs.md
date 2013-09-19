@@ -9,22 +9,22 @@ We solve this problem with a simple approach and two specific tools:
 - getconfig: https://github.com/henrikjoreteg/getconfig
 - clientconfig: https://github.com/henrikjoreteg/clientconfig
 
-They're in no way dependent on eachother but they do play nicely together.  (both are on npm, by the way)
+They're in no way dependent on each other but they do play nicely together.  (Both are on npm, by the way).
 
 ## getconfig
 
-First, getconfig. This is a tool for configuring node.js web apps. It follows the same assumptions as express.js (http://expressjs.com/) does, in that it looks to an environment variable (NODE_ENV, reference: http://expressjs.com/api.html#app-settings) to determine the mode in which is should run.
+First, getconfig. This is a tool for configuring node.js web apps. It follows the same assumptions as Express.js (http://expressjs.com/) does, in that it looks to an environment variable (NODE_ENV, reference: http://expressjs.com/api.html#app-settings) to determine the mode in which it should run.
 
-It simply uses that to looks for a JSON config file that matches the name of the environment. For example: dev_config.json or production_config.json. It defaults to dev if it doesn't fine one.
+It simply uses that to look for a JSON config file that matches the name of the environment. For example: dev_config.json or production_config.json. It defaults to dev if it doesn't fine one.
 
-Then, from your node app you just require "getconfig" and access settings directly on the resulting object which will have pulled it from the correct config file. Super clean/simple:
+Then, from your node app you just require "getconfig" and access settings directly on the resulting object, which will have pulled it from the correct config file. Super clean/simple:
 
 
 ```javascript
 // we just require the module
 var config = require('getconfig');
 
-// which actually returns our enviroment-aware config
+// which actually returns our environment-aware config
 // from the corresponding config file. 
 config.mySetting;
 ```
@@ -42,9 +42,9 @@ var config = require('clientconfig');
 config.mySetting;
 ```
 
-This time, instead of looking for an environment variable the module looks for a cookie called "config" that contains a JSON encoded config object, it immediately reads, then destroys that cookie (to avoid the overhead of sending it around on any subsequent requests).
+This time, instead of looking for an environment variable, the module looks for a cookie called "config" that contains a JSON encoded config object. It immediately reads, then destroys that cookie (to avoid the overhead of sending it around on any subsequent requests).
 
-Clientconfig reads and returns a "frozen" config object (using ES5 Object.freeze if available) with our settings. So, it's basically the equivalent developer experience as getconfig, but for the client.
+Clientconfig reads and returns a "frozen" config object (using ES5 Object.freeze, if available) with our settings. So, it's basically the equivalent developer experience as getconfig, but for the client.
 
 
 ## Using them together 
@@ -65,7 +65,7 @@ Say we have a dev_config.json that looks like this, on our server.
 
 \*note the "clientAppSettings" section.
 
-Now, in our main sever file where we handle the requests for single page apps, we then just add on our config cookie with the data from getconfig using a very simple piece of middleware.
+Now, in our main server file where we handle the requests for single page apps, we then add on our config cookie with the data from getconfig using a very simple piece of middleware.
 
 
 ```javascript
@@ -92,4 +92,4 @@ The other benefit of this approach is that it lets us keep our clientside JS app
 
 ## Security caveats
 
-Please avoid of sending any valuable settings accross the wire this way, especially if you're not using https. Cookies are just http headers so it's best to assume that this is not secure information and thus, should only be used for non-sensitive data.
+Please avoid if sending any valuable settings across the wire this way, especially if you're not using https. Cookies are just http headers, so it's best to assume that this is not secure information and thus, should only be used for non-sensitive data.
