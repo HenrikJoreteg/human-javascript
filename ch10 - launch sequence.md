@@ -1,9 +1,5 @@
 # 3... 2... 1... Blastoff!
 
-```javascript
-require('your_app').launch();
-```
-
 Generally there's going to be a fairly specific load sequence you'll want to go through before you're ready to "respond" to the specific URL in your client code. 
 
 Typically, that sequence goes something like this:

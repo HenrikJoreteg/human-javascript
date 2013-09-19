@@ -1,4 +1,4 @@
-# Client routing (if there is such a thing)
+# Clientside routing (if there is such a thing)
 
 One thing you sometimes lose with a browser app is the proper handling of the browser's "back" button and the ability to "deep link" into some specific view of the app.
 

@@ -165,6 +165,7 @@ Our clientapp folder usually contains the following folders:
 - libraries (folder): This contains all the libraries we're using that are *not* structured like CommonJS modules. So things like jQuery and jQuery plugins will go here.
 
 - modules (folder): Here is where we put all the clientside modules that we want to be able to require without a relative path. This is a good place to put our compiled template file:
+    
     - templates.js (file): This is the module that gets created from the templates folder (see next). It's a single file with a function for each clientside template. This file gets auto-generated so don't try to edit it directly. Putting it in here lets us also require and use our template functions easily within our views. Each template has a corresponding template function. Each function takes your context object and returns just a string of HTML. 
 
 - templates (folder): Here is where we keep all our Jade files that get used in the client application. Anytime you're wanting to create HTML within the app, use a Jade template and put it in here. You can structure this folder in whatever fashion makes sense for your application. The important thing to understand is that folders become part of the template.js module structure. For example, in this template you'll see that there's a `pages` folder within the templates folder with a file called `home.jade`. To use the function that got created from that, you'd access it as follows: 
