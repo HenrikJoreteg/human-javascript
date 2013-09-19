@@ -5,19 +5,22 @@ How do you keep your modules cleanly separated? Sometimes modules are dependent 
 I find that developers often assume that events are kind of magical or special things in javascript, but they're not. In fact, building an event emitter from scratch is a really great learning exercise. They're really quite simple. You're just saying: "Please call this function when this thing happens." Typically, you'll see code like this:
 
 In browsers:
-```js
+
+```javascript
 document.getElementById('something').addEventListener('click', function () { ... }, false);
 ```
 
 In jQuery it looks like this:
-```js
+
+```javascript
 $('#something').click(function (event) { ... });
 // or
 $('#something').on('click', function (event) { ... });
 ```
 
 In EventEmitter it looks like this:
-```js
+
+```javascript
 myEventEmitter.on('someEvent', function () { ... });
 ```
 
@@ -39,7 +42,7 @@ Beyond standard `on()`, `off()` and `once()` methods it adds two main features:
 
 2. Grouped event handlers, meaning you can specify which group the handlers are a part of when you register them and then unregister all the handlers in the group at once:
 
-```js
+```javascript
 var WildEmitter = require('wildemitter');
 
 var emitter = new WildEmitter();

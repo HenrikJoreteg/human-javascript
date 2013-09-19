@@ -59,7 +59,7 @@ The layout will vary from one app to the next, but typically there are some ever
 
 Here's an example of how a main view might look if we're using HumanView:
 
-```js
+```javascript
 var HumanView = require('human-view');
 var templates = require('templates');
 var NavigationView = require('./navigation');
@@ -230,7 +230,8 @@ The general pattern, encouraged in the Backbone documentation is to use template
 
 If you have simple view that renders a single model binding views becomes *very* easy at that point. You simply do something like this:
 
-```js
+
+```javascript
 var Backbone = require('backbone');
 var _ = require('underscore');
 var templates = require('templates');
@@ -295,7 +296,7 @@ Bindomatic does both of these for you.
 
 So instead of:
 
-```js
+```javascript
 ...
 initialize: function () {
   this.listenTo(this.model, 'change', _.bind(this.doSomething, this));
@@ -306,7 +307,7 @@ initialize: function () {
 
 You can just do:
 
-```js
+```javascript
 ...
 initialize: function () {
   this.listenToAndRun(this.model, 'change', this.doSomething);
@@ -324,7 +325,7 @@ You simply pass it the collection, the subview you want to render each model wit
 
 example:
 
-```js
+```javascript
 var HumanView = require('human-view');
 var templates = require('templates');
 var ItemView = require('./item');

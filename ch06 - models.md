@@ -311,7 +311,7 @@ Be sure to read the warning below, but for those not familiar, it may be useful 
 
 The first is using the `get` and `set` operators directly to define those methods:
 
-```js
+```javascript
 var myObject: {
   _properties: {},
   get name () {
@@ -325,7 +325,7 @@ var myObject: {
 
 The second is using `Object.defineProperty()`:
 
-```js
+```javascript
 var myObject = {
   _properties: {}
 };
