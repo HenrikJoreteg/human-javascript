@@ -153,12 +153,16 @@ Calling `moonboots.sourceCode(function (source) { ... })` will call your callbac
 Our clientapp folder usually contains the following folders:
 
 - models (folder): Contains definitions for all backbone models and collections. As a sanity check, none of these files should have anything related to DOM elements or DOM manipulation.
+
 - pages (folder): The pages folder is where we store the specialized Backbone views that represent a page rendered at a specific URL.
+
 - views (folder): The views folder contains all of our Backbone views (that are not pages), so things like the main application view and views for rendering specific types of models, etc.
+
 - app.js (file): This is the main entry point for our application. It creates an `app` global variable and instantiates the main models and views.
+
 - router.js (file): This is our clientside (Backbone) router. It contains a list of URL routes at the top and corresponding handlers, whose job it is to instantiate the right views with the right models and call `app.renderPage` with those values.
 
-- libraries (folder): This contains all the libraries we're using that are *not* structured like CommonJS modules. So things like jQuery and jQuery plugins will go here. There is also a specific file called `launch.js` that is responsible for requiring and instantiating the main application itself. We do this so that we can just include a single script tag in our HTML. Otherwise we'd have to extend our base HTML to also have a script tag that ran: `window.app = require('application').launch();`
+- libraries (folder): This contains all the libraries we're using that are *not* structured like CommonJS modules. So things like jQuery and jQuery plugins will go here.
 
 - modules (folder): Here is where we put all the clientside modules that we want to be able to require without a relative path. This is a good place to put our compiled template file:
     - templates.js (file): This is the module that gets created from the templates folder (see next). It's a single file with a function for each clientside template. This file gets auto-generated so don't try to edit it directly. Putting it in here lets us also require and use our template functions easily within our views. Each template has a corresponding template function. Each function takes your context object and returns just a string of HTML. 
@@ -184,7 +188,7 @@ When I'm building an app, I intentionally have one main controller object of sor
 
 The main app object doesn't really need to be all that special. Often I create an object literal with a main init function (more on that in Chapter 10). But generally it will look like this:
 
-```js
+```javascript
 module.exports = {
   // main init function
   blastoff: function () { 
