@@ -62,7 +62,7 @@ If you're building large JS apps and not doing some form of static analysis on y
 
 What it does is install a git pre-commit hook in the project that uses JSHint to check your project for code style consistency before each commit. Once upon a time there was a tool called JSLint written by Douglas Crockford. Nowadays there's a less strict, more configurable version of the same project called [JSHint](http://www.jshint.com/). 
 
-The neat thing about the npm version of JSHint is that if you run it from the command line it will look for a configuration file (.jshintrc) and an ignore file (.jshintignore), both of which the precommit hook will create for you if they don't exist. You can use these files to configure JSHint to follow the code style rules that you've defined for the project. This means that you can now run `jshint` at the root of your project and lint the entire thing to make sure it follows the code styles you've defined in the `.jshintrc` file. Awesome, right!?!
+The neat thing about the npm version of JSHint is that if you run it from the command line it will look for a configuration file (.jshintrc) and an ignore file (.jshintignore), both of which the precommit hook will create for you if they don't exist. You can use these files to configure JSHint to follow the code style rules that you've defined for the project. This means that you can now run `jshint .` at the root of your project and lint the entire thing to make sure it follows the code styles you've defined in the `.jshintrc` file. Awesome, right!?!
 
 Our `.jshintrc` files usually looks something like this:
 
