@@ -68,7 +68,7 @@ module.exports = {
 ```
 
 
-As you can tell there's a handful things we do regardless of the URL. Once we've got that sorted is when we init our router and start our history tracking (which enables back-button support). 
+As you can tell there's a handful of things we do regardless of the URL. Once we've got that sorted, then we init our router and start our history tracking (which enables back-button support). 
 
 The client router looks something like this:
 
@@ -103,12 +103,12 @@ module.exports = Backbone.Router.extend({
 ```
 
 
-So, each of the routes listed at the top are turned into regex's by backbone and linked to a handler function.
+So, each of the routes listed at the top are turned into regexes by Backbone and linked to a handler function.
 
-That function is called with the "arguments" a.k.a. paramaters you specified as being dynamic in your routes.
+That function is called with the "arguments," a.k.a. parameters you specified as being dynamic in your routes.
 
-I typically think of each handler's job as being to find actual client-side model objects and then create a "page" view that it passes to the application.
+I typically think of each handler's job as finding actual clientside model objects and then creating a "page" view that it passes to the application.
 
-The app is responsible for taking that view and rendering it per conventions of the app. Usually we just have a "page view" be a specialized kind of backbone view that also has a few standard methods for "show" and "hide". The app controller just calls "show" on the new one and "hide" on the currently active page and the views add/remove themselves from the application layout's main "pages" container.
+The app is responsible for taking that view and rendering it per conventions of the app. Usually we just have a "page view" be a specialized kind of Backbone view that also has a few standard methods for "show" and "hide." The app controller just calls "show" on the new one and "hide" on the currently active page, and the views add/remove themselves from the application layout's main "pages" container.
 
-From this point forward we never need to do the launch sequence again. We'll just change the route, the route handlers will rendering the appropriate page, and the page will ensure it has (or fetches) the data it needs.
+From this point forward we never need to do the launch sequence again. We'll just change the route, then the route handlers will render the appropriate page, and the page will ensure it has (or fetches) the data it needs.
