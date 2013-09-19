@@ -104,11 +104,11 @@ You can find the app on my github account: [https://github.com/HenrikJoreteg/hum
 
 Inside the example above, in the `render` method, you'll notice that we pass: `this.$('#mainNav')[0]` as the `el` argument for the subview. You may wonder, why not just pass `$('#mainNav')[0]` or even just `document.getElementById('mainNav')`?
 
-Well, you can't assume that the view is attached to the main DOM tree when this method is called. If you haven't yet attached it, the other selector queries wouldn't be able to find the element because it isn't there in the main DOM tree yet. In fact, often a parent view will call `render()` on a subview as part of its own render method and then attach the result to the DOM. This is actually entirely intentional because it's much faster for the browser to create the DOM elements before they're not yet painted on the screen and then just attaching them and painting it once.
+Well, it's because you can't assume that the view is attached to the main DOM tree when this method is called. If you haven't yet attached it, the other selector queries wouldn't be able to find the right elements because they're not in the main document tree yet. In fact, often a parent view will call `render()` on a subview as part of its own render method and then attach the result to the DOM. This is entirely intentional because it's much faster for the browser to create the DOM elements outside of the main DOM tree and then attaching and painting them once.
 
-So, another clever thing that Backbone Views do for us is create a method named `$` for each view. This method simply uses jQuery but passes it the *view's base element* as the DOM tree to search within. This means faster lookups (because there's less DOM to traverse) but more importantly, it will find the element that matches your selector within the view's element even if it's not yet been attached to the DOM.
+So, to deal with this problem Backbone Views create a method named `$` for each view. This method is functionally equivalent to a normal jQuery selector such as `$('.item')`. *But*, it only looks for matches within the view's element. Not only is it faster (becuse there's less DOM to traverse) but more importantly, it will find the elements that match your selector within the view's element *even if it's not yet been attached to the DOM*.
 
-If that was all a bit too complex, just know that you should generally use `this.$('.yourSelector')` instead of `$('.yourSelector')` when you're writing a view.
+If that was all a bit too complex, just know that you should generally use `this.$('.yourSelector')` instead of `$('.yourSelector')` when trying to grab elements within a view.
 
 
 ### Registering DOM event handlers

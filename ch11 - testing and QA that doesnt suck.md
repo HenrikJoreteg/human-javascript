@@ -9,15 +9,15 @@ Also, there are things that are just a bit hard to test. For example if you supp
 
 Then there's the "problem" of CSS changes. The DOM can be in perfect order but if the styles are off things can look quite broken.
 
-People have built really elaborate systems the run browser and take screenshots and does image comparisons to check if the number of pixels that have changed are above a certain threshold, etc. But that's not the type of effort and resources that are typically available to us when we're building an app like this.
+Some people build really elaborate QA systems that load their app into a headless browser and takes screenshots that are compared against reference images, etc. But the's amount of effort and setup required for that is simply not practical in most cases.
 
-There are tools like Selenium that will script a browser for you, but it's a whole lot of work and setup and then everytime you want to change something, if your tests are too specific they'll need to be constantly updated, if they're too general they'll miss stuff.
+There are also tools like Selenium that will script a browser for you, but it's a whole lot of work and setup and then every time you want to change something, if your tests are too specific they'll need to be constantly updated, and if they're too general they'll miss stuff.
 
-Headless browser testing is a really cool idea (phantom.js, etc), but doesn't really help you know how your app works in other browsers.
+While headless browser testing is a really cool idea (phantom.js, etc), it doesn't really help you know how your app works in other browsers.
 
-Ultimately, I don't believe you can do proper testing of an interface without a human. 
+Ultimately, I don't believe you can actually do proper testing of an interface without a human. 
 
-So, there must be a balance that can be struck. Between human approval and oversight and taking advantage of the things computers are good at like process, consistency, and automation.script.
+So, there must be a balance that can be struck. Between human approval and oversight and taking advantage of the things computers are good at like process, consistency, and automation.
 
 
 ## Meet the SpaceMonkey
