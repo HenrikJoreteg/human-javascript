@@ -1,14 +1,14 @@
 # Client routing (if there is such a thing)
 
-One thing you sometimes lose with browser app is proper handling of the browser's "back" button and the ability to "deep link" into some specific view of the app.
+One thing you sometimes lose with a browser app is the proper handling of the browser's "back" button and the ability to "deep link" into some specific view of the app.
 
-The good news is we don't actually have to make those tradeoffs. Through the clever use of Backbone's router and HTML5 push state browser apps can take over the world. Here's how it works...
+The good news is we don't actually have to make those tradeoffs. Through the clever use of Backbone's router and HTML5 push state, browser apps can take over the world. Here's how it works...
 
 
 
 ## Same sh*t different URL
 
-From the server perspecive, how do we actually "hand control of routing to the client". Ugh... that's not how the web works, right? The server has to answer actual http GET request when a user types your app's URL in their browser.
+From the server perspective, how do we actually "hand control of routing to the client"? Ugh... that's not how the web works, right? The server has to answer actual http GET request when a user types your app's URL in their browser.
 
 So what I mean is simply that you return the same app HTML at multiple URLs.
 
@@ -28,9 +28,9 @@ Either way, the server will return this HTML:
 ```
 
 
-It may be helpful to thinking about it as a block of URLs that all just serve the app.
+It may be helpful to think about it as a block of URLs that all just serve the app.
 
-If you're using express and node it's quite easy to do.
+If you're using Express and node it's quite easy to do.
 
 ```javascript
 app.get('/other/thing', function () {
@@ -51,7 +51,7 @@ At this point finding/fetching the right data and rendering the right view is up
 
 ## How to deal with clientside routes
 
-And Bang has a task detail page for every task at a URL stucture that looks like this:
+And Bang has a task detail page for every task at a URL structure that looks like this:
 
 https://andbang.com/andyet/tasks/47
 
@@ -59,4 +59,4 @@ So, if a user types that URL in their browser the user will see a detail view of
 
 Backbone's router is really handy for handling all of that stuff. 
 
-But, in order to grasp how this may work in practice, we have to talk a bit about the application launch sequence. 
+But, in order to grasp how this works in practice, we have to talk a bit about the application launch sequence. 

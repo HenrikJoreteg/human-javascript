@@ -3,11 +3,11 @@
 
 ## Function bindings
 
-The most common thing I see when teaching people javascript even people who have been working with jQuery for a long time is understanding how function execution works in javascript. 
+The most common thing I see when teaching people javascript, even people who have been working with jQuery for a long time, is understanding how function execution works in javascript. 
 
 There are 4 ways to call a function in javascript:
 
-as a standalone function:
+as a stand-alone function:
 
 ```javascript
 var myFunction = function () {
@@ -17,7 +17,7 @@ var myFunction = function () {
 myFunction(); // will log out window (or global in node)
 ```
 
-as a propery of an object:
+as a property of an object:
 
 ```javascript
 var obj = {};
@@ -31,18 +31,18 @@ obj.myFunction(); // will log out the 'obj' object
 
 var myFunc = obj.myFunction;
 
-myFunc(); // what will this log out as it's 'this'?
+myFunc(); // what will this log out as its 'this'?
 
 // the answer is that again, the "window" object is 'this'.
 ```
 
 So the question is why?
 
-In JS "this" isn't magic. It's just an object. It's whatever you tell it to be when you're calling the function. It's simply the context object for that function execution.
+In javascript "this" isn't magic. It's just an object. It's whatever you tell it to be when you're calling the function. It's simply the context object for that function execution.
 
-So in the case of the second example where we just do `myFunc();` we're not giving it anything to use as a context so it uses the global objecxt "window" because a function body will always have a "this" inside that represents the context of execution.
+So in the case of the second example where we just do `myFunc();` we're not giving it anything to use as a context, so it uses the global object "window" because a function body will always have a "this" inside that represents the context of execution.
 
-These are not problems JS developers are used thinking about when building apps with jQuery. jQuery nearly always hands you the current element as the 'this' for event handlers, etc. But... as soon as we start doing backbone it trips people up a lot. The following is an example of what I see pretty much every person new to backbone do:
+These are not problems JS developers are used to thinking about when building apps with jQuery. jQuery nearly always hands you the current element as the 'this' for event handlers, etc. But...as soon as we start doing Backbone it trips people up a lot. The following is an example of what I see pretty much every person new to Backbone do:
 
 ```javascript
 var Backbone = require('backbone'),
@@ -61,7 +61,7 @@ module.exports = Backbone.View.extend({
 });
 ```
 
-The problem is that inside the render function, "this" won't be the backbone view if it's triggered by a change in the model. You may say that "well we're specifying it as a property of something". In some ways, yes, you wrote `this.render` but you're actually just referencing the resulting function and giving the specific function, without context to the event registry.
+The problem is that inside the render function, "this" won't be the Backbone view if it's triggered by a change in the model. You may say, "Well we're specifying it as a property of something." In some ways, yes, you wrote `this.render` but you're actually just referencing the resulting function and giving the specific function, without context to the event registry.
 
 In fact, what you're doing is no different than this:
 
@@ -79,7 +79,7 @@ So, here's what you do. You can bind a function to a context before it's run lik
 
 ```javascript
 // THIS will work as expected
-// backbone's event system takes a third argument for the
+// Backbone's event system takes a third argument for the
 // context to execute the function with.
 this.model.on('change', this.render, this);
 ```
@@ -95,7 +95,7 @@ var someOtherContext = {
   name: 'blah'
 };
 
-// both of these will log out the 'someOtherContext' objec
+// both of these will log out the 'someOtherContext' object
 myFunction.apply(someOtherContext); 
 myFunction.call(someOtherContext);
 
@@ -110,14 +110,14 @@ myFunction(_.bind(myFunction, someOtherContext));
 myFunction(); // for the same result
 ```
 
-That's function binding in a nutshell. It's really just info about how the language works. But it's such a common issue with people who are new to backbone or less familary with javascript as a langauge that I figured it was worth explaining.
+That's function binding in a nutshell. It's really just info about how the language works. But it's such a common issue with people who are new to Backbone, or less familiar with javascript as a language that I figured it was worth explaining.
 
 
-## Gotchas regarding DOM manipuation in views (they may still be detached)
+## Gotchas regarding DOM manipulation in views (they may still be detached)
 
 Another common issue is understanding what `this.$()` does in views. 
 
-If you've got a div in your template that looks like this: `<div id="myDiv"/>` and we do this in the redner function you'll have a problem:
+If you've got a div in your template that looks like this: `<div id="myDiv"/>` and we do this in the render function you'll have a problem:
 
 ```javascript
 var Backbone = require('backbone');
@@ -135,9 +135,9 @@ module.exports = Backbone.View.extend({
 });
 ```
 
-What may people don't know is that you can pass a second argument to the jQuery function `$(selector)` that is theDOM tree to look within. So if you did `$('#myDiv', this.el)` in the example above, it'd always work. 
+What many people don't know is that you can pass a second argument to the jQuery function `$(selector)` that is the DOM tree to look within. So if you did `$('#myDiv', this.el)` in the example above, it would always work. 
 
-So Backbone tries to make things easy for us, so rather than having to do that. Just always use `this.$()` instead of just `$()` within views. That's just a helper for passing the view's base element to the jquery function. So, it's functionally equivalent to passing `this.el` as the second argument. 
+Backbone tries to make things easy for us, rather than having to do that. Remember to always use `this.$()` instead of just `$()` within views. That's just a helper for passing the view's base element to the jQuery function. It's functionally equivalent to passing `this.el` as the second argument. 
 
 
 ## Rendering collections options/tradeoffs
@@ -145,10 +145,10 @@ So Backbone tries to make things easy for us, so rather than having to do that. 
 TODO
 
 
-## Failed ajax requests
+## Failed Ajax requests
 
-Inevitably with single page apps you have to deal with issues of bad connectivity or issues of stale data and/or expired sessions.
+Inevitably with single page apps you have to deal with issues of bad connectivity, or issues of stale data and/or expired sessions.
 
 If we're using restful JSON APIs we'll be making requests throughout the applications lifecycle.
 
-As a starting point, I've stubbed out a global error handler for ajax requests. jQuery makes it fairly simple: http://api.jquery.com/ajaxError. So we register and add a handler here: https://github.com/caagency/caa-template-jqmapp2/blob/development/clientapp/app/views/main.js that just pops up a dialog. This could be modified to make a distinction between session expiration errors and bad connectivity errors. 
+As a starting point, I've stubbed out a global error handler for Ajax requests. jQuery makes it fairly simple: http://api.jquery.com/ajaxError. So we register and add a handler here: https://github.com/caagency/caa-template-jqmapp2/blob/development/clientapp/app/views/main.js that just pops up a dialog. This could be modified to make a distinction between session expiration errors and bad connectivity errors. 

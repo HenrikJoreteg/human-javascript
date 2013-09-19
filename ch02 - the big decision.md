@@ -4,7 +4,7 @@ As someone who writes lots of javascript, you might think I'd advocate that ever
 
 Make things as simple as you possibly can. Programming is complex, expensive, and time consuming. Pragmatism is the only way to finish anything.
 
-For many types of applications, building a singe-page app is harder and gives you no additional value. I do think there will be a day when that's no longer the case. But we're not there yet.
+For many types of applications, building a single-page app is harder and gives you no additional value. I do think there will be a day when that's no longer the case. But we're not there yet.
 
 So, instead, think about how you want your app to be used. Is it something that a user is going to load once and leave sitting on their desktop all day? Or is it something that's quickly referenced and then closed?
 
@@ -38,12 +38,12 @@ Am I crazy? Probably.
 
 *But*, if we've decided that we want our server to be able to focus on data we might as well transfer as much of the rendering and presentation of client, to the client. 
 
-Ok, I'll admit it, some of this extreme minimalism because of the aesthetic of it. But, it also makes it abundantly clear that it's the client's responsibility to render the application and manage everything within it, including things like the page title and life-cycle of all the document elements.
+Ok, I'll admit it, some of this extreme minimalism is due to the aesthetic of it. But, it also makes it abundantly clear that it's the client's responsibility to render the application and manage everything within it, including things like the page title and life-cycle of all the document elements.
 
 Some devs advocate partial rendering on the server for faster load times, etc. To me, once we recognize we're building a "thick" client, we might as well render it all there. Otherwise, if part of our page state is rendered on the server, somehow we have to re-translate the HTML into state information. Again, I prefer an explicit separation of concerns.
 
-I can hear the screams now, "What about load times and performance?!?!" I'd rather optimize how my application runs once it's loaded, than shave miliseconds off the time required to download the initial app. Also, let's keep in mind that the shiny, retina-ready logo or the the background texture images you used likely take up as much bandwidth as your entire application. Anyway, if your app is contained in a single file (more on that later) it's fairly simple to minify, version, and tell the browser to cache it permanently so your app only downloads it once per revision.
+I can hear the screams now, "What about load times and performance?!?!" I'd rather optimize how my application runs once it's loaded, than shave milliseconds off the time required to download the initial app. Also, let's keep in mind that the shiny, retina-ready logo or the the background texture images you used is likely to take up as much bandwidth as your entire application. Anyway, if your app is contained in a single file (more on that later) it's fairly simple to minify, version, and tell the browser to cache it permanently so your app only downloads it once per revision.
 
-Also, if you're pragmatic about this, then you recognize that at some point you're probably going to render some kind of signup or login form. If you're sneaky, you could use the inevitable time the user is going to spend on that page the first time to download the app so that when users are logged in they'll already hit it with a primed cache, even on the first load!
+Also, if you're pragmatic about this, then you'll recognize that at some point you're probably going to render some kind of signup or login form. If you're sneaky, you could use the inevitable time the user is going to spend on that page the first time to download the app so that when users are logged in they'll already hit it with a primed cache, even on the first load!
 
 I'll cover some more tools and approaches for this in Chapter 4 when discussing code organization.

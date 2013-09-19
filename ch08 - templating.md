@@ -4,9 +4,9 @@ These days, more and more HTML is rendered on the client instead of sent pre-ren
 
 ## How we used to do it
 
-First, a bit of history. When I first wrote [ICanHaz.js](http://icanhazjs.com) I was just trying to ease a pain point I was having: generating a bunch of HTML in a browser is a pain.
+First, a bit of history. When I first wrote [ICanHaz.js](http://icanhazjs.com) I was just trying to ease a pain point I was having...generating a bunch of HTML in a browser is a pain.
 
-Why is it a pain? Primarily because JS doesn't cleanly support multi-line strings, but also because there isn't an awesome string interpolation system built into JS.
+Why is it a pain? Primarily because javascript doesn't cleanly support multi-line strings, but also because there isn't an awesome string interpolation system built into JS.
 
 To work around that, ICanHaz.js, as lots of other template clientside template systems do, uses a hack to make it easier to send arbitrary strings to the browser. As it turns out, browsers ignore content in `<script>` tags if you give them a `type` attribute that isn't `text/javascript`. So, ICanHaz reads the content of tags on the page that say: `<script type="text/html">` which can contain templates, or any other multi-line strings for that matter. So, ICanHaz will read those templates and using [Jan Lehnardt](http://twitter.com/janl)'s awesome [Mustache.js](https://github.com/janl/mustache.js) it turns each of them into a function that you can call to render that string with your data mixed into it. For example:
 
@@ -48,11 +48,11 @@ Typically, smart template engines, like the newer versions of Mustache.js, do th
 
 Thinking about this leaves me asking, why don't we just send the javascript template function to the client instead of doing all the template parsing/compiling on the client?
 
-Well, frankly, because I didn't really know of a great way to do it. 
+Well, frankly, because I didn't know of a great way to do it. 
 
 I started looking around and realized that [Jade](http://jade-lang.com) (which we already use quite a bit at &yet) has support for compiling as a separate process and, in combination with a small little runtime snippet, this lets you create JS functions that only require a small runtime and not the whole template engine to render. Which is totally awesome!
 
-So, to make it easier to work with, I wrote a little tool: [templatizer](http://github.com/henrikjoreteg/templatizer) that you can run on the server-side (using node.js) to take a folder full of jade templates and turn them into a javascript module that you can include in your app that contains a function for each template file. Each template function simply takes a context object and returns a string with those values inserted.
+So, to make it easier to work with, I wrote a little tool: [Templatizer](http://github.com/henrikjoreteg/templatizer) that you can run on the server-side (using node.js) to take a folder full of Jade templates and turn them into a javascript module that you can include in your app and contains a function for each template file. Each template function simply takes a context object and returns a string with those values inserted.
 
 ## The end result
 

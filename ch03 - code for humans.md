@@ -17,7 +17,7 @@ Well, let me give you a silly example:
 var myArray = ['hello', 'something', 'awesome']; 
 
 if (~myArray.indexOf('hello')) {
-  // under what cirucumstances does this get called?
+  // under what circumstances does this get called?
 }
 ```
 
@@ -54,7 +54,7 @@ The goal should always be clarity and readability.
 
 ## Code Linting
 
-Related to readability is that code conventions and format should be consistent throughout the project. In practice, if you have multiple people involved in a project, this can be hard.
+As with readability, code conventions and format should be consistent throughout the project. In practice, if you have multiple people involved in a project, this can be hard.
 
 Semicolons, tabs, and spaces are contentious things among developers. Every developer I've ever met has opinions (usually strongly held) about code style.
 
@@ -62,7 +62,7 @@ If you're building large JS apps and not doing some form of static analysis on y
 
 What it does is install a git pre-commit hook in the project that uses JSHint to check your project for code style consistency before each commit. Once upon a time there was a tool called JSLint written by Douglas Crockford. Nowadays there's a less strict, more configurable version of the same project called [JSHint](http://www.jshint.com/). 
 
-The neat thing about the npm version of JSHint is that if you run it from the command line it will look for a configuration file (.jshintrc) and an ignore file (.jshintignore), both of which the precommit hook will create for you if they don't exist. You can use these files to configure JSHint to follow the code style rules that you've defined for the project. This means that you can now run `jshint.` at the root of your project and lint the entire thing to make sure it follows the code styles you've defined in the `.jshintrc` file. Awesome, right!?!
+The neat thing about the npm version of JSHint is that if you run it from the command line it will look for a configuration file (.jshintrc) and an ignore file (.jshintignore), both of which the precommit hook will create for you if they don't exist. You can use these files to configure JSHint to follow the code style rules that you've defined for the project. This means that you can now run `jshint .` at the root of your project and lint the entire thing to make sure it follows the code styles you've defined in the `.jshintrc` file. Awesome, right!?!
 
 Our `.jshintrc` files usually looks something like this:
 
@@ -79,6 +79,6 @@ Our `.jshintrc` files usually looks something like this:
   }
 ```
 
-The awesome thing about this approach is that you can enforce consistency, the rules for the project are contained, and actually checked into the project repo itself (in the form of the `.jshintrc` file). So, if you decide to have a different set of rules for the next project, fine. It's not a global setting; it's defined and adjusted by whomever runs the project. Optionally, you can also specify your jshint config in package.json by adding a `jshintConfig` property containing the same type of config as above.
+The awesome thing about this approach is that you can enforce consistency, the rules for the project are contained, and actually get checked into the project repo itself (in the form of the `.jshintrc` file). So, if you decide to have a different set of rules for the next project, fine. It's not a global setting; it's defined and adjusted by whomever runs the project. Optionally, you can also specify your jshint config in package.json by adding a `jshintConfig` property containing the same type of config as above.
 
-For a more in-depth discussion on style and style guides I highly recommend reading Airbnb's javascript style guide: https://github.com/airbnb/javascript. It will give you a good overview of the various common style discrepancies and the reasoning behind some of the choices. It's also a great starting point if you want to fork it and tweak it to be "the style guide" for your team.
+For a more in-depth discussion on style and style guides I highly recommend reading Airbnb's javascript style guide: https://github.com/airbnb/javascript. It will give you a good overview of the various common style discrepancies and the reasoning behind some of their choices. It's also a great starting point if you want to fork it and tweak it to be "the style guide" for your team.
