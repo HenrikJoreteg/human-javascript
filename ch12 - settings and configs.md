@@ -53,7 +53,7 @@ In combination, it gets pretty slick:
 
 Say we have a dev_config.json that looks like this, on our server.
 
-```javascripton
+```json
 {
   "myProjectSetting": "someSetting",
   "clientAppSettings": {
