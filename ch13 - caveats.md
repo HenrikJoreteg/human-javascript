@@ -140,11 +140,6 @@ What many people don't know is that you can pass a second argument to the jQuery
 Backbone tries to make things easy for us, rather than having to do that. Remember to always use `this.$()` instead of just `$()` within views. That's just a helper for passing the view's base element to the jQuery function. It's functionally equivalent to passing `this.el` as the second argument. 
 
 
-## Rendering collections options/tradeoffs
-
-TODO
-
-
 ## Failed Ajax requests
 
 Inevitably with single page apps you have to deal with issues of bad connectivity, or issues of stale data and/or expired sessions.
