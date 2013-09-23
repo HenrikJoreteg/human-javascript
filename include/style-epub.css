@@ -1,4 +1,18 @@
 /* This defines styles and classes used in the book */
+@font-face {
+  font-family: LiberationSans;
+  font-style: normal;
+  font-weight: normal;
+  src:url("LiberationSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: Fanwood;
+  font-style: normal;
+  font-weight: normal;
+  src:url("fanwood_text_italic-webfont.ttf");
+}
+
 body { margin: 5%; text-align: justify; font-size: medium; }
 code { font-family: monospace; }
 h1 { text-align: left; }
@@ -13,4 +27,9 @@ h3.date { }
 ol.toc { padding: 0; margin-left: 1em; }
 ol.toc li { list-style-type: none; margin: 0; padding: 0; }
 
-
+body { 
+  font-family: LiberationSans;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: Fanwood;
+}
