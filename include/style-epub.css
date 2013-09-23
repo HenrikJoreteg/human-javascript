@@ -5,6 +5,26 @@
   font-weight: normal;
   src:url("LiberationSans-Regular.ttf");
 }
+@font-face {
+  font-family: LiberationSans;
+  font-style: italic;
+  font-weight: normal;
+  src:url("LiberationSans-Italic.ttf");
+}
+
+@font-face {
+  font-family: LiberationSans;
+  font-style: normal;
+  font-weight: bold;
+  src:url("LiberationSans-Bold.ttf");
+}
+
+@font-face {
+  font-family: LiberationSans;
+  font-style: italic;
+  font-weight: bold;
+  src:url("LiberationSans-BoldItalic.ttf");
+}
 
 @font-face {
   font-family: Fanwood;
@@ -20,19 +40,17 @@
   src:url("fanwood_text_italic-webfont.ttf");
 }
 
-body { margin: 5%; text-align: justify; font-size: medium; }
+body {
+  margin: 5%; text-align: justify; font-size: medium;
+  
+}
 code { font-family: monospace; }
-h1 { text-align: left; }
-h2 { text-align: left; }
-h3 { text-align: left; }
-h4 { text-align: left; }
-h5 { text-align: left; }
-h6 { text-align: left; }
+h1 { text-align: left; font-size: x-large; }
+h2 { text-align: left; font-size: large; }
+h3, h4, h5, h6 { text-align: left; font-size: medium; }
 h1.title { }
 h2.author { }
 h3.date { }
-ol.toc { padding: 0; margin-left: 1em; }
-ol.toc li { list-style-type: none; margin: 0; padding: 0; }
 
 body { 
   font-family: LiberationSans;
@@ -41,9 +59,51 @@ h1, h2, h3, h4, h5, h6 {
   font-family: Fanwood;
 }
 
+
+ol.toc { padding: 0; margin-left: 1em; }
+ol.toc li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, a {
+  color: #126D8F;
+  text-decoration: none;
+}
+ol.toc li a {
+  text-decoration: none!important;
+  color: #126D8F;
+}
+
 ol.toc { font-family: Fanwood; }
-ol.toc li { font-size: 16px;}
-ol.toc li ol li { 
-  margin-left: 1em;
-  font-size: 14px;
+
+ol.toc li {
+  font-size: medium;
+}
+
+ol.toc li ol { 
+  margin-left: 0.75em;
+  font-size: small;
+}
+
+ol.toc li ol li a {
+  font-style: italic;
+  color: black;
+}
+
+
+pre.sourceCode {
+  font-family: 'Anonymous Pro', monospace;
+  font-size: small;
+  background: #F5F5F5;
+  padding: 10pt;
+  overflow: wrap;
+  white-space: pre-wrap;
+}
+
+
+h1 code, h2 code, h3 code, h4 code, h5 code, h6 code, p code, li code {
+  font-size: 80%!important;
+  font-weight: normal!important;
 }

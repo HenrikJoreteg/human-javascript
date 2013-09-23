@@ -1,50 +1,12 @@
-/* Colors:
- * Navy #126D8F;
- */
-
-/* HEADINGS */
-h1, h2, h3, h4, h5, h6 {
+h1 { 
+  padding-top: 5em;
+  padding-bottom: 2em;
+  text-align: center;
 }
 
-h1, h2 { color: #126D8F!important; }
-h3, h4, h5, h6 { color: #126D8F!important; }
-
-h1 { font-size: 16pt; }
-h2 { font-size: 14pt; }
-h3 { font-size: 12pt; }
-h4, h5, h6 { font-size: 11pt; }
-
-h1 { margin-top: 1.5em; /* Will be on a new page */ }
-h2, h3, h4, h5, h6 { margin-top: 1.5em; }
-
-/* General Styling */
-body, li, p {
-  color: #333333;
-  font-weight: normal;
+h2 {
+  padding-top: 1em;
 }
-
-h2 + p {
-}
-
-p, a { font-size: 11pt; }
-li { font-size: 10pt; }
-
-a {
-  color: #126D8F;
-  text-decoration: none;
-}
-
-/* CODE BLOCKS */
-h1 code, h2 code, h3 code, h4 code, h5 code, h6 code, p code, li code {
-  font-size: 80%!important;
-  font-weight: normal!important;
-}
-
-pre.sourceCode {
-  font-family: 'Anonymous Pro', monospace;
-  font-size: 10pt;
-  background: #F5F5F5;
-  padding: 10pt;
-  overflow: wrap;
-  white-space: pre-wrap;
+h3 {
+  padding-top: 1.5em;
 }
