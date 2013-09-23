@@ -4,6 +4,10 @@
   text-align: center;
 }
 
+* {
+  color: red!important;
+}
+
 h2 {
   padding-top: 1em;
 }
