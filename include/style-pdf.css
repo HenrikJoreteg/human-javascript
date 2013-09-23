@@ -6,8 +6,8 @@
 h1, h2, h3, h4, h5, h6 {
 }
 
-h1, h2 { color: #126D8F; }
-h3, h4, h5, h6 { color: #333333; }
+h1, h2 { color: #126D8F!important; }
+h3, h4, h5, h6 { color: #126D8F!important; }
 
 h1 { font-size: 16pt; }
 h2 { font-size: 14pt; }
