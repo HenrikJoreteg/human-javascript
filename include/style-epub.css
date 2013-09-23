@@ -5,6 +5,7 @@
   font-weight: normal;
   src:url("LiberationSans-Regular.ttf");
 }
+
 @font-face {
   font-family: LiberationSans;
   font-style: italic;
@@ -37,17 +38,51 @@
   font-family: Fanwood;
   font-style: italic;
   font-weight: normal;
-  src:url("fanwood_text_italic-webfont.ttf");
+  src:url("fanwood_italic-webfont.ttf");
+}
+
+@font-face {
+  font-family: Fanwood;
+  font-style: italic;
+  font-weight: bold;
+  src:url("fanwood_italic-webfont.ttf");
 }
 
 body {
-  margin: 5%; text-align: justify; font-size: medium;
-  
+  font-size: 14pt;
 }
+h1 {
+  font-size: 24pt;
+}
+h2 {
+  font-size: 20pt;
+}
+
+ol.toc li {
+  font-size: 13pt;
+}
+
+ol.toc li ol { 
+  font-size: 12pt;
+}
+
+pre.sourceCode {
+  font-size: 10pt;
+}
+
+p, ol, ul {
+  line-height: 1.4;
+  font-size: 13pt;
+}
+
+body {
+  margin: 5%; text-align: justify;
+}
+
 code { font-family: monospace; }
-h1 { text-align: left; font-size: x-large; }
-h2 { text-align: left; font-size: large; }
-h3, h4, h5, h6 { text-align: left; font-size: medium; }
+h1 { text-align: left; }
+h2 { text-align: left; }
+h3, h4, h5, h6 { text-align: left; }
 h1.title { }
 h2.author { }
 h3.date { }
@@ -74,17 +109,16 @@ h1, h2, h3, a {
 ol.toc li a {
   text-decoration: none!important;
   color: #126D8F;
+  font-style: normal;
 }
 
 ol.toc { font-family: Fanwood; }
 
 ol.toc li {
-  font-size: medium;
 }
 
 ol.toc li ol { 
   margin-left: 0.75em;
-  font-size: small;
 }
 
 ol.toc li ol li a {
@@ -95,7 +129,6 @@ ol.toc li ol li a {
 
 pre.sourceCode {
   font-family: 'Anonymous Pro', monospace;
-  font-size: small;
   background: #F5F5F5;
   padding: 10pt;
   overflow: wrap;
@@ -104,6 +137,6 @@ pre.sourceCode {
 
 
 h1 code, h2 code, h3 code, h4 code, h5 code, h6 code, p code, li code {
-  font-size: 80%!important;
+  font-size: 90%!important;
   font-weight: normal!important;
 }
