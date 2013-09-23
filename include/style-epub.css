@@ -10,6 +10,13 @@
   font-family: Fanwood;
   font-style: normal;
   font-weight: normal;
+  src:url("fanwood_text-webfont.ttf");
+}
+
+@font-face {
+  font-family: Fanwood;
+  font-style: italic;
+  font-weight: normal;
   src:url("fanwood_text_italic-webfont.ttf");
 }
 
@@ -32,4 +39,11 @@ body {
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: Fanwood;
+}
+
+ol.toc { font-family: Fanwood; }
+ol.toc li { font-size: 16px;}
+ol.toc li ol li { 
+  margin-left: 1em;
+  font-size: 14px;
 }
