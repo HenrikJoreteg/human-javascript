@@ -4,7 +4,6 @@
 
 /* HEADINGS */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Kaushan Script', serif;
 }
 
 h1 { color: #126D8F; }
@@ -20,7 +19,6 @@ h2, h3, h4, h5, h6 { margin-top: 1.5em; }
 
 /* General Styling */
 body, li, p {
-  font-family: 'Source Sans Pro', sans-serif;
   color: #333333;
   font-weight: normal;
 }
