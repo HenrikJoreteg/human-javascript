@@ -1,0 +1,23 @@
+{
+  "outputFilename" : "HumanJavascript",
+  "title" : "Human JavaScript",
+  "chapters" : "ch*.md",
+  "metadata" : "./include/metadata.xml",
+  "coverImage" : "./include/cover-image.png",
+  "stylesheets" : {
+    "epub" : "./include/style-epub.css",
+    "pdf" : "./include/style-pdf.css"
+  },
+  "pdfStyleOptions" : [
+    "--embed-all-fonts",
+    "--output-profile tablet",
+    "--margin-top 80",
+    "--margin-bottom 80",
+    "--margin-left 65",
+    "--margin-right 65",
+    "--smarten-punctuation",
+    "--pdf-header-template \"<div style='font-size: xx-small; color: #999; margin-top: 15pt;'>_SECTION_</div>\"",
+    "--pdf-footer-template \"<div style='font-size: xx-small; color: #999; margin-bottom: 15pt; text-align: right;'>_PAGENUM_</div>\"",
+    "--pdf-page-numbers"
+  ]
+}

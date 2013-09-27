@@ -83,3 +83,4 @@ BUILDS: https://www.dropbox.com/sh/jn2ktxswruhcovk/FmXLx2WjP7
 - Function bindings
 - Rendering detatched DOM elements
 - failed ajax requests
+
