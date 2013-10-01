@@ -2,7 +2,7 @@
 
 Code is as much about people as it is about computers. Sure, it's run by computers, but it's written by, maintained by, and ultimately created for people. People are not computers. We are not robots. We are unpredictable, flawed, and irrational. The same people with the same tools and instructions won't produce the same output each time. We generally don't like being alone and we don't work well in isolation. In fact, in order to do our best work we *need* to work with other people. None of these traits are bad things, quite the opposite. They're what makes us who we are, they make us, well... human. Yet, as developers it's easy for us to get so focused on optimizing for technology that we forget to optimize for people.
 
-You can read about javascript, the language, elsewhere. Its good parts, bad parts, and ugly parts are well documented. This is a book about a specific set of tools, patterns, and approches that we feel are optimized for people. These approaches enable our team to quickly build and deliver high-quality javascript applications for humans.
+You can read about JavaScript, the language, elsewhere. Its good parts, bad parts, and ugly parts are well documented. This is a book about a specific set of tools, patterns, and approches that we feel are optimized for people. These approaches enable our team to quickly build and deliver high-quality JavaScript applications for humans.
 
 &yet, the team that I'm humbled to be a part of, is a small (~20 person) bootstrapped consulting and product company focused heavily on realtime single page web applications. We've had the opportunity to build a very broad range of single page applications for all kinds of purposes and audiences. We've built stuff for mobile, desktop, browser extensions, phonegap, televisions, you name it. From these experiences patterns start to emerge. Patterns that enable us to efficiently ship real-life applications (with real-life deadlines) as a team.
 
@@ -28,8 +28,8 @@ The types of apps we're talking about building in this book could really be call
 To clarify further:
 
 1. They are separate from the API.
-2. They don't work *at all* if someone has javascript turned off.
-3. A modern browser with a modern javascript engine is a minimum system requirement.
+2. They don't work *at all* if someone has JavaScript turned off.
+3. A modern browser with a modern JavaScript engine is a minimum system requirement.
 4. We send the application code itself to the browser, not the result of running the application code.
 5. The app is rendered entirely on the client. We only send the bare minimum HTML we need to tell the browser to run our app. Usually just a doctype, a script tag and a stylesheet.
 6. After loading, the client fetches its own data, as data (typically JSON), not as rendered HTML.
@@ -86,7 +86,7 @@ Unfortunately because of those pre-conceptions, many of the people who are being
 
 But, jQuery is not an application framework. It's an abstraction layer and toolkit for working with the DOM. I'm not dogging on jQuery at all, in fact, I think it's a great toolkit for DOM manipuation. I use it and am quite happy with it in many HTML5 apps. My point is simply that jQuery is a DOM toolkit, not an application framework. 
 
-But, inevitably a "frontend" person is asked to build an immersive, complex client app and soon they end up with a 3500 line javascript file called "app.js" that does *everything.* Also, now no one else knows how any of it works, or how it's structured. No one wins. 
+But, inevitably a "frontend" person is asked to build an immersive, complex client app and soon they end up with a 3500 line JavaScript file called "app.js" that does *everything.* Also, now no one else knows how any of it works, or how it's structured. No one wins. 
 
 To avoid those situations we have to approach it as an engineering task of building a performant, well-structured UI.
 
@@ -97,20 +97,20 @@ There are more and more tools out there now to build client apps. Angular, Ember
 
 People in charge of development teams seem to agonize over the decision.
 
-They see these options as long term decisions with huge, long term ramifications and they don't want to pick the wrong one. The awesome thing is this... they're all javascript. So it's not really *that* grave of a decision and switching to something else isn't going to burn your whole business to the ground. The most important thing is that your team becomes familiar with building well-structured apps in javascript. That investment will be well worth it and will translate to new tools, if they come along. 
+They see these options as long term decisions with huge, long term ramifications and they don't want to pick the wrong one. The awesome thing is this... they're all JavaScript. So it's not really *that* grave of a decision and switching to something else isn't going to burn your whole business to the ground. The most important thing is that your team becomes familiar with building well-structured apps in JavaScript. That investment will be well worth it and will translate to new tools, if they come along. 
 
 Decisions are time consuming and expensive. At &yet we've built and re-built applications with all kinds of different tools and approaches. The following pages contain the conclusions we've reached. They were picked with the following criteria:
 
-1. Tools that are "just javascript." Not tools where you describe your app in a DSL (no Sencha).
-2. Tools where you build the app by writing code in javascript files, not by declaring bindings in your HTML (no Angular, sorry).
+1. Tools that are "just JavaScript." Not tools where you describe your app in a DSL (no Sencha).
+2. Tools where you build the app by writing code in JavaScript files, not by declaring bindings in your HTML (no Angular, sorry).
 3. No monolithic, do-everything widget frameworks (not Sproutcore).
 4. Model state is completely decoupled from view state (no Knockout.js).
-5. You should not have to be a javascript rockstar to edit templates.
+5. You should not have to be a JavaScript rockstar to edit templates.
 6. The DOM is a simply a view of the state and reacts to changes in the model layer.
 7. Simple, decoupled file structures with lots of components that solve one problem.
 8. As little magic as possible (no Ember).
-9. People who know javascript, should be able to work on the app without lots of knowledge about a specific tool or framework.
-10. People who learn how the app works, should accidentally learn how javascript works in the process.
+9. People who know JavaScript, should be able to work on the app without lots of knowledge about a specific tool or framework.
+10. People who learn how the app works, should accidentally learn how JavaScript works in the process.
 11. It should play nicely in a team environment using version control (no giant files).
 12. Every piece of functionality should have an obvious "home." Structure, structure, structure.
 13. The project should have a set of code style standards that are enforceable by an automated process.

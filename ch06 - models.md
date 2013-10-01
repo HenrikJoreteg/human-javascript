@@ -363,7 +363,7 @@ However, I happen to think that in the case of models getters/settings can actua
 
 #### 4. Type enforcement
 
-Javascript, the language is dynamically typed, which is awesome. But we've said we're making our models the *core* of the app. Knowing that a given property is a given type is quite useful for eliminating silly bugs and protecting ourselves. 
+JavaScript, the language is dynamically typed, which is awesome. But we've said we're making our models the *core* of the app. Knowing that a given property is a given type is quite useful for eliminating silly bugs and protecting ourselves. 
 
 Let's compare the two with a simple user model. In Backbone there is no standard way to define a property. Instead, you simply set a value as if it exists and now it does. 
 
@@ -528,7 +528,7 @@ model.set('ids', myIds);
 // we would never get a change event from Backbone
 ```
 
-If you understand javscript you'll realize this isn't a flaw in Backbone, it's just because javascript passes objects by reference. 
+If you understand JavScript you'll realize this isn't a flaw in Backbone, it's just because JavaScript passes objects by reference. 
 
 As a result, when Backbone gets the "set" event it just compares `this.get('ids') === newIds` which will always be true, because you're comparing the same object not a copy of it.
 

@@ -3,9 +3,9 @@
 
 ## Function bindings
 
-The most common thing I see when teaching people javascript, even people who have been working with jQuery for a long time, is understanding how function execution works in javascript. 
+The most common thing I see when teaching people JavaScript, even people who have been working with jQuery for a long time, is understanding how function execution works in JavaScript. 
 
-There are 4 ways to call a function in javascript:
+There are 4 ways to call a function in JavaScript:
 
 as a stand-alone function:
 
@@ -38,7 +38,7 @@ myFunc(); // what will this log out as its 'this'?
 
 So the question is why?
 
-In javascript "this" isn't magic. It's just an object. It's whatever you tell it to be when you're calling the function. It's simply the context object for that function execution.
+In JavaScript "this" isn't magic. It's just an object. It's whatever you tell it to be when you're calling the function. It's simply the context object for that function execution.
 
 So in the case of the second example where we just do `myFunc();` we're not giving it anything to use as a context, so it uses the global object "window" because a function body will always have a "this" inside that represents the context of execution.
 
@@ -110,7 +110,7 @@ myFunction(_.bind(myFunction, someOtherContext));
 myFunction(); // for the same result
 ```
 
-That's function binding in a nutshell. It's really just info about how the language works. But it's such a common issue with people who are new to Backbone, or less familiar with javascript as a language that I figured it was worth explaining.
+That's function binding in a nutshell. It's really just info about how the language works. But it's such a common issue with people who are new to Backbone, or less familiar with JavaScript as a language that I figured it was worth explaining.
 
 
 ## Gotchas regarding DOM manipulation in views (they may still be detached)

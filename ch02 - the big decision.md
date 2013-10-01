@@ -1,6 +1,6 @@
 # Client or server? Go big or go home.
 
-As someone who writes lots of javascript, you might think I'd advocate that everything should be a single-page app. In short: No.
+As someone who writes lots of JavaScript, you might think I'd advocate that everything should be a single-page app. In short: No.
 
 Make things as simple as you possibly can. Programming is complex, expensive, and time consuming. Pragmatism is the only way to finish anything.
 
@@ -17,7 +17,7 @@ Building client-side apps is often more complicated than a server-side rendered 
 
 `<patronizing tone>` So you've heard of "separation of concerns" `</patronizing tone>`. We're taught to build tools and components that have a simple job and are self-contained. It makes code more reusable and more maintainable, and keeps developers more sane. 
 
-HOWEVER, the first thing people most commonly do when building web apps is render a bunch of HTML on the server, then send it to the client and start shuffling it around with a bunch of javascript! Just like that we've coupled server and client code because both of them now have to care about rendering and presentation.
+HOWEVER, the first thing people most commonly do when building web apps is render a bunch of HTML on the server, then send it to the client and start shuffling it around with a bunch of JavaScript! Just like that we've coupled server and client code because both of them now have to care about rendering and presentation.
 
 Pick one or the other, seriously. If you're building an "app" where a significant portion of the data will be rendered on the client, just freakin' render *all* of it on the client. Don't mess around. It's just ugly to have to send a bunch of partially rendered HTML to the client and then start mucking around with it. 
 

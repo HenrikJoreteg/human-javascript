@@ -23,7 +23,7 @@ Don't be scared of refactoring. Be scared of building an unmaintainable piece of
 
 ## Separating views and state
 
-This is the biggest lesson I've learned building lots of single page apps. Your view (the DOM) should just be blind slave to the model state of your application. For this you could use any number of tools and frameworks. I'd recommend starting with [Backbone.js](http://backbonejs.org/) (by the awesome Mr. [@jashkenas](https://twitter.com/jashkenas) as it's the easiest to understand, and the closest thing to "just javascript"™ as discussed in the introduction. 
+This is the biggest lesson I've learned building lots of single page apps. Your view (the DOM) should just be blind slave to the model state of your application. For this you could use any number of tools and frameworks. I'd recommend starting with [Backbone.js](http://backbonejs.org/) (by the awesome Mr. [@jashkenas](https://twitter.com/jashkenas) as it's the easiest to understand, and the closest thing to "just JavaScript"™ as discussed in the introduction. 
 
 Essentially, you'll populate a set of models and collections of these models in memory in the browser. These will store all the application state for your app. These models should be completely oblivious to how they're used; they merely store state and broadcast their changes. Then you will have views that listen for changes in the models and update the DOM. This core principle of separating your views and your application state is vital when building large apps.
 
@@ -34,7 +34,7 @@ One aspect of this approach that is commonly overlooked is the flexibility it pr
 
 I'm not going to get into a debate about module styles and script loaders. But I can tell you this: I haven't seen any cleaner, simpler mechanism for splitting your code into nice isolated chunks than CommonJS modules.
 
-Let's pause for just a second to discuss what modules do for us. Javascript has globals. What I mean is that if you don't put a `var` in front of any variable declaration, you've just created a global variable that's accessible from *any* other code in your app. While this *can* be used for good, but also gives you a lot of rope to hang yourself with. Without a way of managing this, as your app grows, knowing what global variables you have at what time will become nearly impossible and will likely be a big source of bugs. We also want to build our app in tiny pieces of independent code (a.k.a. modules). So, how do we make sure each module has access to what it needs? By not referencing globals and by having each module explicitly `require` other code that it needs. That's why we need a module system. Very few things will have a greater positive impact on your code structure than switching to a good module system.
+Let's pause for just a second to discuss what modules do for us. JavaScript has globals. What I mean is that if you don't put a `var` in front of any variable declaration, you've just created a global variable that's accessible from *any* other code in your app. While this *can* be used for good, but also gives you a lot of rope to hang yourself with. Without a way of managing this, as your app grows, knowing what global variables you have at what time will become nearly impossible and will likely be a big source of bugs. We also want to build our app in tiny pieces of independent code (a.k.a. modules). So, how do we make sure each module has access to what it needs? By not referencing globals and by having each module explicitly `require` other code that it needs. That's why we need a module system. Very few things will have a greater positive impact on your code structure than switching to a good module system.
 
 CommonJS is the same style/concept that is used in node.js. By following this style you get the additional benefit of being able to reuse modules written for the client on the server and vice versa (though, the overlap is usually not that big).
 
@@ -78,7 +78,7 @@ If you're used to building apps where each script in your app directory has a co
 
 As I touched on in Chapter 2, we really would like our production environment to serve a single, minified, `.js` file with a unique file name so that we can tell browsers to cache it forever. However, that's far from ideal in a development environment because we don't want to debug minified code in the browser or have to rebuild it with every change. So, in the interest of keeping the development cycle enjoyable here's what we want:
 
-1. Easy way to edit/refresh your clientside javascript files without having to restart the server or re-compile anything manually.
+1. Easy way to edit/refresh your clientside JavaScript files without having to restart the server or re-compile anything manually.
 2. Be able to easily map code in your browser to the right file and line number in the non-compiled version in your app folder.
 3. Serve unminified code in development.
 4. In production, serve a minfied, uniquely named, permanently cachable file containing your entire app.
@@ -104,7 +104,7 @@ var clientapp = new Moonboots({
   // server or do anything other than edit clientside code in your project.
   developmentMode: true,
 
-  // these are the regular javascript files (not written in commonJS style) 
+  // these are the regular JavaScript files (not written in commonJS style) 
   // that we want to include in our application. These all live in clientapp/libraries
   // and will be concatenated in the order listed.
   libraries: [
@@ -126,7 +126,7 @@ var clientapp = new Moonboots({
 
 At this point we can tell Express the routes where we want it to serve our application. This is a bit hard to wrap your head around if you're not used to single page applications that do clientside routing.
 
-Since we're sending a javascript application, rather than rendered HTML to the browser, it's going to be up to the client to read the URL, grab the appropriate data, and render the appropriate page represented by that URL. So it's up to us to configure our server to always respond with the same HTML at any URL that is considered part of our client application. We cover the concept of clientside routing in a bit more detail in Chapter 9.
+Since we're sending a JavaScript application, rather than rendered HTML to the browser, it's going to be up to the client to read the URL, grab the appropriate data, and render the appropriate page represented by that URL. So it's up to us to configure our server to always respond with the same HTML at any URL that is considered part of our client application. We cover the concept of clientside routing in a bit more detail in Chapter 9.
 
 You can do this in Express through the use of wildcard handlers, or by passing regular expressions instead of strings as the route definition. If you look at the sample application (https://github.com/HenrikJoreteg/humanjs-sample-app) you'll see the relevant line in server.js looks like this:
 
