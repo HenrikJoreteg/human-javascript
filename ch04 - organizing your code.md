@@ -23,7 +23,7 @@ Don't be scared of refactoring. Be scared of building an unmaintainable piece of
 
 ## Separating views and state
 
-This is the biggest lesson I've learned building lots of single page apps. Your view (the DOM) should just be blind slave to the model state of your application. For this you could use any number of tools and frameworks. I'd recommend starting with [Backbone](http://backbonejs.org/) (by the awesome Mr. [@jashkenas](https://twitter.com/jashkenas) as it's the easiest to understand, and the closest thing to "just JavaScript"™ as discussed in the introduction. 
+This is the biggest lesson I've learned building lots of single page apps. Your view (the DOM) should just be blind slave to the model state of your application. For this you could use any number of tools and frameworks. I'd recommend starting with [Backbone](http://backbonejs.org/) (by the awesome Mr. [@jashkenas](https://twitter.com/jashkenas)) as it's the easiest to understand, and the closest thing to "just JavaScript"™ as discussed in the introduction. 
 
 Essentially, you'll populate a set of models and collections of these models in memory in the browser. These will store all the application state for your app. These models should be completely oblivious to how they're used; they merely store state and broadcast their changes. Then you will have views that listen for changes in the models and update the DOM. This core principle of separating your views and your application state is vital when building large apps.
 
@@ -56,7 +56,7 @@ module.exports = HumanModel.define({
     position: ['number', true, 200]
   },
   init: function () {
-    // Some, something
+    // Do something
   }
 });
 ```
@@ -104,7 +104,7 @@ var clientapp = new Moonboots({
   // server or do anything other than edit clientside code in your project.
   developmentMode: true,
 
-  // These are the regular JavaScript files (not written in commonJS style) 
+  // These are the regular JavaScript files (not written in CommonJS style) 
   // that we want to include in our application. These all live in clientapp/libraries
   // and will be concatenated in the order listed.
   libraries: [
@@ -143,7 +143,7 @@ The need for the wildcard URL becomes more obvious in your application when you 
 
 Node happens to be pretty good at serving static files. So just serving the production file with Node/moonboots is probably sufficient for most apps with moderate traffic. In production mode, moonboots will build and serve the app file from memory with aggressive cache headers. 
 
-However, a lot of people like to serve static files with a separate process, using nginx or using a CDN etc. In that scenario, you can use moonboots during development and then generate the minified file, write it to disk, or put it on something like an S3 as part of your deploy process.
+However, a lot of people like to serve static files with a separate process, using nginx or using a CDN, etc. In that scenario, you can use moonboots during development and then generate the minified file, write it to disk, or put it on something like an S3 as part of your deploy process.
 
 Calling `moonboots.sourceCode(function (source) { ... })` will call your callback with the generated source code based on current config, which you could use to write it to disk or put it on a CDN as part of a grunt task or whatnot. Those details are probably beyond the scope of this book. But, the point is, you can certainly do that with these tools if that makes more sense for your app.
 

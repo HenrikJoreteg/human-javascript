@@ -174,7 +174,7 @@ Let's think about the data first, before we think about the behavior. These item
 var Backbone = require('backbone');
 var WidgetModel = require('./models/widget')
 
-// Or main export from this module (just the collection)
+// Our main export from this module (just the collection)
 module.exports = Backbone.Collection.extend({
   // Specify the model type for this collection
   model: WidgetModel,
@@ -187,7 +187,6 @@ module.exports = Backbone.Collection.extend({
 
 ```javascript
 var HumanModel = require('human-model');
-
 
 module.exports = HumanModel.define({
   // We give our model a type
@@ -214,11 +213,10 @@ At this point we can do something like this in our application launch code:
 ```javascript
 var WidgetCollection = require('models/widgets');
 
-
 // Assume this is the app's entry point
 module.exports = {
   blastoff: function () {
-    // Creating our one global that holds the app
+    // Create our one global that holds the app
     window.app = this;
 
     // Attach our widget collection here
@@ -248,7 +246,7 @@ In order to provide observability, models generally provide some sort of event r
 
 For a long time, I used Backbone models for everything. The code for them is quite simple and readable (YES!); they're also flexible and easy to use. Also, I'm generally a big fan of Backbone's general principles and structure.
 
-Yet, you'll notice the examples all use `HumanModel` but Backbone collections.
+Yet, you'll notice the examples all use `HumanModel` not Backbone collections.
 
 Despite my love for Backbone, a few things finally drove me to creating HumanModel:
 
@@ -378,7 +376,7 @@ model.set({
   lastName: 'Joreteg'
 });
 
-// Now i can get those
+// Now I can get those
 model.get('firstName'); // logs out 'Henrik'
 ```
 
@@ -446,8 +444,8 @@ module.exports = HumanModel.define({
   // Derived properties are getters constructed from
   // other information. (You cannot set a derived property, this is intentional)
   derived: {
-    // The name of the derived property
-    // in this case referencing "model.fullName"
+    // The name of the derived property.
+    // In this case referencing "model.fullName"
     // would give us the result of calling the
     // function below
     fullName: {
@@ -458,7 +456,7 @@ module.exports = HumanModel.define({
       fn: function () {
         return (this.firstName + ' ' + this.lastName).trim();
       },
-      // We can optionally cache the result, doing this
+      // We can optionally cache the result. Doing this
       // means it won't run the function to return the result
       // unless one of the dependency values has changed since 
       // the last time it was run. This feature can lead to 
@@ -528,7 +526,7 @@ model.set('ids', myIds);
 // we would never get a change event from Backbone
 ```
 
-If you understand JavScript you'll realize this isn't a flaw in Backbone, it's just because JavaScript passes objects by reference. 
+If you understand JavaScript you'll realize this isn't a flaw in Backbone, it's just because JavaScript passes objects by reference. 
 
 As a result, when Backbone gets the "set" event it just compares `this.get('ids') === newIds` which will always be true, because you're comparing the same object not a copy of it.
 

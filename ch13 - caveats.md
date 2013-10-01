@@ -146,4 +146,4 @@ Inevitably with single page apps you have to deal with issues of bad connectivit
 
 If we're using restful JSON APIs we'll be making requests throughout the applications lifecycle.
 
-As a starting point, I've stubbed out a global error handler for Ajax requests. jQuery makes it fairly simple: http://api.jquery.com/ajaxError. So we register and add a handler here: https://github.com/caagency/caa-template-jqmapp2/blob/development/clientapp/app/views/main.js that just pops up a dialog. This could be modified to make a distinction between session expiration errors and bad connectivity errors. 
+As a starting point, I've stubbed out a global error handler for Ajax requests. jQuery makes it fairly simple: [http://api.jquery.com/ajaxError](http://api.jquery.com/ajaxError). So we register and add a handler here: [https://github.com/caagency/caa-template-jqmapp2/blob/development/clientapp/app/views/main.js](https://github.com/caagency/caa-template-jqmapp2/blob/development/clientapp/app/views/main.js) that just pops up a dialog. This could be modified to make a distinction between session expiration errors and bad connectivity errors. 

@@ -29,7 +29,7 @@ But, they're *quite* basic so in addition, we'll extend Backbone views to enable
 
 ## Introducing HumanView
 
-As I mentioned Backbone views are very limited in scope – quite intentionally so. The following explanation is pulled straight from the Backbone docs:
+As I mentioned Backbone views are very limited in scope – quite intentionally so. The following explanation is pulled straight from the [Backbone docs](http://backbonejs.org/#View):
 
 > Backbone views are almost more convention than they are code — they don't determine anything about your HTML or CSS for you, and can be used with any JavaScript templating library. The general idea is to organize your interface into logical views, backed by models, each of which can be updated independently when the model changes, without having to redraw the page.
 
@@ -185,7 +185,7 @@ module.exports = HumanView.extend({
   },
   // Content bindings mean
   // put the name attribute of the
-  // model in this view. Into the
+  // model in this view into the
   // element that matches the
   // '.profileName' selector as text.
   contentBindings: {

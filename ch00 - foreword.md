@@ -4,7 +4,7 @@ The first thing I learned to do with JavaScript was swapping images. It was 1998
 
 My web hacking went along with what everybody else was doing, maybe with a delay of a year or two because I had to wait for stuff to arrive in Germany (the Internet was very slow back then). Netscape and IE 4 came out and brought new ways of dynamically manipulating and animating HTML content. DHTML was born, and I tried to figure it all out until I could swap out content with layers (layers!) and divs that worked in *both* browsers.
 
-It was cool to play with but building things that worked consistently at that time was not much fun, so I turned to the dark side and got involved with backend web development. I could let others worry about all the quirky browser differences. Thee backend is where I found my passion for databases.
+It was cool to play with but building things that worked consistently at that time was not much fun, so I turned to the dark side and got involved with backend web development. I could let others worry about all the quirky browser differences. The backend is where I found my passion for databases.
 
 But then 2005 came around and everything changed. Google unveiled Maps and the world was a different place. I distinctly remember, to this day, dragging the map inside the browser window — and I still get goosebumps thinking about it. Google Maps was the Beatles coming to America moment for the web.
 
