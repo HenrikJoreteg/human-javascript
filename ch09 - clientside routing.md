@@ -30,7 +30,7 @@ Either way, the server will return this HTML:
 
 It may be helpful to think about it as a block of URLs that all just serve the app.
 
-If you're using Express and node it's quite easy to do.
+If you're using Express and Node it's quite easy to do.
 
 ```javascript
 app.get('/other/thing', function () {

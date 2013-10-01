@@ -269,7 +269,7 @@ So often, the data you get from the server is not in the format you'll want to p
 
 #### 3. Direct access to properties
 
-In a large app, you work with models **a lot**. Having to call `get` and `set` everywhere is a bit less than ideal, IMO. EcmaScript 5 (a.k.a. the version of the JS spec available in modern browsers) allows for `getters` and `setters` which means you can actually process simple assignments. This is better illustrated with an example:
+In a large app, you work with models **a lot**. Having to call `get` and `set` everywhere is a bit less than ideal, IMO. ECMAScript 5 (a.k.a. the version of the JS spec available in modern browsers) allows for `getters` and `setters` which means you can actually process simple assignments. This is better illustrated with an example:
 
 ```javascript
 // without getters/setters (Backbone Model)

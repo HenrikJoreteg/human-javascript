@@ -4,7 +4,7 @@ Code is as much about people as it is about computers. Sure, it's run by compute
 
 You can read about JavaScript, the language, elsewhere. Its good parts, bad parts, and ugly parts are well documented. This is a book about a specific set of tools, patterns, and approches that we feel are optimized for people. These approaches enable our team to quickly build and deliver high-quality JavaScript applications for humans.
 
-&yet, the team that I'm humbled to be a part of, is a small (~20 person) bootstrapped consulting and product company focused heavily on realtime single page web applications. We've had the opportunity to build a very broad range of single page applications for all kinds of purposes and audiences. We've built stuff for mobile, desktop, browser extensions, phonegap, televisions, you name it. From these experiences patterns start to emerge. Patterns that enable us to efficiently ship real-life applications (with real-life deadlines) as a team.
+&yet, the team that I'm humbled to be a part of, is a small (~20 person) bootstrapped consulting and product company focused heavily on realtime single page web applications. We've had the opportunity to build a very broad range of single page applications for all kinds of purposes and audiences. We've built stuff for mobile, desktop, browser extensions, PhoneGap, televisions, you name it. From these experiences patterns start to emerge. Patterns that enable us to efficiently ship real-life applications (with real-life deadlines) as a team.
 
 As we've gone along, we've done our best to extract reusable tools out of them. So, in some ways we accidentally wrote this book. What I mean is that much of its contents are compiled from past blogposts, explanations to teammates and clients, and from project README files. This book is primarily an extraction, not a creation. We're sharing our experience, secrets, and tools to hopefully give you and your team a solid footing for building great apps and experiences.
 
@@ -49,7 +49,7 @@ Realtime isn't about hype and technology – it's about removing the friction of
 
 The future of the web is realtime. Of this I have no doubt. The reason I can say this with such certainty is that it's already happening under our noses.
 
-Facebook, Gmail, Gtalk, and Github just to name a few, have all implemented some form of automatic page updating. When they have something new to tell you, they don't wait for you to ask for it. They push it out to you, from the server to the client.
+Facebook, Gmail, Google Talk, and GitHub just to name a few, have all implemented some form of automatic page updating. When they have something new to tell you, they don't wait for you to ask for it. They push it out to you, from the server to the client.
 
 In some cases this is as simple as the page automatically polling to see if there's something new. In other cases it's more advanced, where all the data used to build and update the page is coming over an open WebSocket connection. For our purposes, the transport mechanism is largely irrelevant; the point is, data comes to you.
 
@@ -67,9 +67,9 @@ Anytime you duplicate state, you increase complexity. Rather than worrying about
 
 If we step back a bit and look at what we're actually doing when we do this, we start to realize that we're actually building is a distributed system and we'll have all the same challenges that come with building distributed systems.
 
-I know what you're probably thinking. Some framework is going to come along that solves this problem for me. You may be right, there are many different approaches to dealing with the problems of duplicated state. There are several emerging frameworks, such as Meteor and Derby.js, that aim to simplify the process of building apps that work this way. 
+I know what you're probably thinking. Some framework is going to come along that solves this problem for me. You may be right, there are many different approaches to dealing with the problems of duplicated state. There are several emerging frameworks, such as Meteor and Derby, that aim to simplify the process of building apps that work this way. 
 
-The challenge with some of those frameworks, from where I sit, is that there's a lot of emphasis on trying to share code and logic between the client and the server. In my opinion, client and server really should be performing fundamentally different roles. Servers are for data, clients are for presentation. To me, this is about the basic principle of separation of concerns. A contrast to this is what my friend Owen Barnes was working on with SocketStream. It's funny to see how we both ended up reaching very similar conclusions over the last few years. As he mentioned in his talk at RealtimeConf 2012, there likely isn't going to be a "rails of realtime." The problems are simply too diverse. He's since moved his focus elsewhere, but the conclusion seems to be building loosely coupled modular approaches and patterns that can be substituted as needed.
+The challenge with some of those frameworks, from where I sit, is that there's a lot of emphasis on trying to share code and logic between the client and the server. In my opinion, client and server really should be performing fundamentally different roles. Servers are for data, clients are for presentation. To me, this is about the basic principle of separation of concerns. A contrast to this is what my friend Owen Barnes was working on with SocketStream. It's funny to see how we both ended up reaching very similar conclusions over the last few years. As he mentioned in his talk at RealtimeConf 2012, there likely isn't going to be a "Rails of realtime." The problems are simply too diverse. He's since moved his focus elsewhere, but the conclusion seems to be building loosely coupled modular approaches and patterns that can be substituted as needed.
 
 Distributed systems, latency compensation, and state duplication are really complex problems. The way you solve complex problems is by *not* solving the complex problems. Instead, you break them down into smaller, simpler, solvable problems. Those solutions in aggregate can represent the complete solution. 
 
@@ -93,7 +93,7 @@ To avoid those situations we have to approach it as an engineering task of build
 
 ## Picking your tools
 
-There are more and more tools out there now to build client apps. Angular, Ember, Backbone, Sencha, Knockout, etc.. all have their pros and cons. 
+There are more and more tools out there now to build client apps. AngularJS, Ember, Backbone, Sencha, Knockout, etc.. all have their pros and cons. 
 
 People in charge of development teams seem to agonize over the decision.
 
@@ -102,9 +102,9 @@ They see these options as long term decisions with huge, long term ramifications
 Decisions are time consuming and expensive. At &yet we've built and re-built applications with all kinds of different tools and approaches. The following pages contain the conclusions we've reached. They were picked with the following criteria:
 
 1. Tools that are "just JavaScript." Not tools where you describe your app in a DSL (no Sencha).
-2. Tools where you build the app by writing code in JavaScript files, not by declaring bindings in your HTML (no Angular, sorry).
+2. Tools where you build the app by writing code in JavaScript files, not by declaring bindings in your HTML (no AngularJS, sorry).
 3. No monolithic, do-everything widget frameworks (not Sproutcore).
-4. Model state is completely decoupled from view state (no Knockout.js).
+4. Model state is completely decoupled from view state (no Knockout).
 5. You should not have to be a JavaScript rockstar to edit templates.
 6. The DOM is a simply a view of the state and reacts to changes in the model layer.
 7. Simple, decoupled file structures with lots of components that solve one problem.

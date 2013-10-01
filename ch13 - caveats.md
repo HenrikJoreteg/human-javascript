@@ -14,7 +14,7 @@ var myFunction = function () {
   console.log('"this" is', this);  
 };
 
-myFunction(); // will log out window (or global in node)
+myFunction(); // will log out window (or global in Node)
 ```
 
 as a property of an object:

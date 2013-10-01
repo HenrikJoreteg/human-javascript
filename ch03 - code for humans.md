@@ -33,7 +33,7 @@ if (myArray.indexOf('hello') == -1) {
 }
 ```
 
-Or even this, using underscore:
+Or even this, using Underscore:
 
 ```javascript
 // same array:
@@ -58,7 +58,7 @@ As with readability, code conventions and format should be consistent throughout
 
 Semicolons, tabs, and spaces are contentious things among developers. Every developer I've ever met has opinions (usually strongly held) about code style.
 
-If you're building large JS apps and not doing some form of static analysis on your code, you're asking for trouble. It helps catch silly errors and forces code style consistency. Ideally, no one should be able to tell who wrote what part of your app. If you're on a team, it should all be uniform within a project. How do you do that? We use a slick tool written by [Nathan LaFreniere](https://twitter.com/quitlahok) on our team called, simply, [precommit-hook](http://github.com/nlf/precommit-hook). So all we have to do is add "precommit-hook" to our list of dependencies (in a node project).
+If you're building large JS apps and not doing some form of static analysis on your code, you're asking for trouble. It helps catch silly errors and forces code style consistency. Ideally, no one should be able to tell who wrote what part of your app. If you're on a team, it should all be uniform within a project. How do you do that? We use a slick tool written by [Nathan LaFreniere](https://twitter.com/quitlahok) on our team called, simply, [precommit-hook](http://github.com/nlf/precommit-hook). So all we have to do is add "precommit-hook" to our list of dependencies (in a Node project).
 
 What it does is install a git pre-commit hook in the project that uses JSHint to check your project for code style consistency before each commit. Once upon a time there was a tool called JSLint written by Douglas Crockford. Nowadays there's a less strict, more configurable version of the same project called [JSHint](http://www.jshint.com/). 
 

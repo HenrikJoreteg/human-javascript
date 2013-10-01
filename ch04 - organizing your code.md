@@ -23,7 +23,7 @@ Don't be scared of refactoring. Be scared of building an unmaintainable piece of
 
 ## Separating views and state
 
-This is the biggest lesson I've learned building lots of single page apps. Your view (the DOM) should just be blind slave to the model state of your application. For this you could use any number of tools and frameworks. I'd recommend starting with [Backbone.js](http://backbonejs.org/) (by the awesome Mr. [@jashkenas](https://twitter.com/jashkenas) as it's the easiest to understand, and the closest thing to "just JavaScript"™ as discussed in the introduction. 
+This is the biggest lesson I've learned building lots of single page apps. Your view (the DOM) should just be blind slave to the model state of your application. For this you could use any number of tools and frameworks. I'd recommend starting with [Backbone](http://backbonejs.org/) (by the awesome Mr. [@jashkenas](https://twitter.com/jashkenas) as it's the easiest to understand, and the closest thing to "just JavaScript"™ as discussed in the introduction. 
 
 Essentially, you'll populate a set of models and collections of these models in memory in the browser. These will store all the application state for your app. These models should be completely oblivious to how they're used; they merely store state and broadcast their changes. Then you will have views that listen for changes in the models and update the DOM. This core principle of separating your views and your application state is vital when building large apps.
 
@@ -36,7 +36,7 @@ I'm not going to get into a debate about module styles and script loaders. But I
 
 Let's pause for just a second to discuss what modules do for us. JavaScript has globals. What I mean is that if you don't put a `var` in front of any variable declaration, you've just created a global variable that's accessible from *any* other code in your app. While this *can* be used for good, but also gives you a lot of rope to hang yourself with. Without a way of managing this, as your app grows, knowing what global variables you have at what time will become nearly impossible and will likely be a big source of bugs. We also want to build our app in tiny pieces of independent code (a.k.a. modules). So, how do we make sure each module has access to what it needs? By not referencing globals and by having each module explicitly `require` other code that it needs. That's why we need a module system. Very few things will have a greater positive impact on your code structure than switching to a good module system.
 
-CommonJS is the same style/concept that is used in node.js. By following this style you get the additional benefit of being able to reuse modules written for the client on the server and vice versa (though, the overlap is usually not that big).
+CommonJS is the same style/concept that is used in Node. By following this style you get the additional benefit of being able to reuse modules written for the client on the server and vice versa (though, the overlap is usually not that big).
 
 If you're unfamiliar with the CommonJS modules style, your files end up looking something like this:
 
@@ -69,12 +69,12 @@ Of course, browsers don't have support for these kinds of modules out of the box
 
 Browserify will create a `require` system and starting with the module you specify as an entry point it will include each `require`-ed piece of code into an app package that can be sent to the browser.
 
-Browserify is written for node.js but even if you're using something else to build your web app, you can use node and Browserify to build your client package. Ultimately, you're just creating a single JS file. So once it's generated, that file can be served just like any other static file by any file server you want.
+Browserify is written for Node but even if you're using something else to build your web app, you can use Node and browserify to build your client package. Ultimately, you're just creating a single JS file. So once it's generated, that file can be served just like any other static file by any file server you want.
 
 
 ## Grab your moonboots
 
-If you're used to building apps where each script in your app directory has a corresponding `<script>` tag hardcoded in some HTML file somewhere it can be a bit confusing when switching to using a script module system like Browserify.
+If you're used to building apps where each script in your app directory has a corresponding `<script>` tag hardcoded in some HTML file somewhere it can be a bit confusing when switching to using a script module system like browserify.
 
 As I touched on in Chapter 2, we really would like our production environment to serve a single, minified, `.js` file with a unique file name so that we can tell browsers to cache it forever. However, that's far from ideal in a development environment because we don't want to debug minified code in the browser or have to rebuild it with every change. So, in the interest of keeping the development cycle enjoyable here's what we want:
 
@@ -83,12 +83,12 @@ As I touched on in Chapter 2, we really would like our production environment to
 3. Serve unminified code in development.
 4. In production, serve a minfied, uniquely named, permanently cachable file containing your entire app.
 5. Be able to toggle between those two states with a simple config flag.
-6. Be able to use Browserify for all compatible modules, but still be able to bundle other libraries into our app file.
+6. Be able to use browserify for all compatible modules, but still be able to bundle other libraries into our app file.
 7. Be able to serve/minify/cache CSS in the same way. 
 
 Since defining this type of browser app "package" is such a common problem that we want for all apps, I built a helper to make it a bit easier to work with.
 
-It's called "moonboots." To use it, you define your browser app like this (assuming node.js and express):
+It's called "moonboots." To use it, you define your browser app like this (assuming Node and Express):
 
 ```javascript
 var Moonboots = require('moonboots');
@@ -118,7 +118,7 @@ var clientapp = new Moonboots({
     __dirname + '/public/css/styles.css'
   ],
 
-  // we pass in the express app here so that it can handle serving files during development
+  // we pass in the Express app here so that it can handle serving files during development
   server: app
 });
 ```
@@ -141,9 +141,9 @@ The need for the wildcard URL becomes more obvious in your application when you 
 
 ### A note on going to production
 
-Node happens to be pretty good at serving static files. So just serving the production file with node/moonboots is probably sufficient for most apps with moderate traffic. In production mode, moonboots will build and serve the app file from memory with aggressive cache headers. 
+Node happens to be pretty good at serving static files. So just serving the production file with Node/moonboots is probably sufficient for most apps with moderate traffic. In production mode, moonboots will build and serve the app file from memory with aggressive cache headers. 
 
-However, a lot of people like to serve static files with a separate process, using nginx or using a CDN etc. In that scenario, you can use Moonboots during development and then generate the minified file, write it to disk, or put it on something like an S3 as part of your deploy process.
+However, a lot of people like to serve static files with a separate process, using nginx or using a CDN etc. In that scenario, you can use moonboots during development and then generate the minified file, write it to disk, or put it on something like an S3 as part of your deploy process.
 
 Calling `moonboots.sourceCode(function (source) { ... })` will call your callback with the generated source code based on current config, which you could use to write it to disk or put it on a CDN as part of a grunt task or whatnot. Those details are probably beyond the scope of this book. But, the point is, you can certainly do that with these tools if that makes more sense for your app.
 
