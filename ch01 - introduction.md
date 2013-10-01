@@ -1,4 +1,4 @@
-# human javascript
+# Human JavaScript
 
 Code is as much about people as it is about computers. Sure, it's run by computers, but it's written by, maintained by, and ultimately created for people. People are not computers. We are not robots. We are unpredictable, flawed, and irrational. The same people with the same tools and instructions won't produce the same output each time. We generally don't like being alone and we don't work well in isolation. In fact, in order to do our best work we *need* to work with other people. None of these traits are bad things, quite the opposite. They're what makes us who we are, they make us, well... human. Yet, as developers it's easy for us to get so focused on optimizing for technology that we forget to optimize for people.
 
