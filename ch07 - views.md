@@ -66,20 +66,20 @@ var NavigationView = require('./navigation');
 
 
 module.exports = HumanView.extend({
-  // our 
+  // Our 
   template: templates.main,
 
   render: function () {
-    this.renderAndBind(); // inherited from HumanView
+    this.renderAndBind(); // Inherited from HumanView
     
-    // init and "render()" a subview for a hypothetical
-    // navigation view;
+    // Init and "render()" a subview for a hypothetical
+    // navigation view
     this.navView = new NavigationView({
       el: this.$('#mainNav')[0],
       model: this.model
     }).render();
 
-    // it's common practice to return "this"
+    // It's common practice to return "this"
     // when rendering Backbone views in order 
     // to make it possible to assign the result
     return this;
@@ -129,12 +129,12 @@ var templates = require('templates');
 module.exports = HumanView.extend({
   template: templates.widget,
   events: {
-    // the event + element: the name of the handler
+    // The event + element: the name of the handler
     'click .delete': 'handleDeleteClick',
     'keyup input.search': 'handleSearchKeyUp'
   },
   render: function () {
-    // this we inherit from human-view
+    // This we inherit from human-view
     this.renderAndBind();
   },
   handleDeleteClick: function () {
@@ -153,7 +153,7 @@ That events hash is equivalent to doing the following inside the render method.
 
 ```javascript
   render: function () {
-    // this we inherit from human-view
+    // This we inherit from human-view
     this.renderAndBind();
     this.$el.delegate('.delete', 'click', _.bind(this.handleDeleteClick, this));
     this.$el.delegate('input.search', 'keyup', _.bind(this.handleSearchKeyUp, this));
@@ -183,7 +183,7 @@ module.exports = HumanView.extend({
     'click .delete': 'handleDeleteClick',
     'keyup input.search': 'handleSearchKeyUp'
   },
-  // content bindings mean
+  // Content bindings mean
   // put the name attribute of the
   // model in this view. Into the
   // element that matches the
@@ -191,8 +191,8 @@ module.exports = HumanView.extend({
   contentBindings: {
     'name': '.profileName'
   },
-  // class bindings work a tad differently
-  // if they're boolean attributes
+  // Class bindings work a tad differently.
+  // If they're boolean attributes
   // it will add or remove a class
   // of the same name as the property.
   // If the property value is a string
@@ -203,7 +203,7 @@ module.exports = HumanView.extend({
     'active': '.container'
   },
   render: function () {
-    this.renderAndBind(); // this is what does all the bindings.
+    this.renderAndBind(); // This is what does all the bindings.
   },
   handleDeleteClick: function () {
     this.model.delete();
@@ -243,16 +243,16 @@ module.exports = Backbone.View.extend({
     'click .myClass': 'myHandler'
   },
   initialize: function () {
-    // register a single change handler for the model
+    // Register a single change handler for the model
     this.listenTo(this.model, 'change', _.bind(this.render, this));
   },
   render: function () {
-    // we simply fill the contents of the current element with
+    // We simply fill the contents of the current element with
     // the rendered HTML using the model's current attributes each time.
     this.$el.html(this.template(this.model.toJSON()));
   },
   myHandler: function () {
-    // do something
+    // Do something
   }
 });
 ``` 
@@ -364,7 +364,7 @@ var model = require('someModel');
 
 document.body.appendChild(template(model));
 
-// then if you changed the model
+// Then if you changed the model
 model.set('name', 'Sue');
 
 // the DOM would be magically updated to be:

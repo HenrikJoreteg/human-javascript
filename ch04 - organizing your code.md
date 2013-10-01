@@ -41,12 +41,12 @@ CommonJS is the same style/concept that is used in Node. By following this style
 If you're unfamiliar with the CommonJS modules style, your files end up looking something like this:
 
 ```javascript
-// you import things by using the special `require` function and you can
+// You import things by using the special `require` function and you can
 // assign the result to a variable
 var HumanModel = require('human-model');
 var _ = require('underscore');
   
-// you expose functionality to other modules by declaring your main export
+// You expose functionality to other modules by declaring your main export
 // like this.
 module.exports = HumanModel.define({
   type: 'navItem',
@@ -56,7 +56,7 @@ module.exports = HumanModel.define({
     position: ['number', true, 200]
   },
   init: function () {
-    // some, something
+    // Some, something
   }
 });
 ```
@@ -95,7 +95,7 @@ var Moonboots = require('moonboots');
 
 
 var clientapp = new Moonboots({
-  // the directory where all the client code is stored
+  // The directory where all the client code is stored
   main: __dirname + '/clientapp/main.js',
 
   // Whether or not to build and serve cached/minified version of 
@@ -104,7 +104,7 @@ var clientapp = new Moonboots({
   // server or do anything other than edit clientside code in your project.
   developmentMode: true,
 
-  // these are the regular JavaScript files (not written in commonJS style) 
+  // These are the regular JavaScript files (not written in commonJS style) 
   // that we want to include in our application. These all live in clientapp/libraries
   // and will be concatenated in the order listed.
   libraries: [
@@ -118,7 +118,7 @@ var clientapp = new Moonboots({
     __dirname + '/public/css/styles.css'
   ],
 
-  // we pass in the Express app here so that it can handle serving files during development
+  // We pass in the Express app here so that it can handle serving files during development
   server: app
 });
 ```
@@ -173,7 +173,7 @@ Our clientapp folder usually contains the following folders:
 ```javascript
 var templates = require('templates');
 
-// note that 'pages' becomes part of the structure of your
+// Note that 'pages' becomes part of the structure of your
 // imported templates object
 var html = templates.pages.home();
 ```
@@ -191,20 +191,20 @@ The main app object doesn't really need to be all that special. Often I create a
 
 ```javascript
 module.exports = {
-  // main init function
+  // Main init function
   blastoff: function () { 
-    // attach our app object to the window
+    // Attach our app object to the window
     window.app = this;
     // This is where we render our main view, get some data,
     // kick off the history tracking, etc.
-    // See Chapter 10 for more detail
+    // See Chapter 10 for more detail.
     ... 
   },
 
-  // render a page view passed by the router
+  // Render a page view passed by the router
   renderPage: function () { ... }
 
-  // alias to Backbone.history object so we can
+  // Alias to Backbone.history object so we can
   // do app.navigate('/someother/page') from 
   // anywhere in the app.
   navigate: function (url) {
@@ -212,7 +212,7 @@ module.exports = {
   }
 };
 
-// run our whole app, it all starts here:
+// Run our whole app, it all starts here:
 module.exports.blastoff();
 ```
 

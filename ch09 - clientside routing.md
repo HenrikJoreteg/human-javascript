@@ -34,11 +34,11 @@ If you're using Express and Node it's quite easy to do.
 
 ```javascript
 app.get('/other/thing', function () {
-  // you could still serve other support pages 
+  // You could still serve other support pages 
   // and simple things at specific URLs.
 });
 
-// but then you want some sort of catch all that matches
+// But then you want some sort of catch all that matches
 // the range of URLs you're going to want the single page app
 // to be available at:
 app.get('*', function (req, res) {

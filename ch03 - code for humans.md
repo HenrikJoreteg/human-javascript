@@ -13,11 +13,11 @@ You with me? Ok, but how do you actually do this?
 Well, let me give you a silly example:
 
 ```javascript
-// assume this is an array of strings from somewhere
+// Assume this is an array of strings from somewhere
 var myArray = ['hello', 'something', 'awesome']; 
 
 if (~myArray.indexOf('hello')) {
-  // under what circumstances does this get called?
+  // Under what circumstances does this get called?
 }
 ```
 
@@ -26,20 +26,20 @@ Can you explain to me, in plain English, what that tilde does? If you can, good 
 Now, compare it to this:
 
 ```javascript
-// same array:
+// Same array:
 var myArray = ['hello', 'something', 'awesome']; 
 if (myArray.indexOf('hello') == -1) {
-  // pretty freakin' clear, AMIRITE!?
+  // Pretty freakin' clear, AMIRITE!?
 }
 ```
 
 Or even this, using Underscore:
 
 ```javascript
-// same array:
+// Same array:
 var myArray = ['hello', 'something', 'awesome']; 
 if (_(myArray).contains('hello')) {
-  // also pretty freakin' clear right?
+  // Also pretty freakin' clear right?
 }
 ```
 

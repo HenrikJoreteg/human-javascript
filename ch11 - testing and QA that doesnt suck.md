@@ -37,25 +37,25 @@ SpaceMonkey is still under heavy development, but a `clienttests` folder and sam
 You end up writing tests that look like this:
 
 ```javascript
-// load the app into our iframe
+// Load the app into our iframe
 monkey.loadApp('/', {
     height: 500,
     width: 600,
     bugUrl: 'https://github.com/henrikjoreteg/humanjs-sample-app/issues/new'
 });
 
-// this is a normal QUnit test
+// This is a normal QUnit test
 test('basic app experience', function () {
     // Here we start a chain of interactions
     monkey
-        // we can log out messages to the console
+        // We can log out messages to the console
         .log('starting')
-        // wait for things to appear
+        // Wait for things to appear
         .waitForVisible('#pages .page')
-        // ask for user confirmation
+        // Ask for user confirmation
         .confirm('The app loaded to the home page.')
         .confirm('The "home" nav tab is active')
-        // navigate to different urls
+        // Navigate to different urls
         .goToPage('/collections')
         .confirm('Collection demo page visible')
         .confirm('List of people are visible each with avatars')
@@ -66,7 +66,7 @@ test('basic app experience', function () {
             'each one is added at the bottom of the list',
             'each has a readable name an avatar'
         ])
-        // simulate clicks
+        // Simulate clicks
         .click('button.add')
         .click('button.add')
         .click('button.add')
@@ -78,7 +78,7 @@ test('basic app experience', function () {
         .confirm('I can delete them by clicking "delete"')
         .goToPage('/info')
         .confirm('Info page is visible')
-        // call this when done
+        // Call this when done
         .destroy();
 });
 ```

@@ -24,7 +24,7 @@ This HTML:
 Is read by ICanHaz and turned into a function you call with your own like this:
 
 ```javascript
-// your data
+// Your data
 var data = {
   first_name: "Henrik",
   last_name: "Joreteg"

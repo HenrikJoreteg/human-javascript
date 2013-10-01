@@ -21,10 +21,10 @@ Then, from your Node app you just require "getconfig" and access settings direct
 
 
 ```javascript
-// we just require the module
+// We just require the module
 var config = require('getconfig');
 
-// which actually returns our environment-aware config
+// Which actually returns our environment-aware config
 // from the corresponding config file. 
 config.mySetting;
 ```
@@ -69,17 +69,17 @@ Now, in our main server file where we handle the requests for single page apps, 
 
 
 ```javascript
-// set up our app and require getconfig
+// Set up our app and require getconfig
 var app = require('express')(),
     config = require('getconfig'); 
 
-// build a tiny middleware function that sets the cookie
+// Build a tiny middleware function that sets the cookie
 var configMiddleware = function (req, res, next) {
   res.setCookie('config', JSON.stringify(config.clientAppSettings);
   next();
 };
 
-// in the code that serves our singlepage app, use the middleware
+// In the code that serves our singlepage app, use the middleware
 app.get('/app', configMiddleware, function (req, res) {
   res.send(clientApp.html());
 });

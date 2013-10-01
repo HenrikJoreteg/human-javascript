@@ -47,12 +47,12 @@ var WildEmitter = require('wildemitter');
 
 var emitter = new WildEmitter();
 
-// register one handler 
+// Register one handler 
 emitter.on('something', 'group1', function () { ... });
-// register another handler in the same group
+// Register another handler in the same group
 emitter.on('someOtherEvent', 'group1', function () { ... });
 
-// then release both of them
+// Then release both of them
 emitter.releaseGroup('group1');
 ```
 
@@ -61,7 +61,7 @@ Details and implementations aside the same basic concepts of adding and removing
 As an example, here's a simplified version of the `andbang.js` library which is an SDK for talking to the And Bang API.
 
 ```javascript
-// require our emitter
+// Require our emitter
 var Emitter = require('wildemitter');
 
 // Our main constructor function
@@ -70,7 +70,7 @@ var AndBang = function (config) {
   Emitter.call(this);
 };
 
-// inherit from emitter, but retain constructor
+// Inherit from emitter, but retain constructor
 AndBang.prototype = Object.create(Emitter.prototype, {
   constructor: {
     value: AndBang
@@ -80,13 +80,13 @@ AndBang.prototype = Object.create(Emitter.prototype, {
  // Other methods
 AndBang.prototype.setName = function (newName) {
   this.name = newName;
-  // we can trigger arbitrary events
+  // We can trigger arbitrary events
   // these are just hooks that other
   // code could chose to listen to.
   this.emit('nameChanged', newName);
 };
 
-// export it to the world
+// Export it to the world
 module.exports = AndBang;
 ```
 
@@ -96,7 +96,7 @@ Then, other code that wants to use this module can listen for events like so:
 var AndBang = require('andbang');
 var api = new AndBang();
 
-// now this handler will get called any time the event gets triggered
+// Now this handler will get called any time the event gets triggered
 api.on('nameChanged',  function (newName) { /* do something cool */ });
 ```
     
