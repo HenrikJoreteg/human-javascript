@@ -97,7 +97,7 @@ If there isn't a lot of behavior associated with each line item, you may choose 
 
 Take a look at the associated demo app to see examples of each approach to handling collections.
 
-You can find the app on my GitHub account: [https://github.com/HenrikJoreteg/humanjs-sample-app](https://github.com/HenrikJoreteg/humanjs-sample-app)
+You can find the app on my [GitHub account](https://github.com/HenrikJoreteg/humanjs-sample-app)
 
 
 ### Caveat: understanding `this.$`
@@ -341,7 +341,7 @@ module.exports = HumanView.extend({
 });
 ```
 
-For more on HumanView, or to contribute and make it better, see the documentation and source on GitHub: [https://github.com/henrikjoreteg/human-view](https://github.com/henrikjoreteg/human-view)
+For more on HumanView, or to contribute and make it better, see the documentation and source on [GitHub](https://github.com/henrikjoreteg/human-view).
 
 
 ## A bit about defining bindings in templates (à la AngularJS, Ractive)

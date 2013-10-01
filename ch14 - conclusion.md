@@ -6,7 +6,7 @@ This book will continue to evolve along with the corresponding tools and techniq
 
 ## 2. Staying up to date
 
-Follow @HenrikJoreteg and @andyet on twitter to hear about updates and changes. We'll be turning the site: http://humanjavascript.com into a jumping off point for finding related tools and resources.
+Follow [@HenrikJoreteg](https://twitter.com/HenrikJoreteg) and [@andyet](https://twitter.com/andyet) on twitter to hear about updates and changes. We'll be turning the [site](http://humanjavascript.com) into a jumping off point for finding related tools and resources.
 
 ## 3. Open source is a group effort
 

@@ -6,14 +6,14 @@ App configuration and environment settings are always a PITA, right? Especially 
 
 We solve this problem with a simple approach and two specific tools:
 
-- getconfig: https://github.com/henrikjoreteg/getconfig
-- clientconfig: https://github.com/henrikjoreteg/clientconfig
+- [getconfig](https://github.com/henrikjoreteg/getconfig)
+- [clientconfig](https://github.com/henrikjoreteg/clientconfig)
 
 They're in no way dependent on each other but they do play nicely together.  (Both are on npm, by the way).
 
 ## getconfig
 
-First, getconfig. This is a tool for configuring Node web apps. It follows the same assumptions as Express (http://expressjs.com/) does, in that it looks to an environment variable (NODE_ENV, reference: http://expressjs.com/api.html#app-settings) to determine the mode in which it should run.
+First, getconfig. This is a tool for configuring Node web apps. It follows the same assumptions as [Express](http://expressjs.com/) does, in that it looks to an environment variable (NODE_ENV, [reference](http://expressjs.com/api.html#app-settings)) to determine the mode in which it should run.
 
 It simply uses that to look for a JSON config file that matches the name of the environment. For example: dev_config.json or production_config.json. It defaults to dev if it doesn't fine one.
 

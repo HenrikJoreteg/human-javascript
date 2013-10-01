@@ -128,7 +128,7 @@ At this point we can tell Express the routes where we want it to serve our appli
 
 Since we're sending a JavaScript application, rather than rendered HTML to the browser, it's going to be up to the client to read the URL, grab the appropriate data, and render the appropriate page represented by that URL. So it's up to us to configure our server to always respond with the same HTML at any URL that is considered part of our client application. We cover the concept of clientside routing in a bit more detail in Chapter 9.
 
-You can do this in Express through the use of wildcard handlers, or by passing regular expressions instead of strings as the route definition. If you look at the sample application (https://github.com/HenrikJoreteg/humanjs-sample-app) you'll see the relevant line in server.js looks like this:
+You can do this in Express through the use of wildcard handlers, or by passing regular expressions instead of strings as the route definition. If you look at the [sample application](https://github.com/HenrikJoreteg/humanjs-sample-app) you'll see the relevant line in server.js looks like this:
 
 ```javascript
 app.get('*', csrf, clientapp.html());
