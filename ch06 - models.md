@@ -244,9 +244,9 @@ In fact, that basic model layer and API synchronization can be created before we
 
 In order to provide observability, models generally provide some sort of event registration system and a way to set and get some "protected" attributes.
 
-For a long time, I used Backbone models for everything. The code for them is quite simple and readable (YES!); they're also flexible and easy to use. Also, I'm generally a big fan of Backbone's general principles and structure.
+For a long time, I used Backbone models for everything. The code for them is quite simple and readable (YES!); they're also flexible and easy to use. Also, I'm generally a big fan of Backbone's principles and structure.
 
-Yet, you'll notice the examples all use `HumanModel` not Backbone collections.
+Yet, you'll notice the examples all use `HumanModel` instead of `Backbone.Model`.
 
 Despite my love for Backbone, a few things finally drove me to creating HumanModel:
 
