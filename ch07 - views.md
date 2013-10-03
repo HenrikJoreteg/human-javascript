@@ -66,7 +66,10 @@ var NavigationView = require('./navigation');
 
 
 module.exports = HumanView.extend({
-  // Our 
+  // Our template function that returns an HTML string 
+  // this can also just be a string. Template language
+  // is irrelevant. It just needs to be a function that
+  // takes an argument and returns a string.
   template: templates.main,
 
   render: function () {
