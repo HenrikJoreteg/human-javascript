@@ -9,6 +9,13 @@ You can read about JavaScript, the language, elsewhere. Its good parts, bad part
 As we've gone along, we've done our best to extract reusable tools out of them. So, in some ways we accidentally wrote this book. What I mean is that much of its contents are compiled from past blogposts, explanations to teammates and clients, and from project README files. This book is primarily an extraction, not a creation. We're sharing our experience, secrets, and tools to hopefully give you and your team a solid footing for building great apps and experiences.
 
 
+# Acknowledgements
+
+Speaking of humans this book would not exist if not for a giant list of people who helped make it a reality. To name a few specifically a huge thank you to Jan Lenhart, Philip Roberts, Bear (Mike Taylor), Luke Karrys, Jenn Turner, Adam Brault, Sara Chipps, Jeff Boyus, Lance Stout, Karolina Szczur, Jon Hjelle, Melanie Brown, Stephanie Maier, Beau Sorensen, Michael Garvin, Amy Lynn Augspurger and others. 
+
+They helped with technical review, code, editorial feedback, design, writing/producing the promotional video and loads of encouragement. Thank you all!
+
+
 # This Book Will Help You Build Native HTML5 Apps
 
 Let's talk about this whole "app" thing for a bit and get on the same page in terms of terminology. If you own a smart phone of any sort, you've been inundated with the word "app" over the past five years or so.
