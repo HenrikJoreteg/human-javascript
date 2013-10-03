@@ -14,12 +14,14 @@ We're under no illusions that the approaches in here are perfect. All of the too
 
 ## 4. Feedback on the book
 
-If there was anything that was unclear, incorrect, missing, or could be improved on the book itself. We want to hear from you. You can email me directly: henrik@andyet.net with any feedback.
+If there was anything that was unclear, incorrect, missing, or could be improved on the book itself, we want to hear about it from you. You can email me directly: henrik@andyet.net with any feedback.
 
 ## 5. Thank you, thank you, thank you
 
-At &yet we believe in the open web and invest heavily in building applications and tools that improve the web we love. Your support, through buying the book, helps fund our open source efforts. I hope this has given you some tools and confidence to go forth and build awesomer stuff. I would argue that the web has greater potential for good than any other human invention throughout history. We're a privlidged few, who are fortunate enough to have been born at the right time with the right skills to get to participate in building the web. Our time is short. One of my favorite quotes comes from a poet, Hafiz, that Adam Brault introduced me to:
+At &yet we believe in the Open Web and invest heavily in building applications and tools that improve the web we love. Your support, through buying the book, helps fund our open source efforts. I hope this has given you some tools and confidence to go forth and build awesomer stuff. 
+
+I would argue that the web has greater potential for good than any other human invention throughout history. We're a privileged few, who are fortunate enough to have been born at the right time with the right skills to get to participate in building the web. Our time is short. One of my favorite quotes comes from a poet, Hafiz, that Adam Brault introduced me to:
 
 > What will you do with your one wild and precious life?
 
-Please consider using your talents to build things that improve the lives of humans in signifiant ways. <3
+Please consider using your talents to build things that improve the lives of humans in significant ways. <3
