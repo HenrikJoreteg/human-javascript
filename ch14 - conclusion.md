@@ -8,15 +8,20 @@ This book will continue to evolve along with the corresponding tools and techniq
 
 Follow [@HenrikJoreteg](https://twitter.com/HenrikJoreteg) and [@andyet](https://twitter.com/andyet) on twitter to hear about updates and changes. We'll be turning the [site](http://humanjavascript.com) into a jumping off point for finding related tools and resources.
 
-## 3. Open source is a group effort
+## 3. Complimentary Resources
+
+- Human JavaScript related documentation site: http://docs.humanjavascript.com
+- Fast searchable directory of hand-picked modules: http://resources.humanjavascript.com
+
+## 4. Open source is a group effort
 
 We're under no illusions that the approaches in here are perfect. All of the tools are open source and hosted on GitHub. If you would like to contribute, please get involved.
 
-## 4. Feedback on the book
+## 5. Feedback on the book
 
 If there was anything that was unclear, incorrect, missing, or could be improved on the book itself, we want to hear about it from you. You can email me directly: henrik@andyet.net with any feedback.
 
-## 5. Thank you, thank you, thank you
+## 6. Thank you, thank you, thank you
 
 At &yet we believe in the Open Web and invest heavily in building applications and tools that improve the web we love. Your support, through buying the book, helps fund our open source efforts. I hope this has given you some tools and confidence to go forth and build awesomer stuff. 
 
