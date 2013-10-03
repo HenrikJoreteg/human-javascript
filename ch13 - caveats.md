@@ -144,6 +144,4 @@ Backbone tries to make things easy for us, rather than having to do that. Rememb
 
 Inevitably with single page apps you have to deal with issues of bad connectivity, or issues of stale data and/or expired sessions.
 
-If we're using restful JSON APIs we'll be making requests throughout the applications lifecycle.
-
-As a starting point, I've stubbed out a global error handler for Ajax requests. jQuery makes it fairly simple: [http://api.jquery.com/ajaxError](http://api.jquery.com/ajaxError). So we register and add a handler here: [https://github.com/caagency/caa-template-jqmapp2/blob/development/clientapp/app/views/main.js](https://github.com/caagency/caa-template-jqmapp2/blob/development/clientapp/app/views/main.js) that just pops up a dialog. This could be modified to make a distinction between session expiration errors and bad connectivity errors. 
+If we're using RESTful JSON APIs we'll be making requests throughout the applications lifecycle. One approach is to stub out a global error handler for all Ajax requests. jQuery makes this fairly simple: [http://api.jquery.com/ajaxError](http://api.jquery.com/ajaxError). Often as part of an application'a main view, I'll register a handler for global Ajax errors that pops up a dialog to show an appropriate message. 
