@@ -9,7 +9,8 @@ You can read about javascript, the language, elsewhere. Its good parts, bad part
 As we've gone along, we've done our best to extract reusable tools out of them. So, in some ways we accidentally wrote this book. What I mean is that much of its contents are compiled from past blogposts, explanations to teammates and clients, and from project README files. This book is primarily an extraction, not a creation. We're sharing our experience, secrets, and tools to hopefully give you and your team a solid footing for building great apps and experiences.
 
 
-# Native HTML5 apps
+# This Book Will Help You Build Native HTML5 Apps
+<!--I changed this title to make the introduction ease the reader in -->
 
 Let's talk about this whole "app" thing for a bit and get on the same page in terms of terminology. If you own a smart phone of any sort, you've been inundated with the word "app" over the past five years or so.
 
@@ -33,13 +34,16 @@ To clarify further:
 4. We send the application code itself to the browser, not the result of running the application code.
 5. The app is rendered entirely on the client. We only send the bare minimum HTML we need to tell the browser to run our app. Usually just a doctype, a script tag and a stylesheet.
 6. After loading, the client fetches its own data, as data (typically JSON), not as rendered HTML.
-7. The app is loaded once and never does a full page reload while you're using it.
-8. The app has and maintains "state" that is cached and maintained separate from the server.
+7. The app is loaded once and never does a full page reload while you're using it. 
+<!-- didn't think this was explicit -->
+8. Actions like clicking on a link to render a new "page" utilizes asynchronous JavaScript. 
+9. The app has and maintains "state" that is cached and maintained separate from the server.
 
 From now on, when I say "app" or "native HTML5 app" or "browser app" or "client app" within these pages, that is what I'm referring to.
 
-Here's more food for thought: once you acknowledge that the browser has state, you really ought to think about how to keep that state up to date and make it a "realtime" application. But I digress. Screw it, I'll digress for a bit. This is important.
+Here's more food for thought: once you acknowledge that the browser has state, you really ought to think about how to keep that state up to date and make it a "realtime" application. 
 
+<!--Even though it adds friendlyness, the idea that the author is digressing makes the reader think the author is wasting his time and unsure about what to focus on. I think that the Realtime Apps chapter is a great one, and needs no excuses! --> 
 
 ## Realtime apps are human apps
 
@@ -47,7 +51,9 @@ A lot of people get hung up on the term "realtime." The way I'm using it here is
 
 Realtime isn't about hype and technology – it's about removing the friction of technology on collaboration and overcoming the confusion of keeping track of lots of state.
 
-The future of the web is realtime. Of this I have no doubt. The reason I can say this with such certainty is that it's already happening under our noses.
+The future of the web is realtime. Of this I have no doubt. 
+
+The reason I can say this with such certainty is that it's already happening under our noses.
 
 Facebook, Gmail, Gtalk, and Github just to name a few, have all implemented some form of automatic page updating. When they have something new to tell you, they don't wait for you to ask for it. They push it out to you, from the server to the client.
 
@@ -101,6 +107,9 @@ They see these options as long term decisions with huge, long term ramifications
 
 Decisions are time consuming and expensive. At &yet we've built and re-built applications with all kinds of different tools and approaches. The following pages contain the conclusions we've reached. They were picked with the following criteria:
 
+<!-- I would like to know WHY you made the decisions with each point, even though that makes it longer. After, I think you should acknowledge this is the &yet way and not everyone's way, however, since you've had much success with it you believe it is the best way to go with native HTML 5 apps. -->
+
+ 
 1. Tools that are "just javascript." Not tools where you describe your app in a DSL (no Sencha).
 2. Tools where you build the app by writing code in javascript files, not by declaring bindings in your HTML (no Angular, sorry).
 3. No monolithic, do-everything widget frameworks (not Sproutcore).
