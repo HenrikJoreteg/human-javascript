@@ -1,4 +1,4 @@
-# Human Javascript
+# Human JavaScript
 Build powerfully simple browser apps
 
 BUILDS: https://www.dropbox.com/sh/jn2ktxswruhcovk/FmXLx2WjP7

@@ -6,25 +6,25 @@ App configuration and environment settings are always a PITA, right? Especially 
 
 We solve this problem with a simple approach and two specific tools:
 
-- getconfig: https://github.com/henrikjoreteg/getconfig
-- clientconfig: https://github.com/henrikjoreteg/clientconfig
+- [getconfig](https://github.com/henrikjoreteg/getconfig)
+- [clientconfig](https://github.com/henrikjoreteg/clientconfig)
 
 They're in no way dependent on each other but they do play nicely together.  (Both are on npm, by the way).
 
 ## getconfig
 
-First, getconfig. This is a tool for configuring node.js web apps. It follows the same assumptions as Express.js (http://expressjs.com/) does, in that it looks to an environment variable (NODE_ENV, reference: http://expressjs.com/api.html#app-settings) to determine the mode in which it should run.
+First, getconfig. This is a tool for configuring Node web apps. It follows the same assumptions as [Express](http://expressjs.com/) does, in that it looks to an environment variable (NODE_ENV, [reference](http://expressjs.com/api.html#app-settings)) to determine the mode in which it should run.
 
 It simply uses that to look for a JSON config file that matches the name of the environment. For example: dev_config.json or production_config.json. It defaults to dev if it doesn't fine one.
 
-Then, from your node app you just require "getconfig" and access settings directly on the resulting object, which will have pulled it from the correct config file. Super clean/simple:
+Then, from your Node app you just require "getconfig" and access settings directly on the resulting object, which will have pulled it from the correct config file. Super clean/simple:
 
 
 ```javascript
-// we just require the module
+// We just require the module
 var config = require('getconfig');
 
-// which actually returns our environment-aware config
+// Which actually returns our environment-aware config
 // from the corresponding config file. 
 config.mySetting;
 ```
@@ -69,17 +69,17 @@ Now, in our main server file where we handle the requests for single page apps, 
 
 
 ```javascript
-// set up our app and require getconfig
+// Set up our app and require getconfig
 var app = require('express')(),
     config = require('getconfig'); 
 
-// build a tiny middleware function that sets the cookie
+// Build a tiny middleware function that sets the cookie
 var configMiddleware = function (req, res, next) {
   res.setCookie('config', JSON.stringify(config.clientAppSettings);
   next();
 };
 
-// in the code that serves our singlepage app, use the middleware
+// In the code that serves our singlepage app, use the middleware
 app.get('/app', configMiddleware, function (req, res) {
   res.send(clientApp.html());
 });

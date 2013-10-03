@@ -30,15 +30,15 @@ Either way, the server will return this HTML:
 
 It may be helpful to think about it as a block of URLs that all just serve the app.
 
-If you're using Express and node it's quite easy to do.
+If you're using Express and Node it's quite easy to do.
 
 ```javascript
 app.get('/other/thing', function () {
-  // you could still serve other support pages 
+  // You could still serve other support pages 
   // and simple things at specific URLs.
 });
 
-// but then you want some sort of catch all that matches
+// But then you want some sort of catch all that matches
 // the range of URLs you're going to want the single page app
 // to be available at:
 app.get('*', function (req, res) {

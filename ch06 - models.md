@@ -5,9 +5,9 @@
 Let's say you have a list of items. When a user clicks on an item, you want to visually mark it as selected. Someone used to building simple apps would probably do something like this:
 
 ```javascript
-// register a click handler on the parent list
+// Register a click handler on the parent list
 $('ul.theList').delegate('click', 'li', function () {
-  // toggle a class on the clicked item
+  // Toggle a class on the clicked item
   $(this).toggleClass('selected');
 })
 ```
@@ -20,9 +20,9 @@ Let's say the user has selected several things and now wants to delete them by c
 
 ```javascript
 $('button.delete').click(function () {
-  // get our seletedDOM items, loop through them
+  // Get our seletedDOM items, loop through them
   $('ul.theList li.selected').each(function () {
-    // but we also have to have a way to figure out what
+    // But we also have to have a way to figure out what
     // ID each one of these things represent so we can pass
     // the correct info to the server. So, let's assume we use
     // HTML5 data attributes. Luckily jQuery's data() method
@@ -33,10 +33,10 @@ $('button.delete').click(function () {
       type: 'delete',
       url: '/lists/' + listId + '/widgets/' + id,
       success: function () {
-        // do something
+        // Do something
       },
       error: function () {
-        // let the user know, somehow
+        // Let the user know, somehow
       }
     })
   }); 
@@ -73,7 +73,7 @@ The fundamental thing a model should provide is observability. What do I mean? W
 
 ```javascript
 document.getElementById('myInput').addEventListener('change', function () {
-  // do something with the value
+  // Do something with the value
 });
 ```
 
@@ -81,7 +81,7 @@ A model should let us listen for changes to its properties:
 
 ```javascript
 model.on('change:selected', function (newValue) {
-  // do something with the new value
+  // Do something with the new value
 });
 ```
 
@@ -128,11 +128,11 @@ Assuming we've got a view that represents that model, the view would have a clic
 var Backbone = require('backbone');
 
 module.exports = Backbone.View.extend({
-  // our events hash (explained in the next chapter)
+  // Our events hash (explained in the next chapter)
   events: {
     'click .delete': 'handleDeleteClick'
   },
-  // our handler simply calls "trash", nothing more
+  // Our handler simply calls "trash", nothing more
   handleDeleteClick: function () {
     this.model.trash();
   },
@@ -174,11 +174,11 @@ Let's think about the data first, before we think about the behavior. These item
 var Backbone = require('backbone');
 var WidgetModel = require('./models/widget')
 
-// or main export from this module (just the collection)
+// Our main export from this module (just the collection)
 module.exports = Backbone.Collection.extend({
-  // specify the model type for this collection
+  // Specify the model type for this collection
   model: WidgetModel,
-  // the RESTful API URL representing this resource
+  // The RESTful API URL representing this resource
   url: '/widgets'
 });
 ```
@@ -188,17 +188,16 @@ module.exports = Backbone.Collection.extend({
 ```javascript
 var HumanModel = require('human-model');
 
-
 module.exports = HumanModel.define({
-  // we give our model a type
+  // We give our model a type
   type: 'widget',
-  // define properties, these are the ones
+  // Define properties, these are the ones
   // that live on the server-side
   props: {
     id: ['string', true],
     widgetType: ['string', true, 'dooDad']
   },
-  // session properties are just like props but
+  // Session properties are just like props but
   // exist for the purpose of storing client-side
   // state.
   session: {
@@ -214,16 +213,15 @@ At this point we can do something like this in our application launch code:
 ```javascript
 var WidgetCollection = require('models/widgets');
 
-
-// assume this is the app's entry point
+// Assume this is the app's entry point
 module.exports = {
   blastoff: function () {
-    // creating our one global that holds the app
+    // Create our one global that holds the app
     window.app = this;
 
-    // attach our widget collection here
+    // Attach our widget collection here
     this.widgets = new WidgetCollection();
-    // assumes you've got things set up so 
+    // Assumes you've got things set up so 
     // this will do an AJAX (or some other type) call
     // and populate the collection.
     this.widgets.fetch();
@@ -246,9 +244,9 @@ In fact, that basic model layer and API synchronization can be created before we
 
 In order to provide observability, models generally provide some sort of event registration system and a way to set and get some "protected" attributes.
 
-For a long time, I used Backbone models for everything. The code for them is quite simple and readable (YES!); they're also flexible and easy to use. Also, I'm generally a big fan of Backbone's general principles and structure.
+For a long time, I used Backbone models for everything. The code for them is quite simple and readable (YES!); they're also flexible and easy to use. Also, I'm generally a big fan of Backbone's principles and structure.
 
-Yet, you'll notice the examples all use `HumanModel` but Backbone collections.
+Yet, you'll notice the examples all use `HumanModel` instead of `Backbone.Model`.
 
 Despite my love for Backbone, a few things finally drove me to creating HumanModel:
 
@@ -269,13 +267,13 @@ So often, the data you get from the server is not in the format you'll want to p
 
 #### 3. Direct access to properties
 
-In a large app, you work with models **a lot**. Having to call `get` and `set` everywhere is a bit less than ideal, IMO. EcmaScript 5 (a.k.a. the version of the JS spec available in modern browsers) allows for `getters` and `setters` which means you can actually process simple assignments. This is better illustrated with an example:
+In a large app, you work with models **a lot**. Having to call `get` and `set` everywhere is a bit less than ideal, IMO. ECMAScript 5 (a.k.a. the version of the JS spec available in modern browsers) allows for `getters` and `setters` which means you can actually process simple assignments. This is better illustrated with an example:
 
 ```javascript
-// without getters/setters (Backbone Model)
+// Without getters/setters (Backbone Model)
 model.set('firstName', 'Henrik');
 
-// with getters/setters (HumanModel)
+// With getters/setters (HumanModel)
 model.firstName = 'Henrik';
 ```
 
@@ -290,7 +288,7 @@ model.on('change:firstName', function () {
   console.log('firstName changed!'); 
 });
 
-// even when setting the attribute directly the callback 
+// Even when setting the attribute directly the callback 
 // registered above would still be called.
 model.firstName = 'Henrik';
 ```
@@ -301,7 +299,7 @@ Getters and setters give us enormous flexibility, which can be bad. For example,
 trickyModel.firstName = 'Henrik';
 
 console.log(trickyModel.firstName); 
-// we can make this log out *whatever* the heck we want
+// We can make this log out *whatever* the heck we want
 // despite it appearing to just have been assigned above.
 ```
 
@@ -339,7 +337,7 @@ Object.defineProperty(myObject, "name", {
   }
 });
 
-// there's also a defineProperties (plural)
+// There's also a defineProperties (plural)
 Object.defineProperties(myObject, {
   lastName: {
     get: function () { ... },
@@ -363,14 +361,14 @@ However, I happen to think that in the case of models getters/settings can actua
 
 #### 4. Type enforcement
 
-Javascript, the language is dynamically typed, which is awesome. But we've said we're making our models the *core* of the app. Knowing that a given property is a given type is quite useful for eliminating silly bugs and protecting ourselves. 
+JavaScript, the language is dynamically typed, which is awesome. But we've said we're making our models the *core* of the app. Knowing that a given property is a given type is quite useful for eliminating silly bugs and protecting ourselves. 
 
 Let's compare the two with a simple user model. In Backbone there is no standard way to define a property. Instead, you simply set a value as if it exists and now it does. 
 
 ```javascript
-// Backbone model, no definition needed
-// there *is* no standard way to even
-// define the properties it should store
+// Backbone model, no definition needed.
+// There *is* no standard way to even
+// define the properties it should store.
 var model = new Backbone.Model();
 
 model.set({
@@ -378,7 +376,7 @@ model.set({
   lastName: 'Joreteg'
 });
 
-// now i can get those
+// Now I can get those
 model.get('firstName'); // logs out 'Henrik'
 ```
 
@@ -402,7 +400,7 @@ Just think how much information I'm missing:
 Sure the following example is silly, but what if I write some stupid code (as we do sometimes, amirite humans?!).
 
 ```javascript
-// there's nothing stopping you from setting 
+// There's nothing stopping you from setting 
 // the firstName property to be a date object.
 model.set('firstName', new Date());
 ```
@@ -420,10 +418,10 @@ var HumanModel = require('human-model');
 
 module.exports = HumanModel.define({
   type: 'user',
-  // our properties from the server
+  // Our properties from the server
   props: {
-    // here is the shorthand syntax for defining a property
-    // first is type, second is required, last is default value
+    // Here is the shorthand syntax for defining a property:
+    // first is type, second is required, last is default value.
     firstName: ['string', true, ''],
     lastName: ['string', true, ''],
     // You can also be even more explicit
@@ -444,25 +442,25 @@ module.exports = HumanModel.define({
     selected: ['boolean', true, false]
   },
   // Derived properties are getters constructed from
-  // other information. (you cannot set a derived property, this is intentional)
+  // other information. (You cannot set a derived property, this is intentional)
   derived: {
-    // the name of the derived property
-    // in this case referencing "model.fullName"
+    // The name of the derived property.
+    // In this case referencing "model.fullName"
     // would give us the result of calling the
     // function below
     fullName: {
-      // we specify which properties
-      // this is dependent on (meaning if they change)
-      // so does the derived property
+      // We specify which properties
+      // this is dependent on (meaning if they change
+      // so does the derived property)
       deps: ['firstName', 'lastName'],
       fn: function () {
         return (this.firstName + ' ' + this.lastName).trim();
       },
-      // we can optionally cache the result, doing this
+      // We can optionally cache the result. Doing this
       // means it won't run the function to return the result
       // unless one of the dependency values has changed since 
       // the last time it was run. This feature can lead to 
-      // dramatic performance improvements over plain Backbone
+      // dramatic performance improvements over plain Backbone.
       cache: true
     }
   }
@@ -472,10 +470,10 @@ module.exports = HumanModel.define({
 file: `hypothetical_app.js`
 
 ```javascript
-// grab our user definition from above
+// Grab our user definition from above
 var User = require('./models/user');
 
-// create an instance of that user model
+// Create an instance of that user model
 var model = new User();
 
 // I can now know that it's got a value for firstName
@@ -491,8 +489,8 @@ model.firstName = ['hi']; // <- this won't work and will throw and error
 model.firstName = 'Henrik';
 console.log(model.firstName); // prints: 'Henrik'
 
-// here's the *awesome* part I _can't_ set a property that isn't defined
-// so if I fatfinger the property name, it won't stick.
+// Here's the *awesome* part I _can't_ set a property that isn't defined.
+// So if I fatfinger the property name, it won't stick.
 // *Note what HumanModel does when calling `set()` with undeclared attributes
 // can be configured. See human-model docs for more.
 model.frstName = 'Henrik';
@@ -516,10 +514,10 @@ var model = new Backbone.Model();
 
 model.set('ids', ['23', '25', '47']);
 
-// if we want to get them and change them
+// If we want to get them and change them
 var myIds = model.get('ids');
 
-// if we now change it...
+// If we now change it...
 myIds.reverse();
 
 // ...and set it back
@@ -528,7 +526,7 @@ model.set('ids', myIds);
 // we would never get a change event from Backbone
 ```
 
-If you understand javscript you'll realize this isn't a flaw in Backbone, it's just because javascript passes objects by reference. 
+If you understand JavaScript you'll realize this isn't a flaw in Backbone, it's just because JavaScript passes objects by reference. 
 
 As a result, when Backbone gets the "set" event it just compares `this.get('ids') === newIds` which will always be true, because you're comparing the same object not a copy of it.
 
@@ -540,7 +538,7 @@ We can solve this with getters/setters in cases where we *know* we want this beh
 ```javascript
 var HumanModel = require('human-model');
 
-// set up a simple model definition
+// Set up a simple model definition
 var DemoModel = HumanModel.define({
   props: {
     ids: ['array', true, []]
@@ -548,16 +546,16 @@ var DemoModel = HumanModel.define({
 });
 
 
-// then we use it
+// Then we use it
 var model = new DemoModel();
 
-// get our array
+// Get our array
 var arr = model.ids;
 
-// modify it back
+// Modify it back
 arr.push('something');
 
-// this now triggers a change event
+// This now triggers a change event
 model.ids = arr;
 ```
 

@@ -1,16 +1,15 @@
-# human javascript
+# Human JavaScript
 
 Code is as much about people as it is about computers. Sure, it's run by computers, but it's written by, maintained by, and ultimately created for people. People are not computers. We are not robots. We are unpredictable, flawed, and irrational. The same people with the same tools and instructions won't produce the same output each time. We generally don't like being alone and we don't work well in isolation. In fact, in order to do our best work we *need* to work with other people. None of these traits are bad things, quite the opposite. They're what makes us who we are, they make us, well... human. Yet, as developers it's easy for us to get so focused on optimizing for technology that we forget to optimize for people.
 
-You can read about javascript, the language, elsewhere. Its good parts, bad parts, and ugly parts are well documented. This is a book about a specific set of tools, patterns, and approches that we feel are optimized for people. These approaches enable our team to quickly build and deliver high-quality javascript applications for humans.
+You can read about JavaScript, the language, elsewhere. Its good parts, bad parts, and ugly parts are well documented. This is a book about a specific set of tools, patterns, and approches that we feel are optimized for people. These approaches enable our team to quickly build and deliver high-quality JavaScript applications for humans.
 
-&yet, the team that I'm humbled to be a part of, is a small (~20 person) bootstrapped consulting and product company focused heavily on realtime single page web applications. We've had the opportunity to build a very broad range of single page applications for all kinds of purposes and audiences. We've built stuff for mobile, desktop, browser extensions, phonegap, televisions, you name it. From these experiences patterns start to emerge. Patterns that enable us to efficiently ship real-life applications (with real-life deadlines) as a team.
+[&yet](http://andyet.com), the team that I'm humbled to be a part of, is a small (~20 person) bootstrapped consulting and product company focused heavily on realtime single page web applications. We've had the opportunity to build a very broad range of single page applications for all kinds of purposes and audiences. We've built stuff for mobile, desktop, browser extensions, PhoneGap, televisions, you name it. From these experiences patterns start to emerge. Patterns that enable us to efficiently ship real-life applications (with real-life deadlines) as a team.
 
 As we've gone along, we've done our best to extract reusable tools out of them. So, in some ways we accidentally wrote this book. What I mean is that much of its contents are compiled from past blogposts, explanations to teammates and clients, and from project README files. This book is primarily an extraction, not a creation. We're sharing our experience, secrets, and tools to hopefully give you and your team a solid footing for building great apps and experiences.
 
 
 # This Book Will Help You Build Native HTML5 Apps
-<!--I changed this title to make the introduction ease the reader in -->
 
 Let's talk about this whole "app" thing for a bit and get on the same page in terms of terminology. If you own a smart phone of any sort, you've been inundated with the word "app" over the past five years or so.
 
@@ -29,13 +28,13 @@ The types of apps we're talking about building in this book could really be call
 To clarify further:
 
 1. They are separate from the API.
-2. They don't work *at all* if someone has javascript turned off.
-3. A modern browser with a modern javascript engine is a minimum system requirement.
+2. They don't work *at all* if someone has JavaScript turned off.
+3. A modern browser with a modern JavaScript engine is a minimum system requirement.
 4. We send the application code itself to the browser, not the result of running the application code.
 5. The app is rendered entirely on the client. We only send the bare minimum HTML we need to tell the browser to run our app. Usually just a doctype, a script tag and a stylesheet.
 6. After loading, the client fetches its own data, as data (typically JSON), not as rendered HTML.
 7. The app is loaded once and never does a full page reload while you're using it. 
-8. Actions like clicking on a link to render a new "page" utilizes asynchronous javascript. 
+8. Actions like clicking on a link to render a new "page" utilizes asynchronous JavaScript. 
 9. The app has and maintains "state" that is cached and maintained separate from the server.
 
 From now on, when I say "app" or "native HTML5 app" or "browser app" or "client app" within these pages, that is what I'm referring to.
@@ -53,7 +52,7 @@ The future of the web is realtime. Of this I have no doubt.
 
 The reason I can say this with such certainty is that it's already happening under our noses.
 
-Facebook, Gmail, Gtalk, and Github just to name a few, have all implemented some form of automatic page updating. When they have something new to tell you, they don't wait for you to ask for it. They push it out to you, from the server to the client.
+Facebook, Gmail, Google Talk, and GitHub just to name a few, have all implemented some form of automatic page updating. When they have something new to tell you, they don't wait for you to ask for it. They push it out to you, from the server to the client.
 
 In some cases this is as simple as the page automatically polling to see if there's something new. In other cases it's more advanced, where all the data used to build and update the page is coming over an open WebSocket connection. For our purposes, the transport mechanism is largely irrelevant; the point is, data comes to you.
 
@@ -71,9 +70,9 @@ Anytime you duplicate state, you increase complexity. Rather than worrying about
 
 If we step back a bit and look at what we're actually doing when we do this, we start to realize that we're actually building is a distributed system and we'll have all the same challenges that come with building distributed systems.
 
-I know what you're probably thinking. Some framework is going to come along that solves this problem for me. You may be right, there are many different approaches to dealing with the problems of duplicated state. There are several emerging frameworks, such as Meteor and Derby.js, that aim to simplify the process of building apps that work this way. 
+I know what you're probably thinking. Some framework is going to come along that solves this problem for me. You may be right, there are many different approaches to dealing with the problems of duplicated state. There are several emerging frameworks, such as Meteor and Derby, that aim to simplify the process of building apps that work this way. 
 
-The challenge with some of those frameworks, from where I sit, is that there's a lot of emphasis on trying to share code and logic between the client and the server. In my opinion, client and server really should be performing fundamentally different roles. Servers are for data, clients are for presentation. To me, this is about the basic principle of separation of concerns. A contrast to this is what my friend Owen Barnes was working on with SocketStream. It's funny to see how we both ended up reaching very similar conclusions over the last few years. As he mentioned in his talk at RealtimeConf 2012, there likely isn't going to be a "rails of realtime." The problems are simply too diverse. He's since moved his focus elsewhere, but the conclusion seems to be building loosely coupled modular approaches and patterns that can be substituted as needed.
+The challenge with some of those frameworks, from where I sit, is that there's a lot of emphasis on trying to share code and logic between the client and the server. In my opinion, client and server really should be performing fundamentally different roles. Servers are for data, clients are for presentation. To me, this is about the basic principle of separation of concerns. A contrast to this is what my friend Owen Barnes was working on with SocketStream. It's funny to see how we both ended up reaching very similar conclusions over the last few years. As he mentioned in his talk at RealtimeConf 2012, there likely isn't going to be a "Rails of realtime." The problems are simply too diverse. He's since moved his focus elsewhere, but the conclusion seems to be building loosely coupled modular approaches and patterns that can be substituted as needed.
 
 Distributed systems, latency compensation, and state duplication are really complex problems. The way you solve complex problems is by *not* solving the complex problems. Instead, you break them down into smaller, simpler, solvable problems. Those solutions in aggregate can represent the complete solution. 
 
@@ -90,32 +89,31 @@ Unfortunately because of those pre-conceptions, many of the people who are being
 
 But, jQuery is not an application framework. It's an abstraction layer and toolkit for working with the DOM. I'm not dogging on jQuery at all, in fact, I think it's a great toolkit for DOM manipuation. I use it and am quite happy with it in many HTML5 apps. My point is simply that jQuery is a DOM toolkit, not an application framework. 
 
-But, inevitably a "frontend" person is asked to build an immersive, complex client app and soon they end up with a 3500 line javascript file called "app.js" that does *everything.* Also, now no one else knows how any of it works, or how it's structured. No one wins. 
+But, inevitably a "frontend" person is asked to build an immersive, complex client app and soon they end up with a 3500 line JavaScript file called "app.js" that does *everything.* Also, now no one else knows how any of it works, or how it's structured. No one wins. 
 
 To avoid those situations we have to approach it as an engineering task of building a performant, well-structured UI.
 
 
 ## Picking your tools
 
-There are more and more tools out there now to build client apps. Angular, Ember, Backbone, Sencha, Knockout, etc.. all have their pros and cons. 
+There are more and more tools out there now to build client apps. AngularJS, Ember, Backbone, Sencha, Knockout, etc.. all have their pros and cons. 
 
 People in charge of development teams seem to agonize over the decision.
 
-They see these options as long term decisions with huge, long term ramifications and they don't want to pick the wrong one. The awesome thing is this... they're all javascript. So it's not really *that* grave of a decision and switching to something else isn't going to burn your whole business to the ground. The most important thing is that your team becomes familiar with building well-structured apps in javascript. That investment will be well worth it and will translate to new tools, if they come along. 
+They see these options as long term decisions with huge, long term ramifications and they don't want to pick the wrong one. The awesome thing is this... they're all JavaScript. So it's not really *that* grave of a decision and switching to something else isn't going to burn your whole business to the ground. The most important thing is that your team becomes familiar with building well-structured apps in JavaScript. That investment will be well worth it and will translate to new tools, if they come along. 
 
 Decisions are time consuming and expensive. At &yet we've built and re-built applications with all kinds of different tools and approaches. The following pages contain the conclusions we've reached. They're probably not for everyone but we've been quite happy with the results and it has made it possible for us to efficiently collaborate on clientside apps as a team. The approaches were picked with the following criteria:
-
  
-1. Tools that are "just javascript." Not tools where you describe your app in a DSL (no Sencha). This is to avoid requiring too much knowledge of the framework itself before being able to contribute. Focusing on javascript also offers some protection against investing too heavily in framework-specific knowledge.
-2. Tools where you build the app by writing code in javascript files, not by declaring bindings in your HTML (no Angular, sorry). Having to write application logic inside of a template feels like a violoation of seperation of concerns. It has some short-term payoffs and can make simple things really easy. However, when you want more control it can be difficult to do within the constraints of the framework.
+1. Tools that are "just JavaScript." Not tools where you describe your app in a DSL (no Sencha). This is to avoid requiring too much knowledge of the framework itself before being able to contribute. Focusing on JavaScript also offers some protection against investing too heavily in framework-specific knowledge.
+2. Tools where you build the app by writing code in JavaScript files, not by declaring bindings in your HTML (no AngularJS, sorry). Having to write application logic inside of a template feels like a violoation of seperation of concerns. It has some short-term payoffs and can make simple things really easy. However, when you want more control it can be difficult to do within the constraints of the framework.
 3. No monolithic, do-everything widget frameworks (not Sproutcore). These often make lots of assumptions about how you want to structure your HTML and often violate seperation of concerns.
 4. Model state is completely decoupled from view state (no Knockout.js). Again, this is to seperate concerns.
-5. You should not have to be a javascript rockstar to edit templates. Templates in seperate files with very little logic lets designers edit templates without having to know how everything works.
+5. You should not have to be a JavaScript rockstar to edit templates. Templates in seperate files with very little logic lets designers edit templates without having to know how everything works.
 6. The DOM is a simply a view of the state and reacts to changes in the model layer.
 7. Simple, decoupled file structures with lots of components that solve one problem.
 8. As little magic as possible (no Ember). Similar to item 1 this is primarily to avoid requiring too much framework-specific knowledge. Which brings us to the next point.
-9. People who already know javascript should be able to work on the app without lots of knowledge about a specific tool or framework.
-10. The inverse of the previous point should also be true in that people who learn how the app works, should accidentally learn how javascript works in the process.
+9. People who already know JavaScript should be able to work on the app without lots of knowledge about a specific tool or framework.
+10. The inverse of the previous point should also be true in that people who learn how the app works, should accidentally learn how JavaScript works in the process.
 11. It should play nicely in a team environment using version control (no giant files).
 12. Every piece of functionality should have an obvious "home." Structure, structure, structure. This makes it easy to jump into olde code to fix bugs or to jump from project to project.
 13. The project should have a set of code style standards that are enforceable by an automated process. This encourages readability and consistency throughout the codebase. It centralizes code style arguments around an enforcable standard. We find that this minimizes a lot of back-and-forth about code style because it becomes a simple automated pass or fail.

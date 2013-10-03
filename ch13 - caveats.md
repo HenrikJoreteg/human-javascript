@@ -3,9 +3,9 @@
 
 ## Function bindings
 
-The most common thing I see when teaching people javascript, even people who have been working with jQuery for a long time, is understanding how function execution works in javascript. 
+The most common thing I see when teaching people JavaScript, even people who have been working with jQuery for a long time, is understanding how function execution works in JavaScript. 
 
-There are 4 ways to call a function in javascript:
+There are 4 ways to call a function in JavaScript:
 
 as a stand-alone function:
 
@@ -14,7 +14,7 @@ var myFunction = function () {
   console.log('"this" is', this);  
 };
 
-myFunction(); // will log out window (or global in node)
+myFunction(); // Will log out window (or global in Node)
 ```
 
 as a property of an object:
@@ -25,20 +25,20 @@ obj.myFunction = function () {
   console.log('"this" is', this);  
 };
 
-obj.myFunction(); // will log out the 'obj' object
+obj.myFunction(); // Will log out the 'obj' object
 
-// now here's where it gets tricky (continuing the same code as above)
+// Now here's where it gets tricky (continuing the same code as above)
 
 var myFunc = obj.myFunction;
 
-myFunc(); // what will this log out as its 'this'?
+myFunc(); // What will this log out as its 'this'?
 
-// the answer is that again, the "window" object is 'this'.
+// Whe answer is that again, the "window" object is 'this'.
 ```
 
 So the question is why?
 
-In javascript "this" isn't magic. It's just an object. It's whatever you tell it to be when you're calling the function. It's simply the context object for that function execution.
+In JavaScript "this" isn't magic. It's just an object. It's whatever you tell it to be when you're calling the function. It's simply the context object for that function execution.
 
 So in the case of the second example where we just do `myFunc();` we're not giving it anything to use as a context, so it uses the global object "window" because a function body will always have a "this" inside that represents the context of execution.
 
@@ -50,7 +50,7 @@ var Backbone = require('backbone'),
 
 module.exports = Backbone.View.extend({
   initialize: function () {
-    // register a handler so that anytime the model changes, 
+    // Register a handler so that anytime the model changes, 
     // call the render function.
     // THIS WILL NOT WORK!
     this.model.on('change', this.render);
@@ -66,7 +66,7 @@ The problem is that inside the render function, "this" won't be the Backbone vie
 In fact, what you're doing is no different than this:
 
 ```javascript
-// register a handler so that anytime the model changes, 
+// Register a handler so that anytime the model changes, 
 // call the render function.
 // THIS WILL NOT WORK!
 var render = this.render;
@@ -78,7 +78,7 @@ So, the render function doesn't have any context when you just provide a pointer
 So, here's what you do. You can bind a function to a context before it's run like this. 
 
 ```javascript
-// THIS will work as expected
+// THIS will work as expected.
 // Backbone's event system takes a third argument for the
 // context to execute the function with.
 this.model.on('change', this.render, this);
@@ -95,22 +95,22 @@ var someOtherContext = {
   name: 'blah'
 };
 
-// both of these will log out the 'someOtherContext' object
+// Both of these will log out the 'someOtherContext' object
 myFunction.apply(someOtherContext); 
 myFunction.call(someOtherContext);
 
-// in ES5 compliant (read modern) browsers you can also do this
+// In ES5 compliant (read modern) browsers you can also do this
 myFunction = myFunction.bind(someOtherContext);
 myFunction(); // "this" will be someOtherContext
 
-// or if you're using underscore it doesn't matter if you're
+// Or if you're using underscore it doesn't matter if you're
 // in a modern browser or not. You can just do this:
 
 myFunction(_.bind(myFunction, someOtherContext));
-myFunction(); // for the same result
+myFunction(); // For the same result
 ```
 
-That's function binding in a nutshell. It's really just info about how the language works. But it's such a common issue with people who are new to Backbone, or less familiar with javascript as a language that I figured it was worth explaining.
+That's function binding in a nutshell. It's really just info about how the language works. But it's such a common issue with people who are new to Backbone, or less familiar with JavaScript as a language that I figured it was worth explaining.
 
 
 ## Gotchas regarding DOM manipulation in views (they may still be detached)
@@ -125,7 +125,7 @@ var Backbone = require('backbone');
 module.exports = Backbone.View.extend({
   render: function () {
     this.$el.html(templates.myTemplate());
-    // then you try to access that div like so:
+    // Then you try to access that div like so:
     $('#myDiv').on('click', this.doSomething);
     
     // ^^ myDiv won't be found! If the root element of this
@@ -146,4 +146,4 @@ Inevitably with single page apps you have to deal with issues of bad connectivit
 
 If we're using restful JSON APIs we'll be making requests throughout the applications lifecycle.
 
-As a starting point, I've stubbed out a global error handler for Ajax requests. jQuery makes it fairly simple: http://api.jquery.com/ajaxError. So we register and add a handler here: https://github.com/caagency/caa-template-jqmapp2/blob/development/clientapp/app/views/main.js that just pops up a dialog. This could be modified to make a distinction between session expiration errors and bad connectivity errors. 
+As a starting point, I've stubbed out a global error handler for Ajax requests. jQuery makes it fairly simple: [http://api.jquery.com/ajaxError](http://api.jquery.com/ajaxError). So we register and add a handler here: [https://github.com/caagency/caa-template-jqmapp2/blob/development/clientapp/app/views/main.js](https://github.com/caagency/caa-template-jqmapp2/blob/development/clientapp/app/views/main.js) that just pops up a dialog. This could be modified to make a distinction between session expiration errors and bad connectivity errors. 

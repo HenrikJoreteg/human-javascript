@@ -29,9 +29,9 @@ But, they're *quite* basic so in addition, we'll extend Backbone views to enable
 
 ## Introducing HumanView
 
-As I mentioned Backbone views are very limited in scope – quite intentionally so. The following explanation is pulled straight from the Backbone docs:
+As I mentioned Backbone views are very limited in scope – quite intentionally so. The following explanation is pulled straight from the [Backbone docs](http://backbonejs.org/#View):
 
-> Backbone views are almost more convention than they are code — they don't determine anything about your HTML or CSS for you, and can be used with any javascript templating library. The general idea is to organize your interface into logical views, backed by models, each of which can be updated independently when the model changes, without having to redraw the page.
+> Backbone views are almost more convention than they are code — they don't determine anything about your HTML or CSS for you, and can be used with any JavaScript templating library. The general idea is to organize your interface into logical views, backed by models, each of which can be updated independently when the model changes, without having to redraw the page.
 
 Backbone's general approach is to provide some simple components and patterns, and it's up to you to apply them as you wish. This non-prescriptive flexibility is a big reason why Backbone has become as popular as it has.
 
@@ -66,20 +66,20 @@ var NavigationView = require('./navigation');
 
 
 module.exports = HumanView.extend({
-  // our 
+  // Our 
   template: templates.main,
 
   render: function () {
-    this.renderAndBind(); // inherited from HumanView
+    this.renderAndBind(); // Inherited from HumanView
     
-    // init and "render()" a subview for a hypothetical
-    // navigation view;
+    // Init and "render()" a subview for a hypothetical
+    // navigation view
     this.navView = new NavigationView({
       el: this.$('#mainNav')[0],
       model: this.model
     }).render();
 
-    // it's common practice to return "this"
+    // It's common practice to return "this"
     // when rendering Backbone views in order 
     // to make it possible to assign the result
     return this;
@@ -97,7 +97,7 @@ If there isn't a lot of behavior associated with each line item, you may choose 
 
 Take a look at the associated demo app to see examples of each approach to handling collections.
 
-You can find the app on my github account: [https://github.com/HenrikJoreteg/humanjs-sample-app](https://github.com/HenrikJoreteg/humanjs-sample-app)
+You can find the app on my [GitHub account](https://github.com/HenrikJoreteg/humanjs-sample-app)
 
 
 ### Caveat: understanding `this.$`
@@ -129,12 +129,12 @@ var templates = require('templates');
 module.exports = HumanView.extend({
   template: templates.widget,
   events: {
-    // the event + element: the name of the handler
+    // The event + element: the name of the handler
     'click .delete': 'handleDeleteClick',
     'keyup input.search': 'handleSearchKeyUp'
   },
   render: function () {
-    // this we inherit from human-view
+    // This we inherit from human-view
     this.renderAndBind();
   },
   handleDeleteClick: function () {
@@ -153,7 +153,7 @@ That events hash is equivalent to doing the following inside the render method.
 
 ```javascript
   render: function () {
-    // this we inherit from human-view
+    // This we inherit from human-view
     this.renderAndBind();
     this.$el.delegate('.delete', 'click', _.bind(this.handleDeleteClick, this));
     this.$el.delegate('input.search', 'keyup', _.bind(this.handleSearchKeyUp, this));
@@ -165,7 +165,7 @@ But the events hash is less verbose and arguably more readable.
 
 ### Binding model values to templates
 
-In order to keep our separation of concerns, very rarely do I set style attributes directly from javascript. I believe that is a job for CSS. So much of what I do is flip classes based on property values on the underlying model.
+In order to keep our separation of concerns, very rarely do I set style attributes directly from JavaScript. I believe that is a job for CSS. So much of what I do is flip classes based on property values on the underlying model.
 
 Backbone kind of loosely encourages you to just re-render views entirely when something changes. In a lot of cases that's totally fine, but I like only changing the specific thing that needs updating when the underlying model changes. Obviously, this can be a bit more tedious because you have to bind each thing explicitly somehow. 
 
@@ -183,16 +183,16 @@ module.exports = HumanView.extend({
     'click .delete': 'handleDeleteClick',
     'keyup input.search': 'handleSearchKeyUp'
   },
-  // content bindings mean
+  // Content bindings mean
   // put the name attribute of the
-  // model in this view. Into the
+  // model in this view into the
   // element that matches the
   // '.profileName' selector as text.
   contentBindings: {
     'name': '.profileName'
   },
-  // class bindings work a tad differently
-  // if they're boolean attributes
+  // Class bindings work a tad differently.
+  // If they're boolean attributes
   // it will add or remove a class
   // of the same name as the property.
   // If the property value is a string
@@ -203,7 +203,7 @@ module.exports = HumanView.extend({
     'active': '.container'
   },
   render: function () {
-    this.renderAndBind(); // this is what does all the bindings.
+    this.renderAndBind(); // This is what does all the bindings.
   },
   handleDeleteClick: function () {
     this.model.delete();
@@ -243,16 +243,16 @@ module.exports = Backbone.View.extend({
     'click .myClass': 'myHandler'
   },
   initialize: function () {
-    // register a single change handler for the model
+    // Register a single change handler for the model
     this.listenTo(this.model, 'change', _.bind(this.render, this));
   },
   render: function () {
-    // we simply fill the contents of the current element with
+    // We simply fill the contents of the current element with
     // the rendered HTML using the model's current attributes each time.
     this.$el.html(this.template(this.model.toJSON()));
   },
   myHandler: function () {
-    // do something
+    // Do something
   }
 });
 ``` 
@@ -341,10 +341,10 @@ module.exports = HumanView.extend({
 });
 ```
 
-For more on HumanView, or to contribute and make it better, see the documentation and source on github: [https://github.com/henrikjoreteg/human-view](https://github.com/henrikjoreteg/human-view)
+For more on HumanView, or to contribute and make it better, see the documentation and source on [GitHub](https://github.com/henrikjoreteg/human-view).
 
 
-## A bit about defining bindings in templates (à la angular, ractive.js)
+## A bit about defining bindings in templates (à la AngularJS, Ractive)
 
 There are tools out there that let you specify in your templates which pieces of information go where in your DOM and then they magically handle the event bindings for you. 
 
@@ -364,7 +364,7 @@ var model = require('someModel');
 
 document.body.appendChild(template(model));
 
-// then if you changed the model
+// Then if you changed the model
 model.set('name', 'Sue');
 
 // the DOM would be magically updated to be:
@@ -377,7 +377,7 @@ model.set('name', 'Sue');
 
 This is all fine and good for inserting text into an HTML snippet. But what if what you actually want is a bit of logic, or what you want to bind is another attribute, like a `class`, `src`, `href`? Not big deal per se, but it starts getting more convoluted and pretty soon you're writing a lot of logic into your templates. 
 
-Why is that bad? It could be argued, but I feel like it's the wrong place to read logic. I find `if` statements and functions in javascript much easier to follow in javascript files with the rest of the logic, than when it's sprinkled into the HTML. That reminds me of old approaches to building dynamic web pages where people would write a DB query at the top of the HTML page within some type of special tag and then loop through the results in the markup below using other special tags. 
+Why is that bad? It could be argued, but I feel like it's the wrong place to read logic. I find `if` statements and functions in JavaScript much easier to follow in JavaScript files with the rest of the logic, than when it's sprinkled into the HTML. That reminds me of old approaches to building dynamic web pages where people would write a DB query at the top of the HTML page within some type of special tag and then loop through the results in the markup below using other special tags. 
 
 Mixing of these concerns makes re-factoring and code re-use more difficult because you've got bits and pieces of logic spread out in more places.
 

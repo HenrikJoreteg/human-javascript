@@ -16,11 +16,11 @@ Now in code:
 
 ```javascript
 module.exports = {
-  // the main launch function this is the 
+  // The main launch function. This is the 
   // entry point into your application.
   launch: function () {
-    // explicitly create a global called "app"
-    // doing this first means it *always* exists
+    // Explicitly create a global called "app."
+    // Doing this first means it *always* exists
     // if we need to access it from a view.
     window.app = this;
 
@@ -33,18 +33,18 @@ module.exports = {
 
     this.fetchStandardData(function (err) {
       if (err) {
-        // handle errors;
+        // Handle errors
       }
       // render the main viev
       app.view = new MainView({
         model: me
       }).render();
 
-      // start our router
-      // init our URL handlers and the history tracker
+      // Start our router.
+      // Init our URL handlers and the history tracker
       new Router();
       app.history = Backbone.history;
-      // we have what we need, we can now start our router and show the appropriate page
+      // We have what we need, we can now start our router and show the appropriate page
       app.history.start({pushState: true, root: '/'});
     });
 
@@ -89,7 +89,7 @@ module.exports = Backbone.Router.extend({
 
     if (!team) return this.fourOhFour();
 
-    // we may or may not have the task, so we just pass it in and try to get it from the view.
+    // We may or may not have the task, so we just pass it in and try to get it from the view.
     app.renderPage(new View({
       team: team,
       taskId: taskId

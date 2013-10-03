@@ -1,8 +1,8 @@
 # Using events: Modules talking to modules
 
-How do you keep your modules cleanly separated? Sometimes modules are dependent on other modules but we still want to be able to keep them loosely coupled? One good technique is triggering lots of events that can be used as hooks by other code. Many of the core components in node.js are extensions of the EventEmitter class. This means you can register handlers that get called when events happen to that object, much like you would do in the browser when you want to register a click handler for an element on the page.
+How do you keep your modules cleanly separated? Sometimes modules are dependent on other modules but we still want to be able to keep them loosely coupled? One good technique is triggering lots of events that can be used as hooks by other code. Many of the core components in Node are extensions of the EventEmitter class. This means you can register handlers that get called when events happen to that object, much like you would do in the browser when you want to register a click handler for an element on the page.
 
-I find that developers often assume that events are kind of magical or special things in javascript, but they're not. In fact, building an event emitter from scratch is a really great learning exercise. They're really quite simple. You're just saying: "Please call this function when this thing happens." Typically, you'll see code like this:
+I find that developers often assume that events are kind of magical or special things in JavaScript, but they're not. In fact, building an event emitter from scratch is a really great learning exercise. They're really quite simple. You're just saying: "Please call this function when this thing happens." Typically, you'll see code like this:
 
 In browsers:
 
@@ -34,7 +34,7 @@ There are lots of implementations of event emitters with various features. Featu
 
 Browsers don't expose a base EventEmitter class we can just use, so for clientside code we need to include one in order to take advantage of this pattern.
 
-We use a slightly modified version of a really awesome and lightweight one that was written by the LearnBoost guys: [@tjholowaychuk](https://twitter.com/tjholowaychuk), [@rauchg](https://twitter.com/rauchg) and company. It's [wildemitter](https://github.com/HenrikJoreteg/wildemitter) on my github if you're curious. 
+We use a slightly modified version of a really awesome and lightweight one that was written by the LearnBoost guys: [@tjholowaychuk](https://twitter.com/tjholowaychuk), [@rauchg](https://twitter.com/rauchg) and company. It's [wildemitter](https://github.com/HenrikJoreteg/wildemitter) on my GitHub if you're curious. 
 
 Beyond standard `on()`, `off()` and `once()` methods it adds two main features:
 
@@ -47,12 +47,12 @@ var WildEmitter = require('wildemitter');
 
 var emitter = new WildEmitter();
 
-// register one handler 
+// Register one handler 
 emitter.on('something', 'group1', function () { ... });
-// register another handler in the same group
+// Register another handler in the same group
 emitter.on('someOtherEvent', 'group1', function () { ... });
 
-// then release both of them
+// Then release both of them
 emitter.releaseGroup('group1');
 ```
 
@@ -61,7 +61,7 @@ Details and implementations aside the same basic concepts of adding and removing
 As an example, here's a simplified version of the `andbang.js` library which is an SDK for talking to the And Bang API.
 
 ```javascript
-// require our emitter
+// Require our emitter
 var Emitter = require('wildemitter');
 
 // Our main constructor function
@@ -70,7 +70,7 @@ var AndBang = function (config) {
   Emitter.call(this);
 };
 
-// inherit from emitter, but retain constructor
+// Inherit from emitter, but retain constructor
 AndBang.prototype = Object.create(Emitter.prototype, {
   constructor: {
     value: AndBang
@@ -80,13 +80,13 @@ AndBang.prototype = Object.create(Emitter.prototype, {
  // Other methods
 AndBang.prototype.setName = function (newName) {
   this.name = newName;
-  // we can trigger arbitrary events
+  // We can trigger arbitrary events
   // these are just hooks that other
   // code could chose to listen to.
   this.emit('nameChanged', newName);
 };
 
-// export it to the world
+// Export it to the world
 module.exports = AndBang;
 ```
 
@@ -96,7 +96,7 @@ Then, other code that wants to use this module can listen for events like so:
 var AndBang = require('andbang');
 var api = new AndBang();
 
-// now this handler will get called any time the event gets triggered
+// Now this handler will get called any time the event gets triggered
 api.on('nameChanged',  function (newName) { /* do something cool */ });
 ```
     

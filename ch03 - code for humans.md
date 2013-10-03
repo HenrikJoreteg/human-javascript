@@ -13,11 +13,11 @@ You with me? Ok, but how do you actually do this?
 Well, let me give you a silly example:
 
 ```javascript
-// assume this is an array of strings from somewhere
+// Assume this is an array of strings from somewhere
 var myArray = ['hello', 'something', 'awesome']; 
 
 if (~myArray.indexOf('hello')) {
-  // under what circumstances does this get called?
+  // Under what circumstances does this get called?
 }
 ```
 
@@ -26,20 +26,20 @@ Can you explain to me, in plain English, what that tilde does? If you can, good 
 Now, compare it to this:
 
 ```javascript
-// same array:
+// Same array:
 var myArray = ['hello', 'something', 'awesome']; 
 if (myArray.indexOf('hello') == -1) {
-  // pretty freakin' clear, AMIRITE!?
+  // Pretty freakin' clear, AMIRITE!?
 }
 ```
 
-Or even this, using underscore:
+Or even this, using Underscore:
 
 ```javascript
-// same array:
+// Same array:
 var myArray = ['hello', 'something', 'awesome']; 
 if (_(myArray).contains('hello')) {
-  // also pretty freakin' clear right?
+  // Also pretty freakin' clear right?
 }
 ```
 
@@ -48,7 +48,7 @@ Frankly, I think the first example looks better, visually. In fact, I sometimes 
 
 ## Cleverness is a double edged sword
 
-Being clever is sometimes a good thing. But as was so aptly put by Paddy Foran (http://paddy.io/posts/cleverness/) cleverness for the sake of cleverness should be avoided at all costs. 
+Being clever is sometimes a good thing. But as was so aptly put by [Paddy Foran](http://paddy.io/posts/cleverness/) cleverness for the sake of cleverness should be avoided at all costs. 
 
 The goal should always be clarity and readability.
 
@@ -58,7 +58,7 @@ As with readability, code conventions and format should be consistent throughout
 
 Semicolons, tabs, and spaces are contentious things among developers. Every developer I've ever met has opinions (usually strongly held) about code style.
 
-If you're building large JS apps and not doing some form of static analysis on your code, you're asking for trouble. It helps catch silly errors and forces code style consistency. Ideally, no one should be able to tell who wrote what part of your app. If you're on a team, it should all be uniform within a project. How do you do that? We use a slick tool written by [Nathan LaFreniere](https://twitter.com/quitlahok) on our team called, simply, [precommit-hook](http://github.com/nlf/precommit-hook). So all we have to do is add "precommit-hook" to our list of dependencies (in a node project).
+If you're building large JS apps and not doing some form of static analysis on your code, you're asking for trouble. It helps catch silly errors and forces code style consistency. Ideally, no one should be able to tell who wrote what part of your app. If you're on a team, it should all be uniform within a project. How do you do that? We use a slick tool written by [Nathan LaFreniere](https://twitter.com/quitlahok) on our team called, simply, [precommit-hook](http://github.com/nlf/precommit-hook). So all we have to do is add "precommit-hook" to our list of dependencies (in a Node project).
 
 What it does is install a git pre-commit hook in the project that uses JSHint to check your project for code style consistency before each commit. Once upon a time there was a tool called JSLint written by Douglas Crockford. Nowadays there's a less strict, more configurable version of the same project called [JSHint](http://www.jshint.com/). 
 
@@ -81,4 +81,4 @@ Our `.jshintrc` files usually looks something like this:
 
 The awesome thing about this approach is that you can enforce consistency, the rules for the project are contained, and actually get checked into the project repo itself (in the form of the `.jshintrc` file). So, if you decide to have a different set of rules for the next project, fine. It's not a global setting; it's defined and adjusted by whomever runs the project. Optionally, you can also specify your jshint config in package.json by adding a `jshintConfig` property containing the same type of config as above.
 
-For a more in-depth discussion on style and style guides I highly recommend reading Airbnb's javascript style guide: https://github.com/airbnb/javascript. It will give you a good overview of the various common style discrepancies and the reasoning behind some of their choices. It's also a great starting point if you want to fork it and tweak it to be "the style guide" for your team.
+For a more in-depth discussion on style and style guides I highly recommend reading Airbnb's [JavaScript style guide](https://github.com/airbnb/javascript). It will give you a good overview of the various common style discrepancies and the reasoning behind some of their choices. It's also a great starting point if you want to fork it and tweak it to be "the style guide" for your team.
