@@ -1,3 +1,4 @@
+<!-- This chapter is great, I have no edits. I really like the tone -->
 # Client or server? Go big or go home.
 
 As someone who writes lots of javascript, you might think I'd advocate that everything should be a single-page app. In short: No.
