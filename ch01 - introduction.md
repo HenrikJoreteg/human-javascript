@@ -11,7 +11,7 @@ As we've gone along, we've done our best to extract reusable tools out of them. 
 
 # Acknowledgements
 
-Speaking of humans, this book would not exist if not for a giant list of people who helped make it a reality. To name a few specifically a huge thank you to Jan Lenhart, Philip Roberts, Bear (Mike Taylor), Luke Karrys, Jenn Turner, Adam Brault, Sara Chipps, Jeff Boyus, Lance Stout, Karolina Szczur, Jon Hjelle, Melanie Brown, Stephanie Maier, Beau Sorensen, Michael Garvin, Amy Lynn Augspurger and others. 
+Speaking of humans, this book would not exist if not for a giant list of people who helped make it a reality. To name a few specifically a huge thank you to Jan Lehnardt, Philip Roberts, Bear (Mike Taylor), Luke Karrys, Jenn Turner, Adam Brault, Sara Chipps, Jeff Boyus, Lance Stout, Karolina Szczur, Jon Hjelle, Melanie Brown, Stephanie Maier, Beau Sorensen, Michael Garvin, Amy Lynn Augspurger and others. 
 
 They helped with technical review, code, editorial feedback, design, writing/producing the promotional video and loads of encouragement. Thank you all!
 
