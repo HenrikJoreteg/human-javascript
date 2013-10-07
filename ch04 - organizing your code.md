@@ -23,7 +23,7 @@ Don't be scared of refactoring. Be scared of building an unmaintainable piece of
 
 ## Separating views and state
 
-This is the biggest lesson I've learned building lots of single page apps. Your view (the DOM) should just be blind slave to the model state of your application. For this you could use any number of tools and frameworks. I'd recommend starting with [Backbone](http://backbonejs.org/) (by the awesome Mr. [@jashkenas](https://twitter.com/jashkenas)) as it's the easiest to understand, and the closest thing to "just JavaScript"™ as discussed in the introduction. 
+This is the biggest lesson I've learned building lots of single page apps. Your view (the DOM) should just be blind slave to the model state of your application. For this you could use any number of tools and frameworks. I'd recommend starting with [Backbone](http://backbonejs.org/) (by the awesome Mr. @[jashkenas](https://twitter.com/jashkenas)) as it's the easiest to understand, and the closest thing to "just JavaScript"™ as discussed in the introduction. 
 
 Essentially, you'll populate a set of models and collections of these models in memory in the browser. These will store all the application state for your app. These models should be completely oblivious to how they're used; they merely store state and broadcast their changes. Then you will have views that listen for changes in the models and update the DOM. This core principle of separating your views and your application state is vital when building large apps.
 

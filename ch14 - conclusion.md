@@ -10,10 +10,8 @@ Follow @[HenrikJoreteg](https://twitter.com/HenrikJoreteg) and @[andyet](https:/
 
 ## 3. Complimentary Resources
 
-- Human JavaScript related documentation site: 
-  [http://docs.humanjavascript.com](http://docs.humanjavascript.com)
-- Fast searchable directory of hand-picked modules:
-  [http://resources.humanjavascript.com](http://resources.humanjavascript.com)
+- [http://docs.humanjavascript.com](http://docs.humanjavascript.com) – Human JavaScript related documentation site.
+- [http://resources.humanjavascript.com](http://resources.humanjavascript.com) – Fast searchable directory of hand-picked modules. 
 
 ## 4. Open source is a group effort
 
