@@ -1,5 +1,5 @@
 {
-  "outputFilename" : "HumanJavascript",
+  "outputFilename" : "HumanJavaScript",
   "title" : "Human JavaScript",
   "chapters" : "ch*.md",
   "metadata" : "./include/metadata.xml",
