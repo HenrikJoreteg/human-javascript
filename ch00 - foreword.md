@@ -30,7 +30,7 @@ When Henrik told me he was working on Human JavaScript I begged to be added to t
 
 I read the draft in one sitting, took lots of notes and at the end of it, this whole space of the frontend world that wasn’t accessible to me, became clearer. I saw the necessity for more complex MVC frameworks on the client than I had experience with. I started to understand why structuring your code in certain ways makes it more robust in the face of having multiple people work on it. The book managed to illuminate well known concepts in the unfamiliar frontend territory. Human JavaScript made frontend development accessible to me.
 
-Truly inspired again I went on and built a small side project and it went well. It isn’t much, but it makes me excited about building more web apps.
+Truly inspired again I went on and built a small side project. It isn’t much, but it makes me excited about building more web apps.
 
 Human JavaScript is the collected wisdom of the team at &yet, where Henrik works, and all the blood and sweat that goes into their excellent client projects, and their own products. It couldn’t come from a better group of people. They care about the right technology as much as teaching it. They take it upon themselves to fill the gaps of missing canon for web development.
 
