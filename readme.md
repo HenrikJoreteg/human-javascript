@@ -3,68 +3,90 @@ Build powerfully simple browser apps
 
 BUILDS: https://www.dropbox.com/sh/jn2ktxswruhcovk/FmXLx2WjP7
 
-[Ch1: Intro](ch01 - introduction.md)
+[Foreword by Jan Lehnardt](ch00 - foreword.md)
 
-- Simple intro to book contents, impetus
-- Defining "browser apps"
-- "realtime" as the future
-- Engineering a UI, misconception about "simple front end stuff"
+[Ch1: Introduction](ch01 - introduction.md)
 
-[Ch2: The big decision](ch02 - the big decision.md)
+- Achknowledgements
+- This Book Will Help You Build Native HTML5 Apps
+- Realtime apps are human apps
+- Misconceptions, FUD and engineering
+- Picking your tools
+
+[Ch2: Client or server? Go big or go home.](ch02 - the big decision.md)
 
 - Deciding between client/server app
-- Separation of concerns and going all out
+- So I didn't talk you out of it? Ok, then go all out!
 
-[Ch3: Coding for humans](ch03 - code for humans.md)
+[Ch3: Writing code for humans.](ch03 - code for humans.md)
 
-- Reading to be read
-- Not being clever for the sake of cleverness
+- Tools and trickery
+- Cleverness is a double edged sword
+- Code Linting
 
 [Ch4: No more clientside spaghetti. Organizing your code.](ch04 - organizing your code.md)
 
-- Avoiding spaghetti, maintaining quality
-- Seperating views and state
+- Refactor early, refactor often
+- Separating views and state
 - CommonJS Modules
 - Grab your mooonboots
+- A note on going to production
 - The structure of the clientapp folder
-- The `app` global
+- Creating an `app` global
 
-[Ch5: on('events', doCoolStuff)](ch05 - eventification.md)
+[Ch5: Using events: Modules talking to modules](ch05 - eventification.md)
 
 - Using events to build decoupled applications/reusable modules
 - Emitters and events, no magic, just functions
 
-[Ch6: Models and state](ch06 - models.md)
+[Ch6: Models](ch06 - models.md)
 
-- What they do
-- Listening carefully
-- Backbone versus Strict models
+- A simple example 
+- Using models for everything
+- Applying this approach to the example
+- Model alternatives
+- Readability
+- Derived properties
+- Direct access to properties
+- Quick note on getters/setters
+- Warning!
+- Type enforcement
+- Better handling of lists/dates
+- Summarizing models
 
 [Ch7: Views and the DOM](ch07 - views.md)
 
-- What they do
-- How they work
-- Full re-rendering or binding attributes
-- Understanding "this"
-- Binding helpers
+- Introducing views
+    - What they do
+    - How they work
+- Introducing HumanView
+- A Hierarchy of Views
+- Caveat: understanding `this.$`
+- Registering DOM event handlers
+- Binding model values to templates
+- HumanView's convenience methods
+- Rendering collections
+- A bit about defining bindings in templates (à la AngularJS, Ractive)
 
 [Ch8: Handling templates](ch08 - templating.md)
 
-- General talk of the "problem" various approaches the <template> tag
-- How we used to do it, why it kinda sucked
-- How we do it now, jade + templatizer + moonboots
+- Stop sending template engines to the browser
+- How we used to do it
+- Why that's less-than-ideal
+- How we're doing it now
+- The end result
 
 [Ch9: Clientside Routing](ch09 - clientside routing.md)
 
 - Same sh*t different URL/handing control of routing to client
-- Setting up discussion on launch sequece to see how this plays out in code
+- How to deal with clientside routes
 
-[Ch10: Blastoff! Your app launch sequence](ch10 - launch sequence.md)
+[Ch10: 3... 2... 1... Blastoff!](ch10 - launch sequence.md)
 
-- Stepping through a typical launch sequence
-- Intro to async.js
+- Application launch sequence
+- Stepping through an example
 
-[Ch11: Testing and QA that doesn't suck](ch11 - testing and QA that doesnt suck.md)
+[Ch11: Testing and QA that doesn't suck (so your app won't)](ch11 - testing and QA that doesnt suck.md)
 
 - The problem/challenge of proper QA
 - Meet the SpaceMonkey
@@ -78,9 +100,18 @@ BUILDS: https://www.dropbox.com/sh/jn2ktxswruhcovk/FmXLx2WjP7
 - Using them together
 - Security caveats
 
-[Ch13: Caveats, timesavers, random tips](ch13 - caveats.md)
+[Ch13: Caveats/Gotchas](ch13 - caveats.md)
 
 - Function bindings
-- Rendering detatched DOM elements
-- failed ajax requests
+- Gotchas regarding DOM manipulation in views (they may still be detached)
+- Failed Ajax requests
+
+[Ch14: A few closing thoughts](ch14 - conclusion.md)
+
+- Staying up to date
+- Complimentary resources
+- Open Source
+- Feedback
+- Thank you!
+
 
