@@ -14,7 +14,7 @@ var myFunction = function () {
   console.log('"this" is', this);  
 };
 
-myFunction(); // Will log out window (or global in Node)
+myFunction(); // Will log out the `window` object (or global in Node)
 ```
 
 2. As a property of an object:
@@ -33,7 +33,7 @@ var myFunc = obj.myFunction;
 
 myFunc(); // What will this log out as its 'this'?
 
-// Whe answer is that again, the "window" object is 'this'.
+// the answer is the `window` object
 ```
 
 3. Using call
@@ -41,7 +41,7 @@ myFunc(); // What will this log out as its 'this'?
 ```js
 var myFunc = function () { ... };
 
-// call with a context and list of arguments
+// call with a specific context and any number of arguments
 myFunc.call({any: 'object'}, 'someArgument', 'someOther');
 ```
 
@@ -124,7 +124,7 @@ myFunction(); // "this" will be someOtherContext
 // Or if you're using underscore it doesn't matter if you're
 // in a modern browser or not. You can just do this:
 
-myFunction(_.bind(myFunction, someOtherContext));
+myFunction = _.bind(myFunction, someOtherContext);
 myFunction(); // For the same result
 ```
 

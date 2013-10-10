@@ -70,11 +70,14 @@ The client router looks something like this:
 
 ```javascript
 var Backbone = require('backbone');
+var TaskDetailPage = require('pages/taskDetail');
+var FourOhFourPage = require('pages/fourOhFour');
+
 
 module.exports = Backbone.Router.extend({
   routes: {
-    ':slug/:slug/tasks': 'member',
-    ':slug/task/:taskid': 'memberTaskDetail',
+    '': 'home',
+    ':slug/:slug/task/:taskid': 'memberTaskDetail',
     ...
   },
 
@@ -83,17 +86,24 @@ module.exports = Backbone.Router.extend({
     app.navigate(app.teams.first().chatUrl);
   },
 
-  memberTaskDetail: function () {
-    var View = require('pages/taskDetail'),
-      team = this.getTeam(teamSlug);
+  memberTaskDetail: function (teamId, memberId, taskId) {
+    var team = app.teams.get(teamId);
+    var member = team && team.members.get(memberId)
 
-    if (!team) return this.fourOhFour();
+    // make sure we found our models or send to an internal
+    // 'not found' page. 
+    if (!team || !member) return this.fourOhFour();
 
     // We may or may not have the task, so we just pass it in and try to get it from the view.
-    app.renderPage(new View({
+    app.renderPage(new TaskDetailPage({
       team: team,
+      member: member,
       taskId: taskId
     }));
+  },
+
+  fourOhFour: function () {
+    app.renderPage(new FourOhFourPage());
   }
 }
 ```

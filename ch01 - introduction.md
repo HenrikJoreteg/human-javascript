@@ -116,7 +116,7 @@ Decisions are time consuming and expensive. At &yet we've built and re-built app
 3. No monolithic, do-everything widget frameworks (not Sproutcore). These often make lots of assumptions about how you want to structure your HTML and often violate separation of concerns.
 4. Model state is completely decoupled from view state (no Knockout.js). Again, this is to separate concerns.
 5. You should not have to be a JavaScript rockstar to edit templates. Templates in separate files with very little logic lets designers edit templates without having to know how everything works.
-6. The DOM is a simply a view of the state and reacts to changes in the model layer.
+6. The DOM is simply a view of the state and reacts to changes in the model layer.
 7. Simple, decoupled file structures with lots of components that solve one problem.
 8. As little magic as possible (no Ember). Similar to item 1 this is primarily to avoid requiring too much framework-specific knowledge. Which brings us to the next point.
 9. People who already know JavaScript should be able to work on the app without lots of knowledge about a specific tool or framework.
