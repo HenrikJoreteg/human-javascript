@@ -75,7 +75,7 @@ As users get increasingly comfortable with that idea, I believe we'll reach a po
 
 Anytime you duplicate state, you increase complexity. Rather than worrying about just rendering some data correctly, you're now caring about staleness, caching, and conflicts.
 
-If we step back a bit and look at what we're actually doing when we do this, we start to realize that we're actually building is a distributed system and we'll have all the same challenges that come with building distributed systems.
+If we step back a bit we start to realize that what we're actually building is a distributed system and as a result we'll face all the same challenges that come with building distributed systems.
 
 I know what you're probably thinking. Some framework is going to come along that solves this problem for me. You may be right, there are many different approaches to dealing with the problems of duplicated state. There are several emerging frameworks, such as Meteor and Derby, that aim to simplify the process of building apps that work this way. 
 
@@ -122,7 +122,7 @@ Decisions are time consuming and expensive. At &yet we've built and re-built app
 9. People who already know JavaScript should be able to work on the app without lots of knowledge about a specific tool or framework.
 10. The inverse of the previous point should also be true in that people who learn how the app works, should accidentally learn how JavaScript works in the process.
 11. It should play nicely in a team environment using version control (no giant files).
-12. Every piece of functionality should have an obvious "home." Structure, structure, structure. This makes it easy to jump into olde code to fix bugs or to jump from project to project.
+12. Every piece of functionality should have an obvious "home." Structure, structure, structure. This makes it easy to jump into old code to fix bugs or to jump from project to project.
 13. The project should have a set of code style standards that are enforceable by an automated process. This encourages readability and consistency throughout the codebase. It centralizes code style arguments around an enforcable standard. We find that this minimizes a lot of back-and-forth about code style because it becomes a simple automated pass or fail.
 
 Now let's dive in.

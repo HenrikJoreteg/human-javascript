@@ -295,7 +295,7 @@ Very commonly, when you want to listen to some change on a model, you're often w
 1. Bind the handler so that when it's called, `this` is the view. 
 2. Run the bound handler once so its effect is applied to the DOM. (This avoids having to duplicate logic in the template that's already in your handler).
 
-Bindomatic does both of these for you. 
+`.listenToAndRun()` does both of these for you. 
 
 So instead of:
 
@@ -320,7 +320,7 @@ initialize: function () {
 
 #### .renderCollection(); 
 
-Collectomatic is a lightweight way to render and maintain a collection of models within a container. 
+`.renderCollection()` is a lightweight way to render and maintain a collection of models within a container. 
 
 It will listen for `add`, `remove`, `sort` events on the collection and shuffle and re-draw views for each model as necessary.
 
@@ -378,7 +378,7 @@ model.set('name', 'Sue');
 */
 ```
 
-This is all fine and good for inserting text into an HTML snippet. But what if what you actually want is a bit of logic, or what you want to bind is another attribute, like a `class`, `src`, `href`? Not big deal per se, but it starts getting more convoluted and pretty soon you're writing a lot of logic into your templates. 
+This is all fine and good for inserting text into an HTML snippet. But what if what you actually want is a bit of logic, or what you want to bind is another attribute, like a `class`, `src`, `href`? Not a big deal per se, but it starts getting more convoluted and pretty soon you're writing a lot of logic into your templates. 
 
 Why is that bad? It could be argued, but I feel like it's the wrong place to read logic. I find `if` statements and functions in JavaScript much easier to follow in JavaScript files with the rest of the logic, than when it's sprinkled into the HTML. That reminds me of old approaches to building dynamic web pages where people would write a DB query at the top of the HTML page within some type of special tag and then loop through the results in the markup below using other special tags. 
 

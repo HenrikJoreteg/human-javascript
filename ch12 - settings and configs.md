@@ -15,7 +15,7 @@ They're in no way dependent on each other but they do play nicely together.  (Bo
 
 First, getconfig. This is a tool for configuring Node web apps. It follows the same assumptions as [Express](http://expressjs.com/) does, in that it looks to an environment variable (NODE_ENV, [reference](http://expressjs.com/api.html#app-settings)) to determine the mode in which it should run.
 
-It simply uses that to look for a JSON config file that matches the name of the environment. For example: dev_config.json or production_config.json. It defaults to dev if it doesn't fine one.
+It simply uses that to look for a JSON config file that matches the name of the environment. For example: dev_config.json or production_config.json. It defaults to dev if it doesn't find one.
 
 Then, from your Node app you just require "getconfig" and access settings directly on the resulting object, which will have pulled it from the correct config file. Super clean/simple:
 

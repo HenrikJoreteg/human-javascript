@@ -6,7 +6,7 @@ Typically, that sequence goes something like this:
 
 - Init your main application object. (The "app" global I keep talking about.)
 - Attach a few model collections to that app global.
-- Init and populate a single "me" object that represents the currently logged in user and stores session specifc state.
+- Init and populate a single "me" object that represents the currently logged in user and stores session specific state.
 - Render the application layout view inside the `<body>` tag.
 - Fetch any app-wide data that's needed.
 - Then trigger the clientside router

@@ -22,11 +22,11 @@ So, there must be a balance that can be struck between human approval and oversi
 
 ## Meet the SpaceMonkey
 
-So we're built one, we're calling it SpaceMonkey. There wasn't anything out there that did this in a way that was browser-agnostic, simple, and blended automation with human approval.
+So we've been builing one, we're calling it SpaceMonkey. There wasn't anything out there that did this in a way that was browser-agnostic, simple, and blended automation with human approval.
 
 We've still got a lot of work to do on it to make it awesome, but it's included in the app generator and it seemed worth mentioning nonetheless.
 
-It uses QUnit, the clientside testing tool made by the jQuery team. But rather than run simple programatic tests. It loads your app into an `<iframe>` and walks you through the QA process that you've defined for it. You can automate high-level tests like filling in and submitting forms, etc. But, in addition, at the times you've specified it will stop and ask the user for visual verification or to perform some user action such as a drag-and-drop interactions or scrolling-related features that may be hard to test programatically. So some of the unit tests are considered a pass or fail based on a human's answer to "did it work?"
+It uses QUnit, the clientside testing tool made by the jQuery team. But rather than run simple programmatic tests. It loads your app into an `<iframe>` and walks you through the QA process that you've defined for it. You can automate high-level tests like filling in and submitting forms, etc. But, in addition, at the times you've specified it will stop and ask the user for visual verification or to perform some user action such as a drag-and-drop interactions or scrolling-related features that may be hard to test programatically. So some of the unit tests are considered a pass or fail based on a human's answer to "did it work?"
 
 This approach makes it possible to define an explicit set of app interactions to test. So it's like a partially automated QA checklist.
 

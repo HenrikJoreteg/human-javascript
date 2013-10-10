@@ -2,7 +2,7 @@
 
 The first thing I learned to do with JavaScript was swapping images.
 
-It was 1998 and that was the "state of the art" web application programming that I had any access too. It was a time before the web was filled with `MM_swapImage`, although I remember Dreamweaver being around. I knew HTML back then and hacking some JavaScript was my first foray into programming proper. The fact that the `src` of an `<img>` was something that I could programmatically change was a profound realisation for me at the time, although that now seems a very long time ago.
+It was 1998 and that was the "state of the art" web application programming that I had any access to. It was a time before the web was filled with `MM_swapImage`, although I remember Dreamweaver being around. I knew HTML back then and hacking some JavaScript was my first foray into programming proper. The fact that the `src` of an `<img>` was something that I could programmatically change was a profound realisation for me at the time, although that now seems a very long time ago.
 
 My web hacking went along with what everybody else was doing, maybe with a delay of a year or two because I had to wait for stuff to arrive in Germany (the Internet was very slow back then). Netscape and IE 4 came out and brought new ways of dynamically manipulating and animating HTML content. DHTML was born, and I tried to figure it all out until I could swap out content with layers (layers!) and divs that worked in *both* browsers.
 

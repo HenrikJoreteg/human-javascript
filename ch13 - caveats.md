@@ -7,7 +7,7 @@ The most common thing I see when teaching people JavaScript, even people who hav
 
 There are 4 ways to call a function in JavaScript:
 
-as a stand-alone function:
+1. As a stand-alone function:
 
 ```javascript
 var myFunction = function () {
@@ -17,7 +17,7 @@ var myFunction = function () {
 myFunction(); // Will log out window (or global in Node)
 ```
 
-as a property of an object:
+2. As a property of an object:
 
 ```javascript
 var obj = {};
@@ -34,6 +34,24 @@ var myFunc = obj.myFunction;
 myFunc(); // What will this log out as its 'this'?
 
 // Whe answer is that again, the "window" object is 'this'.
+```
+
+3. Using call
+
+```js
+var myFunc = function () { ... };
+
+// call with a context and list of arguments
+myFunc.call({any: 'object'}, 'someArgument', 'someOther');
+```
+
+4. Using apply
+
+```js
+var myFunc = function () { ... };
+
+// apply an array of arguments
+myFunc.apply({any: 'object'}, ['someArgument', 'someOther']);
 ```
 
 So the question is why?
@@ -144,4 +162,4 @@ Backbone tries to make things easy for us, rather than having to do that. Rememb
 
 Inevitably with single page apps you have to deal with issues of bad connectivity, or issues of stale data and/or expired sessions.
 
-If we're using RESTful JSON APIs we'll be making requests throughout the applications lifecycle. One approach is to stub out a global error handler for all Ajax requests. jQuery makes this fairly simple: [http://api.jquery.com/ajaxError](http://api.jquery.com/ajaxError). Often as part of an application'a main view, I'll register a handler for global Ajax errors that pops up a dialog to show an appropriate message. 
+If we're using RESTful JSON APIs we'll be making requests throughout the application's lifecycle. One approach is to stub out a global error handler for all Ajax requests. jQuery makes this fairly simple: [http://api.jquery.com/ajaxError](http://api.jquery.com/ajaxError). Often as part of an application's main view, I'll register a handler for global Ajax errors that pops up a dialog to show an appropriate message. 
