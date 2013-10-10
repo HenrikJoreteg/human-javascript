@@ -107,22 +107,22 @@ There are more and more tools out there now to build client apps. AngularJS, Emb
 
 People in charge of development teams seem to agonize over the decision.
 
-They see these options as long term decisions with huge, long term ramifications and they don't want to pick the wrong one. The awesome thing is this... they're all JavaScript. So it's not really *that* grave of a decision and switching to something else isn't going to burn your whole business to the ground. The most important thing is that your team becomes familiar with building well-structured apps in JavaScript. That investment will be well worth it and will translate to new tools, if they come along. 
+They see these options as long term decisions with huge, long term ramifications and they don't want to pick the wrong one. The awesome thing is this...they're all JavaScript. So it's not really *that* grave of a decision and switching to something else isn't going to burn your whole business to the ground. The most important thing is that your team becomes familiar with building well-structured apps in JavaScript. That investment will be well worth it and will translate to new tools, if they come along. 
 
 Decisions are time consuming and expensive. At &yet we've built and re-built applications with all kinds of different tools and approaches. The following pages contain the conclusions we've reached. They're probably not for everyone but we've been quite happy with the results and it has made it possible for us to efficiently collaborate on clientside apps as a team. The approaches were picked with the following criteria:
  
 1. Tools that are "just JavaScript." Not tools where you describe your app in a DSL (no Sencha). This is to avoid requiring too much knowledge of the framework itself before being able to contribute. Focusing on JavaScript also offers some protection against investing too heavily in framework-specific knowledge.
-2. Tools where you build the app by writing code in JavaScript files, not by declaring bindings in your HTML (no AngularJS, sorry). Having to write application logic inside of a template feels like a violoation of separation of concerns. It has some short-term payoffs and can make simple things really easy. However, when you want more control it can be difficult to do within the constraints of the framework.
-3. No monolithic, do-everything widget frameworks (not Sproutcore). These often make lots of assumptions about how you want to structure your HTML and often violate separation of concerns.
+2. Tools where you build the app by writing code in JavaScript files, not by declaring bindings in your HTML (no AngularJS, sorry). Having to write application logic inside of a template feels like a violation of separation of concerns. It has some short-term payoffs and can make simple things really easy. However, when you want more control it can be difficult to do within the constraints of the framework.
+3. No monolithic, do-everything widget frameworks (no Sproutcore). These often make lots of assumptions about how you want to structure your HTML and often violate separation of concerns.
 4. Model state is completely decoupled from view state (no Knockout.js). Again, this is to separate concerns.
-5. You should not have to be a JavaScript rockstar to edit templates. Templates in separate files with very little logic lets designers edit templates without having to know how everything works.
+5. You should not have to be a JavaScript rockstar to edit templates. Templates in separate files with very little logic allows designers to edit templates without having to know how everything works.
 6. The DOM is simply a view of the state and reacts to changes in the model layer.
 7. Simple, decoupled file structures with lots of components that solve one problem.
-8. As little magic as possible (no Ember). Similar to item 1 this is primarily to avoid requiring too much framework-specific knowledge. Which brings us to the next point.
+8. As little magic as possible (no Ember). Similar to Item 1 this is primarily to avoid requiring too much framework-specific knowledge. Which brings us to the next point.
 9. People who already know JavaScript should be able to work on the app without lots of knowledge about a specific tool or framework.
 10. The inverse of the previous point should also be true in that people who learn how the app works, should accidentally learn how JavaScript works in the process.
 11. It should play nicely in a team environment using version control (no giant files).
 12. Every piece of functionality should have an obvious "home." Structure, structure, structure. This makes it easy to jump into old code to fix bugs or to jump from project to project.
-13. The project should have a set of code style standards that are enforceable by an automated process. This encourages readability and consistency throughout the codebase. It centralizes code style arguments around an enforcable standard. We find that this minimizes a lot of back-and-forth about code style because it becomes a simple automated pass or fail.
+13. The project should have a set of code style standards that are enforceable by an automated process. This encourages readability and consistency throughout the codebase. It centralizes code style arguments around an enforceable standard. We find that this minimizes a lot of back-and-forth about code style because it becomes a simple automated pass or fail.
 
 Now let's dive in.
