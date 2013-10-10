@@ -7,7 +7,7 @@ BUILDS: https://www.dropbox.com/sh/jn2ktxswruhcovk/FmXLx2WjP7
 
 [Ch1: Introduction](ch01 - introduction.md)
 
-- Achknowledgements
+- Acknowledgements
 - This Book Will Help You Build Native HTML5 Apps
 - Realtime apps are human apps
 - Misconceptions, FUD and engineering
