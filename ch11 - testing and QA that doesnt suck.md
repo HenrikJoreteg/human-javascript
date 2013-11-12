@@ -22,7 +22,7 @@ So, there must be a balance that can be struck between human approval and oversi
 
 ## Meet the SpaceMonkey
 
-So we've been builing one, we're calling it SpaceMonkey. There wasn't anything out there that did this in a way that was browser-agnostic, simple, and blended automation with human approval.
+So we've been building one, we're calling it SpaceMonkey. There wasn't anything out there that did this in a way that was browser-agnostic, simple, and blended automation with human approval.
 
 We've still got a lot of work to do on it to make it awesome, but it's included in the app generator and it seemed worth mentioning nonetheless.
 
