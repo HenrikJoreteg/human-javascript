@@ -339,7 +339,7 @@ module.exports = HumanView.extend({
   render: function () {
     this.renderAndBind();
     this.$container = this.$('.myItemList')[0];
-    this.renderCollection(this.collection, ItemView, this.$container[0]);
+    this.renderCollection(this.collection, ItemView, this.$container);
   }
 });
 ```
