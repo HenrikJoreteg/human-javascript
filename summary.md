@@ -1,0 +1,17 @@
+# Summary
+
+* [Foreword by Jan Lehnardt](ch00-foreword.md)
+* [Introduction](ch01-introduction.md)
+* [Client or server? Go big or go home.](ch02-the-big-decision.md)
+* [Writing code for humans.](ch03-code-for-humans.md)
+* [No more clientside spaghetti. Organizing your code.](ch04-organizing-your-code.md)
+* [Using events: Modules talking to modules](ch05-eventification.md)
+* [Models](ch06-models.md)
+* [Views and the DOM](ch07-views.md)
+* [Handling templates](ch08-templating.md)
+* [Clientside Routing](ch09-clientside-routing.md)
+* [3... 2... 1... Blastoff!](ch10-launch-sequence.md)
+* [Testing and QA](ch11-testing-and-QA.md)
+* [Settings and configs](ch12-settings-and-configs.md)
+* [Caveats/Gotchas](ch13-caveats.md)
+* [A few closing thoughts](ch14-conclusion.md)

@@ -1,0 +1,23 @@
+{
+  "name": "human-javascript",
+  "version": "0.0.0",
+  "description": "Build powerfully simple browser apps",
+  "main": "fileConcat.js",
+  "scripts": {
+    "push": "cd ../read.humanjavascript.com && git add --all && git commit -m 'rebuilding' && git push origin gh-pages && cd ../human-javascript",
+    "build": "npm run gitbook && open ../read.humanjavascript.com/index.html",
+    "gitbook": "npm run savegit && gitbook build -o ../read.humanjavascript.com && npm run restoregit",
+    "savegit": "mv ../read.humanjavascript.com/.git $TMPDIR/git",
+    "restoregit": "mv $TMPDIR/git ../read.humanjavascript.com/.git && echo 'read.humanjavascript.com' > CNAME"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HenrikJoreteg/human-javascript.git"
+  },
+  "author": "Henrik Joreteg <henrik@andyet.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HenrikJoreteg/human-javascript/issues"
+  },
+  "homepage": "https://github.com/HenrikJoreteg/human-javascript"
+}
