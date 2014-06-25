@@ -2,16 +2,16 @@
 
 Code is as much about people as it is about computers. Sure, it's run by computers, but it's written by, maintained by, and ultimately created for people. People are not computers. We are not robots. We are unpredictable, flawed, and irrational. The same people with the same tools and instructions won't produce the same output each time. We generally don't like being alone and we don't work well in isolation. In fact, in order to do our best work we *need* to work with other people. None of these traits are bad things, quite the opposite. They're what makes us who we are, they make us, well... human. Yet, as developers it's easy for us to get so focused on optimizing for technology that we forget to optimize for people.
 
-You can read about JavaScript, the language, elsewhere. Its good parts, bad parts, and ugly parts are well documented. This is a book about a specific set of tools, patterns, and approches that we feel are optimized for people. These approaches enable our team to quickly build and deliver high-quality JavaScript applications for humans.
+You can read about JavaScript, the language, elsewhere. Its good parts, bad parts, and ugly parts are well documented. This is a book about a specific set of tools, patterns, and approaches that we feel are optimized for people. These approaches enable our team to quickly build and deliver high-quality JavaScript applications for humans.
 
-[&yet](http://andyet.com), the team that I'm humbled to be a part of, is a small (~20 person) bootstrapped consulting and product company focused heavily on realtime single page web applications. We've had the opportunity to build a very broad range of single page applications for all kinds of purposes and audiences. We've built stuff for mobile, desktop, browser extensions, PhoneGap, televisions, you name it. From these experiences patterns start to emerge. Patterns that enable us to efficiently ship real-life applications (with real-life deadlines) as a team.
+[&yet](http://andyet.com), the team I'm humbled to be a part of, is a small (~40 person) bootstrapped consulting and product company focused heavily on realtime single page web applications. We've had the opportunity to build a very broad range of single page applications for all kinds of purposes and audiences. We've built stuff for mobile, desktop, browser extensions, PhoneGap, televisions, you name it. From these experiences patterns start to emerge. Patterns that enable us to efficiently ship real-life applications (with real-life deadlines) as a team.
 
-As we've gone along, we've done our best to extract reusable tools out of them. So, in some ways we accidentally wrote this book. What I mean is that much of its contents are compiled from past blogposts, explanations to teammates and clients, and from project README files. This book is primarily an extraction, not a creation. We're sharing our experience, secrets, and tools to hopefully give you and your team a solid footing for building great apps and experiences.
+As we've gone along, we've done our best to extract reusable tools out of them. So, in some ways we accidentally wrote this book. What I mean is that much of its contents are compiled from past blog posts, explanations to teammates and clients, and from project README files. This book is primarily an extraction, not a creation. We're sharing our experience, secrets, and tools to hopefully give you and your team a solid footing for building great apps and experiences.
 
 
 # Acknowledgements
 
-Speaking of humans, this book would not exist if not for a giant list of people who helped make it a reality. To name a few specifically a huge thank you to Jan Lehnardt, Philip Roberts, Bear (Mike Taylor), Luke Karrys, Jenn Turner, Adam Brault, Sara Chipps, Jeff Boyus, Lance Stout, Karolina Szczur, Jon Hjelle, Melanie Brown, Stephanie Maier, Beau Sorensen, Michael Garvin, Amy Lynn Augspurger and others.
+Speaking of humans, this book would not exist if not for a giant list of people who helped make it a reality. To name a few specifically, a huge thank you to Jan Lehnardt, Philip Roberts, Bear (Mike Taylor), Luke Karrys, Jenn Turner, Adam Brault, Sara Chipps, Jeff Boyus, Lance Stout, Karolina Szczur, Jon Hjelle, Melanie Brown, Stephanie Maier, Beau Sorensen, Michael Garvin, Amy Lynn Augspurger and others.
 
 They helped with technical review, code, editorial feedback, design, writing/producing the promotional video and loads of encouragement. Thank you all!
 
@@ -22,7 +22,7 @@ Let's talk about this whole "app" thing for a bit and get on the same page in te
 
 Rather than pontificate on the meaning of this for three chapters, I'll explain the distinction as I see it for the purposes of this book.
 
-When most people say they're building a "web app" they're talking about writing source code that describes an application that will run on the server and send rendered HTML to the browser. That definition seems a bit narrow and limiting. Plus, when I think of my favorite web apps they don't fit neatly into that box. The best web apps often have multiple interfaces and clients, some native, some web. Most play nicely with or completely integrate with other services. Generally web apps are good at solving some specific problem or provide some specific benefit and use the web to tie it all together.
+When most people say they're building a "web app" they're talking about writing source code that describes an application that will run on the server and send rendered HTML to the browser. This definition seems a bit narrow and limiting. Plus, when I think of my favorite web apps they don't fit neatly into that box. The best web apps often have multiple interfaces and clients, some native, some web. Most play nicely with or completely integrate with other services. Generally web apps are good at solving some specific problem or provide some specific benefit and use the web to tie it all together.
 
 The web vs. native debate is a bit worn out. From my perspective the whole debate is somewhat misguided. It doesn't have to be one or the other, I have no problem with it being both. It's no secret that most native apps are even better with the web. Why else would classic native Apple apps like iPhoto start integrating with Flickr and Facebook? And yet, you can't write a native app for every platform out there.
 
@@ -75,7 +75,7 @@ As users get increasingly comfortable with that idea, I believe we'll reach a po
 
 Anytime you duplicate state, you increase complexity. Rather than worrying about just rendering some data correctly, you're now caring about staleness, caching, and conflicts.
 
-If we step back a bit we start to realize that what we're actually building is a distributed system and as a result we'll face all the same challenges that come with building distributed systems.
+If we step back a bit we start to realize what we're actually building is a distributed system and as a result we'll face all the same challenges that come with building distributed systems.
 
 I know what you're probably thinking. Some framework is going to come along that solves this problem for me. You may be right, there are many different approaches to dealing with the problems of duplicated state. There are several emerging frameworks, such as Meteor and Derby, that aim to simplify the process of building apps that work this way.
 
@@ -92,7 +92,7 @@ We need to stop dumbing down the concept of "frontend" code. It's getting better
 
 We're not talking about rendering some HTML on the server and sprinkling on a few lines of jQuery. We're talking about *engineering* a UI here.
 
-Unfortunately because of those pre-conceptions, many of the people who are being asked to build these kinds of apps don't have a heavy engineering background and approach the task much like they would any other client code: write some jQuery.
+Unfortunately because of those preconceptions, many of the people who are being asked to build these kinds of apps don't have a heavy engineering background and approach the task much like they would any other client code: write some jQuery.
 
 But, jQuery is not an application framework. It's an abstraction layer and toolkit for working with the DOM. I'm not dogging on jQuery at all, in fact, I think it's a great toolkit for DOM manipuation. I use it and am quite happy with it in many HTML5 apps. My point is simply that jQuery is a DOM toolkit, not an application framework.
 
@@ -109,7 +109,7 @@ People in charge of development teams seem to agonize over the decision.
 
 They see these options as long term decisions with huge, long term ramifications and they don't want to pick the wrong one. The awesome thing is this...they're all JavaScript. So it's not really *that* grave of a decision and switching to something else isn't going to burn your whole business to the ground. The most important thing is that your team becomes familiar with building well-structured apps in JavaScript. That investment will be well worth it and will translate to new tools, if they come along.
 
-Decisions are time consuming and expensive. At &yet we've built and re-built applications with all kinds of different tools and approaches. The following pages contain the conclusions we've reached. They're probably not for everyone but we've been quite happy with the results and it has made it possible for us to efficiently collaborate on clientside apps as a team. The approaches were picked with the following criteria:
+Decisions are time consuming and expensive. At &yet we've built and re-built applications with all kinds of different tools and approaches. The following pages contain the conclusions we've reached. They're probably not for everyone but we've been quite happy with the results and they have made it possible for us to efficiently collaborate on clientside apps as a team. The approaches were picked with the following criteria:
 
 1. Tools that are "just JavaScript." Not tools where you describe your app in a DSL (no Sencha). This is to avoid requiring too much knowledge of the framework itself before being able to contribute. Focusing on JavaScript also offers some protection against investing too heavily in framework-specific knowledge.
 2. Tools where you build the app by writing code in JavaScript files, not by trying to declare too much of your app logic in your HTML (no AngularJS, sorry). Having to write application logic inside of a template feels like a violation of separation of concerns. It has some short-term payoffs and can make simple things really easy. However, when you want more control it can be difficult to do within the constraints of the framework.
