@@ -248,7 +248,13 @@ For a long time, I used Backbone models for everything. The code for them is qui
 
 Yet, you'll notice the examples all use `AmpersandModel` instead of `Backbone.Model`.
 
-Despite my love for Backbone, a few things finally drove me to create AmpersandModel:
+Despite our love for Backbone at &yet, a few things finally drove us to create [Ampersand.js](http://ampersandjs.com/).
+
+Backbone is brilliantly simple and solves many common problems in developing clientside applications. But we missed the focused simplicity of tiny modules in node-land.
+
+We wanted something similar in style and philosophy, but that fully embraced tiny modules, npm, and browserify. For more info on those tools check out the [Ampersand.js site](http://ampersandjs.com/).
+
+The specific things we wanted from models are:
 
 
 #### 1. Readability
