@@ -60,7 +60,7 @@ From my tests the actual rendering of templates is **6 to 10 times faster**. In 
 
 ## Can we get even faster?
 
-Possibly. Once you're in a browser it's faster to build DOM elements with DOM methods than by sending html strings that has to be interpolated with values and then parsed by the browser to create DOM elements.
+Possibly. Once you're in a browser it's faster to build DOM elements with DOM methods than by sending HTML strings that have to be interpolated with values and then parsed by the browser to create DOM elements.
 
 These days we're seeing more template languages that compile to DOM methods instead to get that extra performance boost.
 
