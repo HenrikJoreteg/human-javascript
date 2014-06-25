@@ -96,7 +96,7 @@ And if nothing else, the general idea might be enough to tempt you to build it :
 
 For tests that are not QA, but are in fact unit tests, you need a way to write tests that will run in a browser and ideally, we'd be able to run them from the command line.
 
-Turns out, we can. Using a set of tools developed largely by James Halliday, a.k.a "substack".
+Turns out, we can. Using a set of tools developed largely by [James Halliday, a.k.a "substack"](https://twitter.com/substack).
 
 Here's a sample from ampersand-state:
 
@@ -160,7 +160,9 @@ As a result, there are various tools to dress up that output. So, if you want pr
 "test": "browserify test/index.js | tape-run | tap-spec"
 ```
 
-This approach we can also use a service like [testling](https://ci.testling.com/) to run our test suite on a list of browser we provide.
+By using tape and writing tests in this way, we can also use a service like [testling](https://ci.testling.com/) that runs our tests in different browsers for us. 
+
+Testling can be configured to automatically run our test suite using the list of browsers that we specify each time we push to github. This approach is extremely helpful when developing small modules for use in a browser. See the [testling quick start guide](https://ci.testling.com/guide/quick_start) for more info on how to set this up for your project.
 
 For a full working example of these tools being used, see [ampersand-view](https://github.com/AmpersandJS/ampersand-view) or almost any of the [ampersand.js tools](http://ampersandjs.com).
 

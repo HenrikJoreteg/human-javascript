@@ -577,3 +577,5 @@ Models should *never* contain:
 
 1. Anything that manipulates the DOM
 2. Any DOM event handlers
+
+You can read a lot more about ampersand-model in the [Ampersand.js docs](http://ampersandjs.com/).

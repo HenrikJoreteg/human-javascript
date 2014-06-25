@@ -385,13 +385,13 @@ It's really a matter of preference and luckily it's easy enough to switch it out
 
 For simple, put-this-text-here bindings, it's all pretty straightforward.
 
-Where things can potentially get a bit messy is when you actually want is a bit of logic. Say you want to add/remove an item from a list of classes based on a boolean property on a model, or say you want to add/remove an entire attribute, like `checked`. Not a big deal, per se, but you can see that we now the template language has to invent some syntax to indicate that this is a different type of binding.
+Where things can potentially get a bit messy is when you actually want is a bit of logic. Say you want to add/remove an item from a list of classes based on a boolean property on a model, or say you want to add/remove an entire attribute, like `checked`. In order for the template language to know that's what we want it has to have some type of new syntax to indicate how the binding should behave.
 
 In my opinion, this is where many of these languages go too far. They simply try to do too much declared logic in a template. Personally, it doesn't feel right to be writing code within markup.
 
 The important thing to recognize is that both the template language approach and the declarative bindings are *really doing the same thing*. They're just a way of building a set of functions that can turn "Hey, this value changed on a model" into the actual DOM method that will update the DOM, for example: `someElement.setAttribute('href', '/my-url')`.
 
-If you're wanting to use a templating language that can also do the bindings for you, I'd strongly recommend: [Phil Robert's domthing](https://github.com/latentflip/domthing). It's a variant of mustache that let's you automatically bind using templates that look like this:
+If you're wanting to use a templating language that can also do the bindings for you, I'd strongly recommend: [Phil Robert's domthing](https://github.com/latentflip/domthing). It's a variant of [mustache](http://mustache.github.io/) that let's you automatically bind using templates that look like this:
 
 ```html
 <div class="entry">
@@ -402,7 +402,7 @@ If you're wanting to use a templating language that can also do the bindings for
 </div>
 ```
 
-But will automatically bind the resulting
+But it will also automatically create bindings for those properties to the resulting DOM.
 
 ## A note about re-usability
 
