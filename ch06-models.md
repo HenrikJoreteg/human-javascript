@@ -116,7 +116,7 @@ In fact, that's worth a little tangent to drive home the purpose of an API. It's
 
 Continuing... calling the `trash` method sets a local state property `removing` and then calls the API method that sends the command to the server to delete the task (in this case via WebSocket, but the transport is irrelevant).
 
-But the cool thing is, that's *it*. That's all we have to do when we want to delete a widget. You simply have to look up that widget's model and call `.trash()`. 
+But the cool thing is, that's *it*. That's all we have to do when we want to delete a widget. You simply have to look up the widget's model and call `.trash()`. 
 
 Nowhere in this code do you see anything about removing the item from DOM.
 
@@ -248,7 +248,7 @@ For a long time, I used Backbone models for everything. The code for them is qui
 
 Yet, you'll notice the examples all use `AmpersandModel` instead of `Backbone.Model`.
 
-Despite my love for Backbone, a few things finally drove me to creating AmpersandModel:
+Despite my love for Backbone, a few things finally drove me to create AmpersandModel:
 
 
 #### 1. Readability
