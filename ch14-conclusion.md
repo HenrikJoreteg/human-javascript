@@ -10,8 +10,14 @@ Follow @[HenrikJoreteg](https://twitter.com/HenrikJoreteg) and @[andyet](https:/
 
 ## 3. Complimentary Resources
 
-- [http://docs.humanjavascript.com](http://docs.humanjavascript.com) – Human JavaScript related documentation site.
-- [http://resources.humanjavascript.com](http://resources.humanjavascript.com) – Fast searchable directory of hand-picked modules. 
+We've pulled out all of our favorite tools into a toolkit we're calling: Ampersand.js
+
+"A highly modular, loosely coupled, non-frameworky framework for building advanced JavaScript apps."
+
+So there's a lot of resources and detailed documentation there.
+
+- [http://ampersandjs.com](http://ampersandjs.com) – Human JavaScript related documentation site.
+- [http://tools.ampersandjs.com](http://tools.ampersandjs.com) – Fast searchable directory of hand-picked modules.
 
 ## 4. Open source is a group effort
 
@@ -23,7 +29,7 @@ If there was anything that was unclear, incorrect, missing, or could be improved
 
 ## 6. Thank you, thank you, thank you
 
-At &yet we believe in the Open Web and invest heavily in building applications and tools that improve the web we love. Your support, through buying the book, helps fund our open source efforts. I hope this has given you some tools and confidence to go forth and build awesomer stuff. 
+At &yet we believe in the Open Web and invest heavily in building applications and tools that improve the web we love. Your support, through buying the book, helps fund our open source efforts. I hope this has given you some tools and confidence to go forth and build awesomer stuff.
 
 I would argue that the web has greater potential for good than any other human invention throughout history. We're a privileged few, who are fortunate enough to have been born at the right time with the right skills to get to participate in building the web. Our time is short. One of my favorite quotes comes from a poet, Mary Lou Oliver, that Adam Brault introduced me to:
 

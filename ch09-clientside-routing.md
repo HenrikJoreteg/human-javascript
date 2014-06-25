@@ -4,8 +4,6 @@ One thing you sometimes lose with a browser app is the proper handling of the br
 
 The good news is we don't actually have to make those tradeoffs. Through the clever use of Backbone's router and HTML5 push state, browser apps can take over the world. Here's how it works...
 
-
-
 ## Same sh*t different URL
 
 From the server perspective, how do we actually "hand control of routing to the client"? Ugh... that's not how the web works, right? The server has to answer actual http GET request when a user types your app's URL in their browser.
@@ -16,7 +14,7 @@ For example, it doesn't matter if you hit:
 
 https://andbang.com/andyet/chat
 
-or 
+or
 
 https://andbang.com/basecamp
 
@@ -34,7 +32,7 @@ If you're using Express and Node it's quite easy to do.
 
 ```javascript
 app.get('/other/thing', function () {
-  // You could still serve other support pages 
+  // You could still serve other support pages
   // and simple things at specific URLs.
 });
 
@@ -42,12 +40,13 @@ app.get('/other/thing', function () {
 // the range of URLs you're going to want the single page app
 // to be available at:
 app.get('*', function (req, res) {
-  res.sendFile('sameShit.html');
+  res.sendFile('sameSh*t.html');
 });
 ```
 
-At this point finding/fetching the right data and rendering the right view is up to the browser app.
+But, of course, the same thing can be done in most any framework, or even with an nginx config.
 
+But the big difference is that at this point we've made finding/fetching the right data and rendering the right view the responsibility of the browser app, not the server.
 
 ## How to deal with clientside routes
 
@@ -57,6 +56,6 @@ https://andbang.com/andyet/tasks/47
 
 So, if a user types that URL in their browser the user will see a detail view of that task. Also, if they're somewhere else in the app and navigate to that task view by clicking the task in their list, the page won't reload, but when you look at the URL bar in the browser, that's the page you're on.
 
-Backbone's router is really handy for handling all of that stuff. 
+Backbone's router is really handy for handling all of that stuff.
 
-But, in order to grasp how this works in practice, we have to talk a bit about the application launch sequence. 
+But, in order to grasp how this works in practice, we have to talk a bit about the application launch sequence.

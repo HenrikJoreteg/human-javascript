@@ -186,9 +186,9 @@ module.exports = Backbone.Collection.extend({
 `models/widget.js`
 
 ```javascript
-var HumanModel = require('human-model');
+var AmpersandModel = require('ampersand-model');
 
-module.exports = HumanModel.define({
+module.exports = AmpersandModel.extend({
   // We give our model a type
   type: 'widget',
   // Define properties, these are the ones
@@ -246,9 +246,9 @@ In order to provide observability, models generally provide some sort of event r
 
 For a long time, I used Backbone models for everything. The code for them is quite simple and readable (YES!); they're also flexible and easy to use. Also, I'm generally a big fan of Backbone's principles and structure.
 
-Yet, you'll notice the examples all use `HumanModel` instead of `Backbone.Model`.
+Yet, you'll notice the examples all use `AmpersandModel` instead of `Backbone.Model`.
 
-Despite my love for Backbone, a few things finally drove me to creating HumanModel:
+Despite my love for Backbone, a few things finally drove me to creating AmpersandModel:
 
 
 #### 1. Readability
@@ -273,7 +273,7 @@ In a large app, you work with models **a lot**. Having to call `get` and `set` e
 // Without getters/setters (Backbone Model)
 model.set('firstName', 'Henrik');
 
-// With getters/setters (HumanModel)
+// With getters/setters (AmpersandModel)
 model.firstName = 'Henrik';
 ```
 
@@ -354,7 +354,7 @@ Object.defineProperties(myObject, {
 
 As you can imagine this power gives you a *lot* of rope to hang yourself with and thus, this capability should be used *very* cautiously.
 
-Some argue, and I can see their point, that using this is too much magic. If that's how you feel. Luckily, in our happy modular world, you can just use plain Backbone models and for many simpler apps, I still do.
+Some argue, and I can see their point, that using this is too much magic. If that's how you feel. Luckily, in our happy modular world, you can just use plain Backbone models.
 
 However, I happen to think that in the case of models getters/settings can actually make our code more fault tolerant and more readable. But, I *only* use them for model properties and only in predictable ways.
 
@@ -409,14 +409,14 @@ Sure, you may be able to keep it all in your head to a point, but what about whe
 
 I prefer that the model is the explicit documentation on what state is stored. 
 
-See how this could be in HumanModel:
+See how this could be in AmpersandModel:
 
 file: `models/user.js`
 
 ```javascript
-var HumanModel = require('human-model');
+var AmpersandModel = require('ampersand-model');
 
-module.exports = HumanModel.define({
+module.exports = AmpersandModel.extend({
   type: 'user',
   // Our properties from the server
   props: {
@@ -456,12 +456,15 @@ module.exports = HumanModel.define({
       fn: function () {
         return (this.firstName + ' ' + this.lastName).trim();
       },
-      // We can optionally cache the result. Doing this
-      // means it won't run the function to return the result
-      // unless one of the dependency values has changed since 
-      // the last time it was run. This feature can lead to 
+      // The result is intelligently cached by default which means 
+      // it won't run the function unless one of the dependency values
+      // has changed since and it won't trigger a `change` on the
+      // derived value unless the new derived value is actually different.
+      // By only firing change events when derived values change can lead to 
       // dramatic performance improvements over plain Backbone.
-      cache: true
+      // We can set this to false too, of course, and the result would
+      // never be cached.
+      cache: true 
     }
   }
 });
@@ -491,8 +494,8 @@ console.log(model.firstName); // prints: 'Henrik'
 
 // Here's the *awesome* part I _can't_ set a property that isn't defined.
 // So if I fatfinger the property name, it won't stick.
-// *Note what HumanModel does when calling `set()` with undeclared attributes
-// can be configured. See human-model docs for more.
+// *Note what AmpersandModel does when calling `set()` with undeclared attributes
+// can be configured. See ampersand-model docs for more.
 model.frstName = 'Henrik';
 ```
 
@@ -536,10 +539,10 @@ We can solve this with getters/setters in cases where we *know* we want this beh
 
 
 ```javascript
-var HumanModel = require('human-model');
+var AmpersandModel = require('ampersand-model');
 
 // Set up a simple model definition
-var DemoModel = HumanModel.define({
+var DemoModel = AmpersandModel.extend({
   props: {
     ids: ['array', true, []]
   }

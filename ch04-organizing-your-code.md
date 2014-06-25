@@ -43,7 +43,7 @@ If you're unfamiliar with the CommonJS modules style, your files end up looking 
 ```javascript
 // You import things by using the special `require` function and you can
 // assign the result to a variable
-var HumanModel = require('human-model');
+var AmpersandModel = require('ampersand-model');
 var _ = require('underscore');
   
 // You expose functionality to other modules by declaring your main export
