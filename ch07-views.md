@@ -385,7 +385,7 @@ It's really a matter of preference and luckily it's easy enough to switch it out
 
 For simple, put-this-text-here bindings, it's all pretty straightforward.
 
-Where things can potentially get a bit messy is when you actually want is a bit of logic. Say you want to add/remove an item from a list of classes based on a boolean property on a model, or say you want to add/remove an entire attribute, like `checked`. In order for the template language to know that's what we want it has to have some type of new syntax to indicate how the binding should behave.
+Where things can potentially get a bit messy is if what you actually want is a bit of logic. Say you want to add/remove an item from a list of classes based on a boolean property on a model, or say you want to add/remove an entire attribute, like `checked`. In order for the template language to know that's what we want, it has to have some type of new syntax to indicate how the binding should behave.
 
 In my opinion, this is where many of these languages go too far. They simply try to do too much declared logic in a template. Personally, it doesn't feel right to be writing code within markup.
 
