@@ -111,7 +111,7 @@ You can find the app on my [GitHub account](https://github.com/HenrikJoreteg/hum
 
 ### Caveat: understanding `this.$` and `this.get`
 
-Inside the example above, in the `render` method, you'll notice that we pass: `this.get('#pages')` in backbone you'd do `this.$('#pages')[0]` as the `el` argument for the subview. You may wonder, why not just pass `$('#pages')` or even just `document.getElementById('pages')`?
+Inside the example above, in the `render` method, you'll notice that we pass: `this.get('#pages')` in Backbone you'd do `this.$('#pages')[0]` as the `el` argument for the subview. You may wonder, why not just pass `$('#pages')` or even just `document.getElementById('pages')`?
 
 The reason is we can't assume that the view is attached to the main DOM tree when this method is called. If you haven't yet attached it, the other selector queries wouldn't be able to find the right elements because they're not in the main document tree yet. In fact, often a parent view will call `render()` on a subview as part of its own render method, and then attach the result to the DOM. This is entirely intentional because it's much faster for the browser to create the DOM elements outside of the main DOM tree, only attaching and painting them once.
 
@@ -290,7 +290,7 @@ In addition, if I want to include some conditional class or some other property 
 
 Now, enter `renderWithTemplate(contextObject)`. This simply encapsulates everything you need to do to render the view using the `template` property while also replacing the entire existing root element and making sure all the event handlers in your event hash are registered. If your `template` is a function, it will be called with the contextObject you called `renderWithTemplate` with.
 
-At it's most basic, at `template` can simply be a string of HTML, but it can be also be a function that returns a string of HTML, or a function that returns a DOM element.
+At its most basic, a `template` can simply be a string of HTML, but it can be also be a function that returns a string of HTML, or a function that returns a DOM element.
 
 #### .listenToAndRun();
 
@@ -352,7 +352,7 @@ For more on AmpersandView, or to contribute and make it better, see the document
 
 ## A bit about defining bindings in templates (à la AngularJS, Ractive)
 
-There are several libraries out there that let you specify in your templates which pieces of information go where in your DOM and then they automatically creates the event bindings for you.
+There are several libraries out there that let you specify in your templates which pieces of information go where in your DOM and then they automatically create the event bindings for you.
 
 Basically, you'd have a template like this:
 
@@ -389,7 +389,7 @@ Where things can potentially get a bit messy is when you actually want is a bit 
 
 In my opinion, this is where many of these languages go too far. They simply try to do too much declared logic in a template. Personally, it doesn't feel right to be writing code within markup.
 
-The important thing to recongize is that both the template language approach and the declarative bindings are *really doing the same thing*. They're just a way of building a set of functions that can turn "hey, this value changed on a model" into the actual DOM method that will update the DOM, for example: `someElement.setAttribute('href', '/my-url')`.
+The important thing to recognize is that both the template language approach and the declarative bindings are *really doing the same thing*. They're just a way of building a set of functions that can turn "Hey, this value changed on a model" into the actual DOM method that will update the DOM, for example: `someElement.setAttribute('href', '/my-url')`.
 
 If you're wanting to use a templating language that can also do the bindings for you, I'd strongly recommend: [Phil Robert's domthing](https://github.com/latentflip/domthing). It's a variant of mustache that let's you automatically bind using templates that look like this:
 
