@@ -23,7 +23,7 @@ Don't be scared of refactoring. Be scared of building an unmaintainable piece of
 
 ## Separating views and state
 
-This is the biggest lesson I've learned building lots of single page apps. Your view (the DOM) should just be blind slave to the model state of your application. For this you could use any number of tools and frameworks. I'd recommend starting with [Backbone](http://backbonejs.org/) (by the awesome Mr. @[jashkenas](https://twitter.com/jashkenas)) as it's the easiest to understand, and the closest thing to "just JavaScript"™ as discussed in the introduction. 
+This is the biggest lesson I've learned building lots of single page apps. Your view (the DOM) should just be reacting to the model state of your application. For this you could use any number of tools and frameworks. I often recommend reading the [Backbone documentation](http://backbonejs.org/) to developers who are new to these concepts. It provides a clear "just JavaScript"™ approach to this and serves as a fantastic primer to the the problems of building clientside apps.
 
 Essentially, you'll populate a set of models and collections of these models in memory in the browser. These will store all the application state for your app. These models should be completely oblivious to how they're used; they merely store state and broadcast their changes. Then you will have views that listen for changes in the models and update the DOM. This core principle of separating your views and your application state is vital when building large apps.
 
@@ -105,7 +105,7 @@ var clientapp = new Moonboots({
   developmentMode: true,
 
   // These are the regular JavaScript files (not written in CommonJS style) 
-  // that we want to include in our application. These all live in clientapp/libraries
+  // that we want to include in our application. These all live in client/libraries
   // and will be concatenated in the order listed.
   libraries: [
     __dirname + '/libs/jquery-1.9.1.js',
@@ -148,30 +148,32 @@ However, a lot of people like to serve static files with a separate process, usi
 Calling `moonboots.sourceCode(function (source) { ... })` will call your callback with the generated source code based on current config, which you could use to write it to disk or put it on a CDN as part of a grunt task or whatnot. Those details are probably beyond the scope of this book. But, the point is, you can certainly do that with these tools if that makes more sense for your app.
 
 
-### The structure of the clientapp folder
+### The structure of the client folder
 
-Our clientapp folder usually contains the following folders:
+Our client folder usually contains the following folders:
 
-- models (folder): Contains definitions for all backbone models and collections. As a sanity check, none of these files should have anything related to DOM elements or DOM manipulation.
+- models (folder): Contains definitions for all models and collections. As a sanity check, none of these files should have anything related to DOM elements or DOM manipulation.
 
-- pages (folder): The pages folder is where we store the specialized Backbone views that represent a page rendered at a specific URL.
+- pages (folder): The pages folder is where we store the views that represent a page rendered at a specific URL. Generally these are still just "views" but since they play a special role to our app, it's useful to put these in their own folder.
 
 - views (folder): The views folder contains all of our Backbone views (that are not pages), so things like the main application view and views for rendering specific types of models, etc.
 
+- helpers (folder): Here is where we put any clientside modules that are application specific, but are useful in other modules. For example, we might use this to put a helper module for reporting metrics back to our server that we want to do from several places in the app.
+
+- forms: (folder): A place to store any form views we might have. We often want to reuse a form for both creating and editing a type of data. 
+
 - app.js (file): This is the main entry point for our application. It creates an `app` global variable and instantiates the main models and views.
 
-- router.js (file): This is our clientside (Backbone) router. It contains a list of URL routes at the top and corresponding handlers, whose job it is to instantiate the right views with the right models and call `app.renderPage` with those values.
+- router.js (file): This is our clientside (Backbone) router. It contains a list of URL routes at the top and corresponding handlers, whose job it is to instantiate the right views with the right data from the url and emit instantiated page views that can be rendered into the page container by our main view.
 
 - libraries (folder): This contains all the libraries we're using that are *not* structured like CommonJS modules. So things like jQuery and jQuery plugins will go here.
 
-- modules (folder): Here is where we put all the clientside modules that we want to be able to require without a relative path. This is a good place to put our compiled template file:
-    
-    - templates.js (file): This is the module that gets created from the templates folder (see next). It's a single file with a function for each clientside template. This file gets auto-generated so don't try to edit it directly. Putting it in here lets us also require and use our template functions easily within our views. Each template has a corresponding template function. Each function takes your context object and returns just a string of HTML. 
+- templates.js (file): This is the module that gets created from the templates folder (see next). It's a single file with a function for each clientside template. This file gets auto-generated so don't try to edit it directly. Putting it in here lets us also require and use our template functions easily within our views. Each template has a corresponding template function. Each function takes your context object and returns just a string of HTML. 
 
 - templates (folder): Here is where we keep all our Jade files that get used in the client application. Anytime you're wanting to create HTML within the app, use a Jade template and put it in here. You can structure this folder in whatever fashion makes sense for your application. The important thing to understand is that folders become part of the template.js module structure. For example, in this template you'll see that there's a `pages` folder within the templates folder with a file called `home.jade`. To use the function that got created from that, you'd access it as follows: 
 
 ```javascript
-var templates = require('templates');
+var templates = require('./templates');
 
 // Note that 'pages' becomes part of the structure of your
 // imported templates object
@@ -185,7 +187,7 @@ See Chapter 8 for a more in-depth discussion of templating.
 
 So what makes a module? Ideally, I'd suggest each module being in its own file and only exporting one piece of functionality. Only having a single export helps you keep clear what purpose the module has and keeps it focused on just that task. The goal is having lots of modules that do one thing really well so that your app combines modules into a coherent story.
 
-When I'm building an app, I intentionally have one main controller object of sorts. It's attached to the window as `app` just for convenience. For modules that I've written specifically for this app (stuff that's in the clientapp folder) I allow myself the use of that one global to perform app-level actions like navigating, etc.
+When I'm building an app, I intentionally have one main controller object of sorts. It's attached to the window as `app` just for convenience. For modules that I've written specifically for this app (stuff that's in the client folder) I allow myself the use of that one global to perform app-level actions like navigating, etc.
 
 The main app object doesn't really need to be all that special. Often I create an object literal with a main init function (more on that in Chapter 10). But generally it will look like this:
 
@@ -200,9 +202,6 @@ module.exports = {
     // See Chapter 10 for more detail.
     ... 
   },
-
-  // Render a page view passed by the router
-  renderPage: function () { ... }
 
   // Alias to Backbone.history object so we can
   // do app.navigate('/someother/page') from 
