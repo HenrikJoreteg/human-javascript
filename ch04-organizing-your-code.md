@@ -23,7 +23,7 @@ Don't be scared of refactoring. Be scared of building an unmaintainable piece of
 
 ## Separating views and state
 
-This is the biggest lesson I've learned building lots of single page apps. Your view (the DOM) should just be reacting to the model state of your application. For this you could use any number of tools and frameworks. I often recommend reading the [Backbone documentation](http://backbonejs.org/) to developers who are new to these concepts. It provides a clear "just JavaScript"™ approach to this and serves as a fantastic primer to the the problems of building clientside apps.
+This is the biggest lesson I've learned building lots of single page apps. Your view (the DOM) should just be reacting to the model state of your application. For this you could use any number of tools and frameworks. I often recommend reading the [Backbone documentation](http://backbonejs.org/) to developers who are new to these concepts. It provides a clear "just JavaScript"™ approach to this and serves as a fantastic primer to the problems of building clientside apps.
 
 Essentially, you'll populate a set of models and collections of these models in memory in the browser. These will store all the application state for your app. These models should be completely oblivious to how they're used; they merely store state and broadcast their changes. Then you will have views that listen for changes in the models and update the DOM. This core principle of separating your views and your application state is vital when building large apps.
 

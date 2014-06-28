@@ -28,8 +28,8 @@ Now, compare it to this:
 ```javascript
 // Same array:
 var myArray = ['hello', 'something', 'awesome']; 
-if (myArray.indexOf('hello') == -1) {
-  // Pretty freakin' clear, AMIRITE!?
+if (myArray.indexOf('hello') !== -1) {
+  // Certainly a bit clearer, right?
 }
 ```
 
@@ -39,7 +39,7 @@ Or even this, using Underscore:
 // Same array:
 var myArray = ['hello', 'something', 'awesome']; 
 if (_(myArray).contains('hello')) {
-  // Also pretty freakin' clear right?
+  // Also pretty freakin' clear!
 }
 ```
 
