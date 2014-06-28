@@ -48,7 +48,7 @@ var _ = require('underscore');
   
 // You expose functionality to other modules by declaring your main export
 // like this.
-module.exports = HumanModel.define({
+module.exports = AmpersandModel.extend({
   type: 'navItem',
   props: {
     active: ['boolean', true, false],
