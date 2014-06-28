@@ -4,8 +4,12 @@ By: [@HenrikJoreteg](http://twitter.com/henrikjoreteg)
 
 Build powerfully simple browser apps.
 
-You can read the entire book free online or if you want it in ebook form, you can [buy it for $39](https://gumroad.com/l/humanjs).
+You can read the entire book free online or [buy the ebook for $39](https://gumroad.com/l/humanjs).
 
-We also offer training to help your team level-up their JavaScript development. For more info, check out [&yet's training](http://andyet.com/training) options.
+Also, check out [&yet's training](http://andyet.com/training) options. We love helping people level-up their JS development.
+
+If you have questions or feedback [ping me on twitter](http://twitter.com/henrikjoreteg) or hop into the #&yet channel on freenode.
 
 Enjoy!
+
+
