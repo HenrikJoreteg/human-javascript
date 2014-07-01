@@ -6,7 +6,7 @@ define([
 
     var types = {
         "twitter": function($el) {
-            window.open("http://twitter.com/home?status="+encodeURIComponent(title+" "+url))
+            window.open("http://twitter.com/home?status="+encodeURIComponent("Human JavaScript by @HenrikJoreteg.\n\nNow free to read online: http://read.humanjavascript.com"))
         },
         "facebook": function($el) {
             window.open("http://www.facebook.com/sharer/sharer.php?s=100&p[url]="+encodeURIComponent(url))
