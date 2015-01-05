@@ -328,7 +328,7 @@ initialize: function () {
 
 It will listen for `add`, `remove`, `sort` events on the collection and shuffle and re-draw views for each model as necessary.
 
-You simply pass it the collection, the subview you want to render each model with, and the set of options you want to pass to the subview, and it handles the rest.
+You simply pass it the collection, the subview you want to render each model with, the container element to render subviews into, and the set of options you want to pass to the subview's initialize method, and it handles the rest.
 
 Example:
 
@@ -342,7 +342,11 @@ module.exports = AmpersandView.extend({
   template: templates.myPage,
   render: function () {
     this.renderWithTemplate();
-    this.renderCollection(this.collection, ItemView, this.get('.myItemList'));
+    this.renderCollection(this.collection, ItemView, this.get('.myItemList'), {
+      viewOptions: {
+        init_option: 'option to be passed into ItemView.initialize'
+      }
+    });
   }
 });
 ```
