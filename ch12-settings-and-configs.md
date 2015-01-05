@@ -92,4 +92,4 @@ The other benefit of this approach is that it lets us keep our clientside JS app
 
 ## Security caveats
 
-Please avoid if sending any valuable settings across the wire this way, especially if you're not using https. Cookies are just http headers, so it's best to assume that this is not secure information and thus, should only be used for non-sensitive data.
+Please avoid sending any valuable settings across the wire this way, especially if you're not using https. Cookies are just http headers, so it's best to assume that this is not secure information and thus, should only be used for non-sensitive data.
