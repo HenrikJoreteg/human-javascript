@@ -81,7 +81,7 @@ As I touched on in Chapter 2, we really would like our production environment to
 1. Easy way to edit/refresh your clientside JavaScript files without having to restart the server or re-compile anything manually.
 2. Be able to easily map code in your browser to the right file and line number in the non-compiled version in your app folder.
 3. Serve unminified code in development.
-4. In production, serve a minfied, uniquely named, permanently cachable file containing your entire app.
+4. In production, serve a minified, uniquely named, permanently cachable file containing your entire app.
 5. Be able to toggle between those two states with a simple config flag.
 6. Be able to use browserify for all compatible modules, but still be able to bundle other libraries into our app file.
 7. Be able to serve/minify/cache CSS in the same way. 
