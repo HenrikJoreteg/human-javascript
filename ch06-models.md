@@ -431,7 +431,7 @@ module.exports = AmpersandModel.extend({
     firstName: ['string', true, ''],
     lastName: ['string', true, ''],
     // You can also be even more explicit
-    // and pass and object
+    // and pass an object
     middleName: {
       type: 'string',
       required: true,
