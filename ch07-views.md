@@ -89,7 +89,7 @@ module.exports = AmpersandView.extend({
         document.body.scrollTop = 0;
         // perhaps store a reference to our current page on our
         // app global for easy access from the browser console.
-        app.currentPage = view;
+        app.currentPage = newView;
       }
     });
   }
