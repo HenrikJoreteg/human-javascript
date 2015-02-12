@@ -102,7 +102,7 @@ For example, let's assume you've got a certain URL that represents a page that s
 
 That page would take the collection you plan to render into that container as its `collection` property, then we could use the `renderCollection` method to manage adding/removing individual views (one for each model).
 
-If there isn't a lot of behavior associated with each line item, you may choose to handle the rendering of individual items in the view containing the collection. You'll simply have to make a determination based on how much behavior is associated with each item in the list. If it's fairly behavior-less or log-like (say a chat room, for example) you might want to render them into the container and be done. If it's more interactive, like an tour scheduling app where you're dragging items around, editing them, and there's lots of associated data with each one, then you'll probably want a view to contain the behavior of each item.
+If there isn't a lot of behavior associated with each line item, you may choose to handle the rendering of individual items in the view containing the collection. You'll simply have to make a determination based on how much behavior is associated with each item in the list. If it's fairly behavior-less or log-like (say a chat room, for example) you might want to render them into the container and be done. If it's more interactive, like a tour scheduling app where you're dragging items around, editing them, and there's lots of associated data with each one, then you'll probably want a view to contain the behavior of each item.
 
 Take a look at the associated demo app to see examples of each approach to handling collections.
 
