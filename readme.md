@@ -6,7 +6,7 @@ Build powerfully simple browser apps.
 
 You can read the entire book free online or [buy the ebook for $39](https://gumroad.com/l/humanjs).
 
-Video tutorials by the author are available at: [learn.humanjavascript.com](http://learn.humanjavascript.com/).
+Video tutorials are available at: [learn.humanjavascript.com](http://learn.humanjavascript.com/).
 
 If you find it valuable, please consider [buying it or giving it to a friend](https://gumroad.com/l/humanjs) to support our ongoing efforts.
 
