@@ -105,7 +105,7 @@ this.model.on('change', this.render, this);
 This leads into the other two ways to execute a function:
 
 ```javascript
-myFunction = var myFunction = function () {
+var myFunction = function () {
   console.log('"this" is', this);  
 };
 
