@@ -26,8 +26,8 @@ Is read by ICanHaz and turned into a function you call with your own like this:
 ```javascript
 // Your data
 var data = {
-  first_name: "Henrik",
-  last_name: "Joreteg"
+  name: "Henrik Joreteg",
+  twitter: "henrikjoreteg"
 }
 
 // I can has user??
