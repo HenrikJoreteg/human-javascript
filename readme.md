@@ -4,7 +4,7 @@ By: [@HenrikJoreteg](http://twitter.com/henrikjoreteg)
 
 Build powerfully simple browser apps.
 
-You can read the entire book free online or [buy the ebook for $39](https://gumroad.com/l/humanjs).
+You can read the entire book free online or [buy the ebook for $29](https://gumroad.com/l/humanjs).
 
 Video tutorials are available at: [learn.humanjavascript.com](http://learn.humanjavascript.com/).
 
