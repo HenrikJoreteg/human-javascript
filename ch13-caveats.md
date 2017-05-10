@@ -3,56 +3,56 @@
 
 ## Function bindings
 
-The most common thing I see when teaching people JavaScript, even people who have been working with jQuery for a long time, is understanding how function execution works in JavaScript. 
+People I teach JavaScript, even those who have been working with jQuery for a long time, often misunderstand how function execution works in JavaScript.
 
 There are 4 ways to call a function in JavaScript:
 
 1. As a stand-alone function:
 
-```javascript
-var myFunction = function () {
-  console.log('"this" is', this);  
-};
-
-myFunction(); // Will log out the `window` object (or global in Node)
-```
+    ```javascript
+    var myFunction = function () {
+      console.log('"this" is', this);  
+    };
+    
+    myFunction(); // Will log out the `window` object (or global in Node)
+    ```
 
 2. As a property of an object:
 
-```javascript
-var obj = {};
-obj.myFunction = function () {
-  console.log('"this" is', this);  
-};
+    ```javascript
+    var obj = {};
+    obj.myFunction = function () {
+      console.log('"this" is', this);  
+    };
+    
+    obj.myFunction(); // Will log out the 'obj' object
+    
+    // Now here's where it gets tricky (continuing the same code as above)
+    
+    var myFunc = obj.myFunction;
+    
+    myFunc(); // What will this log out as its 'this'?
+    
+    // the answer is the `window` object
+    ```
 
-obj.myFunction(); // Will log out the 'obj' object
+3. Using call:
 
-// Now here's where it gets tricky (continuing the same code as above)
+    ```js
+    var myFunc = function () { ... };
+    
+    // call with a specific context and any number of arguments
+    myFunc.call({any: 'object'}, 'someArgument', 'someOther');
+    ```
 
-var myFunc = obj.myFunction;
+4. Using apply:
 
-myFunc(); // What will this log out as its 'this'?
-
-// the answer is the `window` object
-```
-
-3. Using call
-
-```js
-var myFunc = function () { ... };
-
-// call with a specific context and any number of arguments
-myFunc.call({any: 'object'}, 'someArgument', 'someOther');
-```
-
-4. Using apply
-
-```js
-var myFunc = function () { ... };
-
-// apply an array of arguments
-myFunc.apply({any: 'object'}, ['someArgument', 'someOther']);
-```
+    ```js
+    var myFunc = function () { ... };
+    
+    // apply an array of arguments
+    myFunc.apply({any: 'object'}, ['someArgument', 'someOther']);
+    ```
 
 So the question is why?
 
